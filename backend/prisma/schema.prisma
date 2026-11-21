@@ -1,0 +1,186 @@
+// EduNexus Relational Schema (Turso libSQL via Prisma Driver Adapter + local SQLite fallback)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String          @id @default(cuid())
+  name           String
+  email          String          @unique
+  passwordHash   String?
+  avatarUrl      String?
+  role           String          @default("student") // student | instructor | admin
+  theme          String          @default("system")  // light | dark | system
+  dailyGoalMins  Int             @default(30)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  enrollments    Enrollment[]
+  lessonProgress LessonProgress[]
+  dailyActivity  DailyActivity[]
+  sessions       Session[]
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique
+  userId    String
+  userAgent String?
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+model Course {
+  id             String             @id @default(cuid())
+  slug           String             @unique
+  order          String
+  sortOrder      Int                @default(0)
+  shortLabel     String
+  title          String
+  category       String
+  level          String
+  summary        String
+  duration       String
+  modulesLabel   String
+  credential     String
+  imageKey       String
+  imageAlt       String
+  pillar         String             // learn | practice | create | excel
+  iconKey        String             // computer | web | python | database
+  isFeaturedHero Boolean            @default(false)
+  isPublished    Boolean            @default(true)
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+
+  outcomes       CourseOutcome[]
+  tools          CourseTool[]
+  modules        CourseModule[]
+  questions      PracticeQuestion[]
+  enrollments    Enrollment[]
+
+  @@index([isFeaturedHero, sortOrder])
+  @@index([pillar])
+}
+
+model CourseOutcome {
+  id        String @id @default(cuid())
+  courseId  String
+  text      String
+  sortOrder Int    @default(0)
+
+  course    Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@index([courseId, sortOrder])
+}
+
+model CourseTool {
+  id        String @id @default(cuid())
+  courseId  String
+  label     String
+  logoKey   String
+  sortOrder Int    @default(0)
+
+  course    Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@index([courseId, sortOrder])
+}
+
+model CourseModule {
+  id          String   @id @default(cuid())
+  courseId    String
+  title       String
+  description String
+  outcome     String
+  sortOrder   Int      @default(0)
+
+  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  lessons     Lesson[]
+
+  @@index([courseId, sortOrder])
+}
+
+model Lesson {
+  id             String           @id @default(cuid())
+  moduleId       String
+  slug           String
+  title          String
+  summary        String
+  durationMins   Int              @default(15)
+  sortOrder      Int              @default(0)
+
+  module         CourseModule     @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  lessonProgress LessonProgress[]
+
+  @@unique([moduleId, slug])
+  @@index([moduleId, sortOrder])
+}
+
+model PracticeQuestion {
+  id          String   @id @default(cuid())
+  courseId    String
+  difficulty  String   @default("easy") // easy | medium | hard
+  prompt      String
+  optionsJson String   // JSON array of choice strings
+  answerIndex Int
+  explanation String
+  xpReward    Int      @default(25)
+  sortOrder   Int      @default(0)
+
+  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@index([courseId, difficulty])
+}
+
+model Enrollment {
+  id              String    @id @default(cuid())
+  userId          String
+  courseId        String
+  progressPercent Int       @default(0)
+  enrolledAt      DateTime  @default(now())
+  completedAt     DateTime?
+
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course          Course    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseId])
+  @@index([userId])
+}
+
+model LessonProgress {
+  id        String   @id @default(cuid())
+  userId    String
+  lessonId  String
+  status    String   @default("not_started") // not_started | in_progress | completed
+  updatedAt DateTime @updatedAt
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson    Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId])
+  @@index([userId])
+}
+
+model DailyActivity {
+  id               String @id @default(cuid())
+  userId           String
+  activityDate     String // YYYY-MM-DD
+  xpEarned         Int    @default(0)
+  lessonsCompleted Int    @default(0)
+  problemsSolved   Int    @default(0)
+
+  user             User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, activityDate])
+  @@index([userId, activityDate])
+}
