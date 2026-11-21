@@ -1,0 +1,47 @@
+name: Bug Report
+description: Report a bug or unexpected behavior in EduNexus
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what happened.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected Area
+      options:
+        - Frontend (React / Vite / Tailwind)
+        - Backend (Express / Prisma / Turso)
+        - Authentication / Sessions
+        - Dev Tooling / Scripts
+        - Documentation
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      placeholder: |
+        1. Run `npm run dev`
+        2. Open '...'
+        3. Click '...'
+        4. Observe error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: "OS, Node.js version, Browser (e.g. Windows 11, Node 24, Chrome)"

@@ -1,0 +1,36 @@
+name: Feature Request
+description: Propose a new feature or enhancement for EduNexus
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Feature Summary
+      description: Describe the feature you would like to add.
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Motivation / Problem Solved
+      description: Why is this feature useful for learners or developers?
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Target Area
+      options:
+        - Frontend UI / UX
+        - Backend API / Database
+        - Courses & Curriculum
+        - Auth & User Profiles
+        - Performance / Accessibility
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Proposed Design or Notes
+      description: Optional sketches, API shapes, or acceptance criteria.
