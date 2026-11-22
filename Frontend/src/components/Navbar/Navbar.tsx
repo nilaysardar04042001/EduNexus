@@ -36,6 +36,13 @@ function safeHidePopover(el: HTMLElement): void {
   }
 }
 
+function getInitialAuthAction(): NavAuthAction {
+  if (typeof window !== 'undefined' && window.location.hash === '#login') {
+    return 'login'
+  }
+  return 'register'
+}
+
 export const Navbar = memo(function Navbar({
   activeSection = 'home',
   activeAuthAction,
@@ -53,7 +60,7 @@ export const Navbar = memo(function Navbar({
   const isWideRef = useRef<boolean>(false)
   const lastWidthRef = useRef<number>(0)
 
-  const [internalAuthAction, setInternalAuthAction] = useState<NavAuthAction>('register')
+  const [internalAuthAction, setInternalAuthAction] = useState<NavAuthAction>(getInitialAuthAction)
   const currentAuthAction = activeAuthAction ?? internalAuthAction
 
   // Keep <meta name="color-scheme"> synchronized across tabs via window storage events
