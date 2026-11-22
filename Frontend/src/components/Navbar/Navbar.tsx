@@ -380,11 +380,17 @@ export const Navbar = memo(function Navbar({
 
   return (
     <div ref={barRef} className={`edunexus-navbar ${className}`.trim()}>
-      {/* Compositor-animated dual-theme ambient gradient mixing backdrop */}
+      {/* Compositor-animated dual-theme 8-color ambient gradient mixing backdrop */}
       <div className="edunexus-navbar-ambient" aria-hidden="true">
+        <span className="edunexus-ambient-wash" />
         <span className="edunexus-ambient-blob edunexus-ambient-blob-a" />
         <span className="edunexus-ambient-blob edunexus-ambient-blob-b" />
         <span className="edunexus-ambient-blob edunexus-ambient-blob-c" />
+        <span className="edunexus-ambient-blob edunexus-ambient-blob-d" />
+        <span className="edunexus-ambient-blob edunexus-ambient-blob-e" />
+        <span className="edunexus-ambient-blob edunexus-ambient-blob-f" />
+        <span className="edunexus-ambient-blob edunexus-ambient-blob-g" />
+        <span className="edunexus-ambient-blob edunexus-ambient-blob-h" />
       </div>
 
       {/* Top Part: space-between Left (Glass Brand Home Button) and Right (Auth + Theme Toggle) */}
@@ -429,8 +435,11 @@ export const Navbar = memo(function Navbar({
                 onClick={handleAuthLinkClick}
                 className="edunexus-auth-register"
               >
-                <RegisterIcon />
-                <span>Register</span>
+                <span className="edunexus-btn-sheen" aria-hidden="true" />
+                <span className="edunexus-auth-icon-wrap" aria-hidden="true">
+                  <RegisterIcon />
+                </span>
+                <span className="edunexus-auth-label">Register</span>
               </a>
               <a
                 href="#login"
@@ -438,8 +447,10 @@ export const Navbar = memo(function Navbar({
                 onClick={handleAuthLinkClick}
                 className="edunexus-auth-login"
               >
-                <LoginIcon />
-                <span>Login</span>
+                <span className="edunexus-auth-icon-wrap" aria-hidden="true">
+                  <LoginIcon />
+                </span>
+                <span className="edunexus-auth-label">Login</span>
               </a>
             </div>
 
@@ -451,6 +462,7 @@ export const Navbar = memo(function Navbar({
                 className="edunexus-theme-toggle"
                 onClick={handleThemeToggleClick}
               >
+                <span className="edunexus-theme-glow" aria-hidden="true" />
                 <span className="edunexus-theme-option edunexus-theme-to-dark">
                   <MoonIcon />
                   <span className="sr-only">Switch to dark theme</span>
