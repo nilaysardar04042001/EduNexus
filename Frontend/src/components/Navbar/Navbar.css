@@ -798,15 +798,15 @@
   justify-content: center;
 }
 
-/* Mobile Menu Toggle Button (Right-Side Left Part when collapsed) */
+/* Mobile Menu Toggle Button (Icon-only circular orb on Right-Side Left Part when collapsed) */
 .edunexus-menu-button {
   anchor-name: --edunexus-menu-button;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.35rem;
-  block-size: 1.88rem;
-  padding: 0 0.72rem;
+  inline-size: 2rem;
+  block-size: 2rem;
+  padding: 0;
   border-radius: 9999px;
   border: 1.25px solid transparent;
   background-image:
@@ -819,10 +819,6 @@
     inset 0 1.5px 3px var(--switch-track-inset-top),
     inset 0 -1px 0 var(--switch-track-inset-bottom),
     0 3px 10px -4px var(--nav-pill-shadow);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  line-height: 1;
   cursor: pointer;
   transition:
     color 160ms ease,
@@ -831,7 +827,7 @@
 }
 
 .edunexus-menu-icon {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--nav-ico-home);
   flex: none;
   pointer-events: none;
@@ -1476,8 +1472,9 @@
   }
 
   .edunexus-menu-button {
-    block-size: 1.85rem;
-    padding: 0 0.7rem;
+    inline-size: 1.92rem;
+    block-size: 1.92rem;
+    padding: 0;
   }
 
   .edunexus-theme-toggle {

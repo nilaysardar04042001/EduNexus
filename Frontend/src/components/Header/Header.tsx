@@ -25,7 +25,7 @@ export const Header = memo(function Header({
     <header
       className={`relative w-full border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 ${className}`.trim()}
     >
-      <div className="grid min-h-36 w-full grid-cols-[auto_1fr_auto] items-center gap-4 px-3 py-6 sm:min-h-48 sm:px-4 sm:py-8 lg:min-h-60 lg:gap-6 lg:px-6 lg:py-10">
+      <div className="grid min-h-52 w-full grid-cols-[auto_1fr_auto] items-center gap-4 px-3 py-8 sm:min-h-68 sm:px-4 sm:py-10 lg:min-h-88 lg:gap-6 lg:px-6 lg:py-12">
         {children === undefined ? (
           <>
             <div className="flex min-w-0 items-center justify-start gap-2" data-header-slot="left">
