@@ -19,7 +19,7 @@ function encodePublicId(publicId: string): string {
 
 /**
  * Builds an optimized Cloudinary delivery URL using on-the-fly resizing and
- * automatic format/quality negotiation (AVIF/WebP via f_auto,q_auto).
+ * automatic format/quality negotiation (AVIF/WebP/JXL via f_auto,q_auto).
  */
 export function buildCloudinaryImageUrl(
   publicId: string,
@@ -66,3 +66,29 @@ export const EDUNEXUS_LOGO_128_URL = buildCloudinaryImageUrl(EDUNEXUS_LOGO_PUBLI
   height: 128,
   version: EDUNEXUS_LOGO_VERSION,
 })
+
+export const EDUNEXUS_HEADER_BANNER_PUBLIC_ID = 'EduNexus_Neon_Learning_Banner_yck9sn'
+export const EDUNEXUS_HEADER_BANNER_VERSION = 'v1795350388'
+export const EDUNEXUS_HEADER_BANNER_WIDTH = 2172
+export const EDUNEXUS_HEADER_BANNER_HEIGHT = 724
+
+const HEADER_BANNER_WIDTHS = [640, 960, 1440, 2172] as const
+
+export const EDUNEXUS_HEADER_BANNER_DEFAULT_URL = buildCloudinaryImageUrl(
+  EDUNEXUS_HEADER_BANNER_PUBLIC_ID,
+  {
+    width: 1440,
+    version: EDUNEXUS_HEADER_BANNER_VERSION,
+  },
+)
+
+export const EDUNEXUS_HEADER_BANNER_SRCSET = HEADER_BANNER_WIDTHS.map(
+  (width) =>
+    `${buildCloudinaryImageUrl(EDUNEXUS_HEADER_BANNER_PUBLIC_ID, {
+      width,
+      version: EDUNEXUS_HEADER_BANNER_VERSION,
+    })} ${width}w`,
+).join(', ')
+
+export const EDUNEXUS_HEADER_BANNER_SIZES =
+  '(min-width: 1024px) calc(100vw - 3rem), (min-width: 640px) calc(100vw - 2rem), calc(100vw - 1.5rem)'

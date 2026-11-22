@@ -30,7 +30,6 @@ export const NavbarBrand = memo(function NavbarBrand({ onHomeClick }: NavbarBran
             width={34}
             height={34}
             decoding="async"
-            fetchPriority="high"
             crossOrigin="anonymous"
             className="edunexus-home-logo-img"
           />
