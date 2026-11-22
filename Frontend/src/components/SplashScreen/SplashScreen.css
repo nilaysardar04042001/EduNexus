@@ -1,0 +1,255 @@
+/* Production SplashScreen — Compositor-Only Animations & LCP-Friendly Entrance */
+
+.edunexus-splash-root {
+  color-scheme: dark;
+  contain: layout style paint;
+}
+
+.edunexus-bg-layer {
+  contain: strict;
+}
+
+/* Static radial glows moved out of JS inline styles */
+.edunexus-logo-glow {
+  background: radial-gradient(
+    circle,
+    rgba(0, 174, 255, 0.22) 0%,
+    rgba(124, 58, 237, 0.1) 42%,
+    transparent 70%
+  );
+}
+
+.edunexus-nebula-tr {
+  background: radial-gradient(
+    circle,
+    rgba(139, 92, 246, 0.34) 0%,
+    rgba(76, 29, 149, 0.14) 42%,
+    transparent 70%
+  );
+}
+
+.edunexus-nebula-bl {
+  background: radial-gradient(
+    circle,
+    rgba(0, 212, 255, 0.28) 0%,
+    rgba(37, 99, 235, 0.14) 45%,
+    transparent 70%
+  );
+}
+
+.edunexus-nebula-br {
+  background: radial-gradient(
+    circle,
+    rgba(168, 85, 247, 0.32) 0%,
+    rgba(59, 130, 246, 0.14) 48%,
+    transparent 70%
+  );
+}
+
+/* Static icon tilt tokens moved out of JS inline styles */
+.edunexus-icon-tilt-n14 {
+  --icon-rotate: -14deg;
+}
+
+.edunexus-icon-tilt-n10 {
+  --icon-rotate: -10deg;
+}
+
+.edunexus-icon-tilt-n8 {
+  --icon-rotate: -8deg;
+}
+
+.edunexus-icon-tilt-10 {
+  --icon-rotate: 10deg;
+}
+
+/* LCP-safe entrance: visible immediately at opacity: 1 so Chrome records LCP on frame 0 */
+@keyframes edunexus-lcp-settle {
+  0% {
+    transform: translate3d(0, 10px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Subtle secondary entrance for non-LCP chrome (tagline, bar, footer pill) */
+@keyframes edunexus-fade-up {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes edunexus-float-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(var(--icon-rotate, 0deg));
+  }
+  50% {
+    transform: translate3d(0, -10px, 0) rotate(calc(var(--icon-rotate, 0deg) + 2deg));
+  }
+}
+
+@keyframes edunexus-float-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(var(--icon-rotate, 0deg));
+  }
+  50% {
+    transform: translate3d(0, 9px, 0) rotate(calc(var(--icon-rotate, 0deg) - 2deg));
+  }
+}
+
+@keyframes edunexus-cap-levitate {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -3.5px, 0);
+  }
+}
+
+@keyframes edunexus-pixel-pulse {
+  0%,
+  100% {
+    opacity: 0.78;
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    opacity: 1;
+    transform: translate3d(0, -2.5px, 0);
+  }
+}
+
+@keyframes edunexus-wave-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-1.5%, 6px, 0);
+  }
+}
+
+@keyframes edunexus-wave-drift-reverse {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(1.5%, -5px, 0);
+  }
+}
+
+@keyframes edunexus-bar-shimmer {
+  0% {
+    transform: translate3d(-120%, 0, 0);
+  }
+  100% {
+    transform: translate3d(240%, 0, 0);
+  }
+}
+
+.edunexus-lcp-enter {
+  animation: edunexus-lcp-settle 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.edunexus-animate-enter {
+  animation: edunexus-fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.edunexus-delay-1 {
+  animation-delay: 60ms;
+}
+
+.edunexus-delay-2 {
+  animation-delay: 120ms;
+}
+
+.edunexus-delay-3 {
+  animation-delay: 180ms;
+}
+
+.edunexus-float-a {
+  animation: edunexus-float-a 6.5s ease-in-out infinite;
+}
+
+.edunexus-float-b {
+  animation: edunexus-float-b 7.5s ease-in-out infinite;
+}
+
+.edunexus-cap-levitate {
+  animation: edunexus-cap-levitate 4s ease-in-out infinite;
+}
+
+.edunexus-pixel-1 {
+  animation: edunexus-pixel-pulse 3.2s ease-in-out infinite;
+}
+
+.edunexus-pixel-2 {
+  animation: edunexus-pixel-pulse 3.2s ease-in-out 0.6s infinite;
+}
+
+.edunexus-pixel-3 {
+  animation: edunexus-pixel-pulse 3.2s ease-in-out 1.2s infinite;
+}
+
+.edunexus-pixel-4 {
+  animation: edunexus-pixel-pulse 3.2s ease-in-out 1.8s infinite;
+}
+
+.edunexus-wave-1 {
+  animation: edunexus-wave-drift 11s ease-in-out infinite;
+}
+
+.edunexus-wave-2 {
+  animation: edunexus-wave-drift-reverse 13s ease-in-out infinite;
+}
+
+.edunexus-bar-fill {
+  transform: translate3d(-96%, 0, 0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.edunexus-bar-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 45%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  animation: edunexus-bar-shimmer 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .edunexus-lcp-enter,
+  .edunexus-animate-enter,
+  .edunexus-float-a,
+  .edunexus-float-b,
+  .edunexus-cap-levitate,
+  .edunexus-pixel-1,
+  .edunexus-pixel-2,
+  .edunexus-pixel-3,
+  .edunexus-pixel-4,
+  .edunexus-wave-1,
+  .edunexus-wave-2,
+  .edunexus-bar-shimmer::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .edunexus-bar-fill {
+    will-change: auto;
+  }
+}
