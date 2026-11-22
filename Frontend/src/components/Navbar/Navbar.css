@@ -1,58 +1,46 @@
-/* EduNexus Enhanced Two-Tier Glass & 8-Color Mixing-Gradient Navigation Bar
+/* EduNexus Unified Compact Navigation Bar with Dual Segmented Switches
  * Follows modern-web-guidance: navbar, dark-mode, dark-mode-toggle, selector-atrule-combinations,
- * motion, color, icons, and animate-element-entry-exit
+ * anchor-positioning-tab-underline, physics-based-easing, motion, color, and icons
  */
 
 :root {
   /* Dual-theme base glass surfaces */
   --nav-base-bg-light: #f3f7ff;
   --nav-base-bg-dark: #03091a;
-  --nav-top-glass-light: rgba(255, 255, 255, 0.56);
-  --nav-top-glass-dark: rgba(6, 14, 36, 0.62);
-  --nav-bottom-glass-light: rgba(248, 251, 255, 0.66);
-  --nav-bottom-glass-dark: rgba(7, 17, 42, 0.7);
+  --nav-surface-glass-light: rgba(255, 255, 255, 0.52);
+  --nav-surface-glass-dark: rgba(6, 14, 36, 0.62);
 
-  /* 8 Dual-Theme Color Combinations for Rich Ambient Mixing (3 core + 5 added palettes) */
-  /* 1. Electric Cyan */
-  --nav-blob-a-light: rgba(6, 182, 212, 0.42);
-  --nav-blob-a-dark: rgba(34, 211, 238, 0.42);
-  /* 2. Deep Violet */
-  --nav-blob-b-light: rgba(139, 92, 246, 0.36);
-  --nav-blob-b-dark: rgba(139, 92, 246, 0.46);
-  /* 3. Rose Fuchsia */
-  --nav-blob-c-light: rgba(236, 72, 153, 0.3);
-  --nav-blob-c-dark: rgba(217, 70, 239, 0.36);
-  /* 4. Emerald-Mint Aurora */
-  --nav-blob-d-light: rgba(16, 185, 129, 0.34);
-  --nav-blob-d-dark: rgba(52, 211, 153, 0.36);
-  /* 5. Solar Amber-Gold */
-  --nav-blob-e-light: rgba(245, 158, 11, 0.32);
-  --nav-blob-e-dark: rgba(251, 191, 36, 0.3);
-  /* 6. Royal Indigo-Sapphire */
-  --nav-blob-f-light: rgba(79, 70, 229, 0.32);
-  --nav-blob-f-dark: rgba(99, 102, 241, 0.44);
-  /* 7. Coral-Sunset Rose */
-  --nav-blob-g-light: rgba(244, 63, 94, 0.28);
-  --nav-blob-g-dark: rgba(251, 113, 133, 0.34);
-  /* 8. Aqua-Teal Prism */
+  /* Rich Multi-Color Ambient Paint-Mixing Palette (Sky, Green, Yellow, Orange, Red + Aurora) */
+  --nav-blob-a-light: rgba(14, 165, 233, 0.44);
+  --nav-blob-a-dark: rgba(56, 189, 248, 0.4);
+  --nav-blob-b-light: rgba(139, 92, 246, 0.34);
+  --nav-blob-b-dark: rgba(139, 92, 246, 0.44);
+  --nav-blob-c-light: rgba(239, 68, 68, 0.32);
+  --nav-blob-c-dark: rgba(244, 63, 94, 0.34);
+  --nav-blob-d-light: rgba(34, 197, 94, 0.38);
+  --nav-blob-d-dark: rgba(34, 197, 94, 0.34);
+  --nav-blob-e-light: rgba(250, 204, 21, 0.44);
+  --nav-blob-e-dark: rgba(234, 179, 8, 0.3);
+  --nav-blob-f-light: rgba(79, 70, 229, 0.28);
+  --nav-blob-f-dark: rgba(99, 102, 241, 0.4);
+  --nav-blob-g-light: rgba(249, 115, 22, 0.38);
+  --nav-blob-g-dark: rgba(249, 115, 22, 0.36);
   --nav-blob-h-light: rgba(20, 184, 166, 0.34);
-  --nav-blob-h-dark: rgba(45, 212, 191, 0.38);
+  --nav-blob-h-dark: rgba(45, 212, 191, 0.36);
 
   /* Borders & Elevation */
-  --nav-border-light: rgba(14, 165, 233, 0.28);
-  --nav-border-dark: rgba(56, 189, 248, 0.26);
-  --nav-sub-border-light: rgba(148, 163, 184, 0.24);
-  --nav-sub-border-dark: rgba(56, 189, 248, 0.18);
+  --nav-border-light: rgba(14, 165, 233, 0.3);
+  --nav-border-dark: rgba(56, 189, 248, 0.28);
   --nav-shadow-color-light: rgba(15, 23, 42, 0.14);
   --nav-shadow-color-dark: rgba(0, 0, 0, 0.74);
 
   /* Brand Glass Pill & Inner Shadow Tokens */
-  --brand-glass-start-light: rgba(255, 255, 255, 0.86);
-  --brand-glass-start-dark: rgba(15, 29, 66, 0.76);
-  --brand-glass-end-light: rgba(224, 242, 254, 0.68);
-  --brand-glass-end-dark: rgba(49, 28, 92, 0.6);
-  --brand-glass-border-light: rgba(56, 189, 248, 0.44);
-  --brand-glass-border-dark: rgba(103, 232, 249, 0.36);
+  --brand-glass-start-light: rgba(255, 255, 255, 0.88);
+  --brand-glass-start-dark: rgba(15, 29, 66, 0.78);
+  --brand-glass-end-light: rgba(224, 242, 254, 0.72);
+  --brand-glass-end-dark: rgba(49, 28, 92, 0.62);
+  --brand-glass-border-light: rgba(56, 189, 248, 0.46);
+  --brand-glass-border-dark: rgba(103, 232, 249, 0.38);
   --brand-inset-top-light: rgba(255, 255, 255, 0.94);
   --brand-inset-top-dark: rgba(186, 230, 253, 0.32);
   --brand-inset-bottom-light: rgba(14, 165, 233, 0.22);
@@ -64,7 +52,7 @@
   --brand-sheen-light: rgba(255, 255, 255, 0.75);
   --brand-sheen-dark: rgba(165, 243, 252, 0.28);
 
-  /* Tagline Colorful Spectrum Stops (WCAG-compliant contrast in both themes) */
+  /* Tagline Colorful Spectrum Stops */
   --tagline-c1-light: #0369a1;
   --tagline-c1-dark: #67e8f9;
   --tagline-c2-light: #0d9488;
@@ -74,45 +62,21 @@
   --tagline-c4-light: #be185d;
   --tagline-c4-dark: #f472b6;
 
-  /* Enhanced Auth & Theme Toggle Tokens */
-  --login-bg-start-light: rgba(255, 255, 255, 0.88);
-  --login-bg-start-dark: rgba(15, 27, 58, 0.86);
-  --login-bg-end-light: rgba(240, 249, 255, 0.78);
-  --login-bg-end-dark: rgba(30, 24, 68, 0.82);
-  --login-icon-bg-light: rgba(14, 165, 233, 0.14);
-  --login-icon-bg-dark: rgba(56, 189, 248, 0.18);
-  --login-icon-color-light: #0284c7;
-  --login-icon-color-dark: #67e8f9;
-
-  --toggle-bg-start-light: rgba(255, 255, 255, 0.9);
-  --toggle-bg-start-dark: rgba(15, 28, 62, 0.88);
-  --toggle-bg-end-light: rgba(224, 231, 255, 0.82);
-  --toggle-bg-end-dark: rgba(45, 27, 78, 0.82);
+  /* Theme Toggle Orb Tokens */
+  --toggle-bg-start-light: rgba(255, 255, 255, 0.92);
+  --toggle-bg-start-dark: rgba(15, 28, 62, 0.9);
+  --toggle-bg-end-light: rgba(224, 231, 255, 0.84);
+  --toggle-bg-end-dark: rgba(45, 27, 78, 0.84);
   --toggle-icon-light: #4338ca;
   --toggle-icon-dark: #fbbf24;
-  --toggle-glow-light: rgba(99, 102, 241, 0.35);
-  --toggle-glow-dark: rgba(251, 191, 36, 0.38);
+  --toggle-glow-light: rgba(99, 102, 241, 0.36);
+  --toggle-glow-dark: rgba(251, 191, 36, 0.4);
 
-  /* Segmented Switch Track, Paint-Mixing Palette (Sky, Green, Yellow, Orange, Red) & Thumb Tokens */
-  --paint-sky-light: rgba(14, 165, 233, 0.72);
-  --paint-sky-dark: rgba(14, 165, 233, 0.62);
-  --paint-green-light: rgba(34, 197, 94, 0.68);
-  --paint-green-dark: rgba(22, 163, 74, 0.58);
-  --paint-yellow-light: rgba(250, 204, 21, 0.76);
-  --paint-yellow-dark: rgba(234, 179, 8, 0.52);
-  --paint-orange-light: rgba(249, 115, 22, 0.72);
-  --paint-orange-dark: rgba(234, 88, 12, 0.6);
-  --paint-red-light: rgba(239, 68, 68, 0.68);
-  --paint-red-dark: rgba(220, 38, 38, 0.58);
-
-  --nav-bottom-veil-light: rgba(255, 255, 255, 0.24);
-  --nav-bottom-veil-dark: rgba(4, 10, 26, 0.56);
-
-  /* Recessed Tactile Switch Track Surface */
-  --switch-track-top-light: rgba(241, 245, 249, 0.88);
+  /* Shared Segmented Switch Track Tokens (used by BOTH Nav Switch & Auth Switch) */
+  --switch-track-top-light: rgba(241, 245, 249, 0.9);
   --switch-track-top-dark: rgba(5, 11, 28, 0.88);
-  --switch-track-end-light: rgba(255, 255, 255, 0.94);
-  --switch-track-end-dark: rgba(13, 22, 48, 0.9);
+  --switch-track-end-light: rgba(255, 255, 255, 0.96);
+  --switch-track-end-dark: rgba(13, 22, 48, 0.92);
   --switch-track-inset-top-light: rgba(15, 23, 42, 0.16);
   --switch-track-inset-top-dark: rgba(0, 0, 0, 0.72);
   --switch-track-inset-bottom-light: rgba(255, 255, 255, 0.98);
@@ -139,23 +103,25 @@
     1
   );
 
-  /* Per-Section Switch Thumb Active Gradients (WCAG >= 4.5:1 with #ffffff text) */
+  /* Active Switch Thumb Defaults */
   --thumb-bg-start: #0284c7;
   --thumb-bg-end: #0369a1;
-  --thumb-glow: rgba(2, 132, 199, 0.55);
+  --thumb-glow: rgba(2, 132, 199, 0.56);
+  --auth-thumb-start: #0284c7;
+  --auth-thumb-end: #6d28d9;
+  --auth-thumb-glow: rgba(109, 40, 217, 0.54);
 
-  --nav-pill-bg-light: rgba(255, 255, 255, 0.9);
-  --nav-pill-bg-dark: rgba(13, 24, 54, 0.88);
-  --nav-pill-end-light: rgba(241, 245, 249, 0.86);
-  --nav-pill-end-dark: rgba(8, 17, 40, 0.86);
-  --nav-pill-border-light: rgba(148, 163, 184, 0.36);
-  --nav-pill-border-dark: rgba(148, 163, 184, 0.26);
+  /* Shared Pill & Popover Surfaces */
+  --nav-pill-bg-light: rgba(255, 255, 255, 0.92);
+  --nav-pill-bg-dark: rgba(13, 24, 54, 0.9);
+  --nav-pill-end-light: rgba(241, 245, 249, 0.88);
+  --nav-pill-end-dark: rgba(8, 17, 40, 0.88);
   --nav-pill-inset-light: rgba(255, 255, 255, 0.96);
   --nav-pill-inset-dark: rgba(226, 232, 240, 0.22);
   --nav-pill-shadow-light: rgba(15, 23, 42, 0.14);
   --nav-pill-shadow-dark: rgba(0, 0, 0, 0.62);
 
-  /* 5-Color Paint-Harmonized Icon Accents (Sky, Green, Yellow, Orange, Red) */
+  /* Icon Accent Colors (Font Awesome icons) */
   --nav-ico-home-light: #0284c7;
   --nav-ico-home-dark: #38bdf8;
   --nav-ico-courses-light: #15803d;
@@ -166,6 +132,10 @@
   --nav-ico-projects-dark: #fb923c;
   --nav-ico-about-light: #b91c1c;
   --nav-ico-about-dark: #fb7185;
+  --auth-ico-register-light: #4f46e5;
+  --auth-ico-register-dark: #818cf8;
+  --auth-ico-login-light: #0d9488;
+  --auth-ico-login-dark: #2dd4bf;
 
   --nav-popover-bg-light: rgba(255, 255, 255, 0.96);
   --nav-popover-bg-dark: rgba(7, 18, 46, 0.96);
@@ -178,8 +148,6 @@
   --nav-text-dark: #cbd5e1;
   --nav-text-strong-light: #020617;
   --nav-text-strong-dark: #ffffff;
-  --nav-hover-bg-light: rgba(224, 242, 254, 0.94);
-  --nav-hover-bg-dark: rgba(34, 211, 238, 0.18);
   --nav-hover-border-light: rgba(2, 132, 199, 0.56);
   --nav-hover-border-dark: rgba(56, 189, 248, 0.62);
   --nav-hover-text-light: #0369a1;
@@ -187,20 +155,7 @@
 
   /* Default (light) values for browsers without light-dark() */
   --nav-base-bg: var(--nav-base-bg-light);
-  --nav-top-glass: var(--nav-top-glass-light);
-  --nav-bottom-glass: var(--nav-bottom-glass-light);
-  --paint-sky: var(--paint-sky-light);
-  --paint-green: var(--paint-green-light);
-  --paint-yellow: var(--paint-yellow-light);
-  --paint-orange: var(--paint-orange-light);
-  --paint-red: var(--paint-red-light);
-  --nav-bottom-veil: var(--nav-bottom-veil-light);
-  --switch-track-top: var(--switch-track-top-light);
-  --switch-track-end: var(--switch-track-end-light);
-  --switch-track-inset-top: var(--switch-track-inset-top-light);
-  --switch-track-inset-bottom: var(--switch-track-inset-bottom-light);
-  --switch-divider: var(--switch-divider-light);
-  --switch-segment-hover: var(--switch-segment-hover-light);
+  --nav-surface-glass: var(--nav-surface-glass-light);
   --nav-blob-a: var(--nav-blob-a-light);
   --nav-blob-b: var(--nav-blob-b-light);
   --nav-blob-c: var(--nav-blob-c-light);
@@ -210,7 +165,6 @@
   --nav-blob-g: var(--nav-blob-g-light);
   --nav-blob-h: var(--nav-blob-h-light);
   --nav-border: var(--nav-border-light);
-  --nav-sub-border: var(--nav-sub-border-light);
   --nav-shadow-color: var(--nav-shadow-color-light);
   --brand-glass-start: var(--brand-glass-start-light);
   --brand-glass-end: var(--brand-glass-end-light);
@@ -224,17 +178,18 @@
   --tagline-c2: var(--tagline-c2-light);
   --tagline-c3: var(--tagline-c3-light);
   --tagline-c4: var(--tagline-c4-light);
-  --login-bg-start: var(--login-bg-start-light);
-  --login-bg-end: var(--login-bg-end-light);
-  --login-icon-bg: var(--login-icon-bg-light);
-  --login-icon-color: var(--login-icon-color-light);
   --toggle-bg-start: var(--toggle-bg-start-light);
   --toggle-bg-end: var(--toggle-bg-end-light);
   --toggle-icon: var(--toggle-icon-light);
   --toggle-glow: var(--toggle-glow-light);
+  --switch-track-top: var(--switch-track-top-light);
+  --switch-track-end: var(--switch-track-end-light);
+  --switch-track-inset-top: var(--switch-track-inset-top-light);
+  --switch-track-inset-bottom: var(--switch-track-inset-bottom-light);
+  --switch-divider: var(--switch-divider-light);
+  --switch-segment-hover: var(--switch-segment-hover-light);
   --nav-pill-bg: var(--nav-pill-bg-light);
   --nav-pill-end: var(--nav-pill-end-light);
-  --nav-pill-border: var(--nav-pill-border-light);
   --nav-pill-inset: var(--nav-pill-inset-light);
   --nav-pill-shadow: var(--nav-pill-shadow-light);
   --nav-ico-home: var(--nav-ico-home-light);
@@ -242,12 +197,13 @@
   --nav-ico-practice: var(--nav-ico-practice-light);
   --nav-ico-projects: var(--nav-ico-projects-light);
   --nav-ico-about: var(--nav-ico-about-light);
+  --auth-ico-register: var(--auth-ico-register-light);
+  --auth-ico-login: var(--auth-ico-login-light);
   --nav-popover-bg: var(--nav-popover-bg-light);
   --nav-popover-border: var(--nav-popover-border-light);
   --nav-popover-shadow-color: var(--nav-popover-shadow-color-light);
   --nav-text: var(--nav-text-light);
   --nav-text-strong: var(--nav-text-strong-light);
-  --nav-hover-bg: var(--nav-hover-bg-light);
   --nav-hover-border: var(--nav-hover-border-light);
   --nav-hover-text: var(--nav-hover-text-light);
 
@@ -256,20 +212,7 @@
     @media (prefers-color-scheme: dark) {
       &:not(:has(> head > meta[name="color-scheme"][content="light"])) {
         --nav-base-bg: var(--nav-base-bg-dark);
-        --nav-top-glass: var(--nav-top-glass-dark);
-        --nav-bottom-glass: var(--nav-bottom-glass-dark);
-        --paint-sky: var(--paint-sky-dark);
-        --paint-green: var(--paint-green-dark);
-        --paint-yellow: var(--paint-yellow-dark);
-        --paint-orange: var(--paint-orange-dark);
-        --paint-red: var(--paint-red-dark);
-        --nav-bottom-veil: var(--nav-bottom-veil-dark);
-        --switch-track-top: var(--switch-track-top-dark);
-        --switch-track-end: var(--switch-track-end-dark);
-        --switch-track-inset-top: var(--switch-track-inset-top-dark);
-        --switch-track-inset-bottom: var(--switch-track-inset-bottom-dark);
-        --switch-divider: var(--switch-divider-dark);
-        --switch-segment-hover: var(--switch-segment-hover-dark);
+        --nav-surface-glass: var(--nav-surface-glass-dark);
         --nav-blob-a: var(--nav-blob-a-dark);
         --nav-blob-b: var(--nav-blob-b-dark);
         --nav-blob-c: var(--nav-blob-c-dark);
@@ -279,7 +222,6 @@
         --nav-blob-g: var(--nav-blob-g-dark);
         --nav-blob-h: var(--nav-blob-h-dark);
         --nav-border: var(--nav-border-dark);
-        --nav-sub-border: var(--nav-sub-border-dark);
         --nav-shadow-color: var(--nav-shadow-color-dark);
         --brand-glass-start: var(--brand-glass-start-dark);
         --brand-glass-end: var(--brand-glass-end-dark);
@@ -293,17 +235,18 @@
         --tagline-c2: var(--tagline-c2-dark);
         --tagline-c3: var(--tagline-c3-dark);
         --tagline-c4: var(--tagline-c4-dark);
-        --login-bg-start: var(--login-bg-start-dark);
-        --login-bg-end: var(--login-bg-end-dark);
-        --login-icon-bg: var(--login-icon-bg-dark);
-        --login-icon-color: var(--login-icon-color-dark);
         --toggle-bg-start: var(--toggle-bg-start-dark);
         --toggle-bg-end: var(--toggle-bg-end-dark);
         --toggle-icon: var(--toggle-icon-dark);
         --toggle-glow: var(--toggle-glow-dark);
+        --switch-track-top: var(--switch-track-top-dark);
+        --switch-track-end: var(--switch-track-end-dark);
+        --switch-track-inset-top: var(--switch-track-inset-top-dark);
+        --switch-track-inset-bottom: var(--switch-track-inset-bottom-dark);
+        --switch-divider: var(--switch-divider-dark);
+        --switch-segment-hover: var(--switch-segment-hover-dark);
         --nav-pill-bg: var(--nav-pill-bg-dark);
         --nav-pill-end: var(--nav-pill-end-dark);
-        --nav-pill-border: var(--nav-pill-border-dark);
         --nav-pill-inset: var(--nav-pill-inset-dark);
         --nav-pill-shadow: var(--nav-pill-shadow-dark);
         --nav-ico-home: var(--nav-ico-home-dark);
@@ -311,12 +254,13 @@
         --nav-ico-practice: var(--nav-ico-practice-dark);
         --nav-ico-projects: var(--nav-ico-projects-dark);
         --nav-ico-about: var(--nav-ico-about-dark);
+        --auth-ico-register: var(--auth-ico-register-dark);
+        --auth-ico-login: var(--auth-ico-login-dark);
         --nav-popover-bg: var(--nav-popover-bg-dark);
         --nav-popover-border: var(--nav-popover-border-dark);
         --nav-popover-shadow-color: var(--nav-popover-shadow-color-dark);
         --nav-text: var(--nav-text-dark);
         --nav-text-strong: var(--nav-text-strong-dark);
-        --nav-hover-bg: var(--nav-hover-bg-dark);
         --nav-hover-border: var(--nav-hover-border-dark);
         --nav-hover-text: var(--nav-hover-text-dark);
       }
@@ -324,20 +268,7 @@
 
     &:has(> head > meta[name="color-scheme"][content="dark"]) {
       --nav-base-bg: var(--nav-base-bg-dark);
-      --nav-top-glass: var(--nav-top-glass-dark);
-      --nav-bottom-glass: var(--nav-bottom-glass-dark);
-      --paint-sky: var(--paint-sky-dark);
-      --paint-green: var(--paint-green-dark);
-      --paint-yellow: var(--paint-yellow-dark);
-      --paint-orange: var(--paint-orange-dark);
-      --paint-red: var(--paint-red-dark);
-      --nav-bottom-veil: var(--nav-bottom-veil-dark);
-      --switch-track-top: var(--switch-track-top-dark);
-      --switch-track-end: var(--switch-track-end-dark);
-      --switch-track-inset-top: var(--switch-track-inset-top-dark);
-      --switch-track-inset-bottom: var(--switch-track-inset-bottom-dark);
-      --switch-divider: var(--switch-divider-dark);
-      --switch-segment-hover: var(--switch-segment-hover-dark);
+      --nav-surface-glass: var(--nav-surface-glass-dark);
       --nav-blob-a: var(--nav-blob-a-dark);
       --nav-blob-b: var(--nav-blob-b-dark);
       --nav-blob-c: var(--nav-blob-c-dark);
@@ -347,7 +278,6 @@
       --nav-blob-g: var(--nav-blob-g-dark);
       --nav-blob-h: var(--nav-blob-h-dark);
       --nav-border: var(--nav-border-dark);
-      --nav-sub-border: var(--nav-sub-border-dark);
       --nav-shadow-color: var(--nav-shadow-color-dark);
       --brand-glass-start: var(--brand-glass-start-dark);
       --brand-glass-end: var(--brand-glass-end-dark);
@@ -361,17 +291,18 @@
       --tagline-c2: var(--tagline-c2-dark);
       --tagline-c3: var(--tagline-c3-dark);
       --tagline-c4: var(--tagline-c4-dark);
-      --login-bg-start: var(--login-bg-start-dark);
-      --login-bg-end: var(--login-bg-end-dark);
-      --login-icon-bg: var(--login-icon-bg-dark);
-      --login-icon-color: var(--login-icon-color-dark);
       --toggle-bg-start: var(--toggle-bg-start-dark);
       --toggle-bg-end: var(--toggle-bg-end-dark);
       --toggle-icon: var(--toggle-icon-dark);
       --toggle-glow: var(--toggle-glow-dark);
+      --switch-track-top: var(--switch-track-top-dark);
+      --switch-track-end: var(--switch-track-end-dark);
+      --switch-track-inset-top: var(--switch-track-inset-top-dark);
+      --switch-track-inset-bottom: var(--switch-track-inset-bottom-dark);
+      --switch-divider: var(--switch-divider-dark);
+      --switch-segment-hover: var(--switch-segment-hover-dark);
       --nav-pill-bg: var(--nav-pill-bg-dark);
       --nav-pill-end: var(--nav-pill-end-dark);
-      --nav-pill-border: var(--nav-pill-border-dark);
       --nav-pill-inset: var(--nav-pill-inset-dark);
       --nav-pill-shadow: var(--nav-pill-shadow-dark);
       --nav-ico-home: var(--nav-ico-home-dark);
@@ -379,12 +310,13 @@
       --nav-ico-practice: var(--nav-ico-practice-dark);
       --nav-ico-projects: var(--nav-ico-projects-dark);
       --nav-ico-about: var(--nav-ico-about-dark);
+      --auth-ico-register: var(--auth-ico-register-dark);
+      --auth-ico-login: var(--auth-ico-login-dark);
       --nav-popover-bg: var(--nav-popover-bg-dark);
       --nav-popover-border: var(--nav-popover-border-dark);
       --nav-popover-shadow-color: var(--nav-popover-shadow-color-dark);
       --nav-text: var(--nav-text-dark);
       --nav-text-strong: var(--nav-text-strong-dark);
-      --nav-hover-bg: var(--nav-hover-bg-dark);
       --nav-hover-border: var(--nav-hover-border-dark);
       --nav-hover-text: var(--nav-hover-text-dark);
     }
@@ -393,14 +325,33 @@
   /* Modern automatic light-dark() resolution keyed to computed color-scheme */
   @supports (color: light-dark(white, black)) {
     --nav-base-bg: light-dark(var(--nav-base-bg-light), var(--nav-base-bg-dark));
-    --nav-top-glass: light-dark(var(--nav-top-glass-light), var(--nav-top-glass-dark));
-    --nav-bottom-glass: light-dark(var(--nav-bottom-glass-light), var(--nav-bottom-glass-dark));
-    --paint-sky: light-dark(var(--paint-sky-light), var(--paint-sky-dark));
-    --paint-green: light-dark(var(--paint-green-light), var(--paint-green-dark));
-    --paint-yellow: light-dark(var(--paint-yellow-light), var(--paint-yellow-dark));
-    --paint-orange: light-dark(var(--paint-orange-light), var(--paint-orange-dark));
-    --paint-red: light-dark(var(--paint-red-light), var(--paint-red-dark));
-    --nav-bottom-veil: light-dark(var(--nav-bottom-veil-light), var(--nav-bottom-veil-dark));
+    --nav-surface-glass: light-dark(var(--nav-surface-glass-light), var(--nav-surface-glass-dark));
+    --nav-blob-a: light-dark(var(--nav-blob-a-light), var(--nav-blob-a-dark));
+    --nav-blob-b: light-dark(var(--nav-blob-b-light), var(--nav-blob-b-dark));
+    --nav-blob-c: light-dark(var(--nav-blob-c-light), var(--nav-blob-c-dark));
+    --nav-blob-d: light-dark(var(--nav-blob-d-light), var(--nav-blob-d-dark));
+    --nav-blob-e: light-dark(var(--nav-blob-e-light), var(--nav-blob-e-dark));
+    --nav-blob-f: light-dark(var(--nav-blob-f-light), var(--nav-blob-f-dark));
+    --nav-blob-g: light-dark(var(--nav-blob-g-light), var(--nav-blob-g-dark));
+    --nav-blob-h: light-dark(var(--nav-blob-h-light), var(--nav-blob-h-dark));
+    --nav-border: light-dark(var(--nav-border-light), var(--nav-border-dark));
+    --nav-shadow-color: light-dark(var(--nav-shadow-color-light), var(--nav-shadow-color-dark));
+    --brand-glass-start: light-dark(var(--brand-glass-start-light), var(--brand-glass-start-dark));
+    --brand-glass-end: light-dark(var(--brand-glass-end-light), var(--brand-glass-end-dark));
+    --brand-glass-border: light-dark(var(--brand-glass-border-light), var(--brand-glass-border-dark));
+    --brand-inset-top: light-dark(var(--brand-inset-top-light), var(--brand-inset-top-dark));
+    --brand-inset-bottom: light-dark(var(--brand-inset-bottom-light), var(--brand-inset-bottom-dark));
+    --brand-inset-glow: light-dark(var(--brand-inset-glow-light), var(--brand-inset-glow-dark));
+    --brand-outer-shadow: light-dark(var(--brand-outer-shadow-light), var(--brand-outer-shadow-dark));
+    --brand-sheen: light-dark(var(--brand-sheen-light), var(--brand-sheen-dark));
+    --tagline-c1: light-dark(var(--tagline-c1-light), var(--tagline-c1-dark));
+    --tagline-c2: light-dark(var(--tagline-c2-light), var(--tagline-c2-dark));
+    --tagline-c3: light-dark(var(--tagline-c3-light), var(--tagline-c3-dark));
+    --tagline-c4: light-dark(var(--tagline-c4-light), var(--tagline-c4-dark));
+    --toggle-bg-start: light-dark(var(--toggle-bg-start-light), var(--toggle-bg-start-dark));
+    --toggle-bg-end: light-dark(var(--toggle-bg-end-light), var(--toggle-bg-end-dark));
+    --toggle-icon: light-dark(var(--toggle-icon-light), var(--toggle-icon-dark));
+    --toggle-glow: light-dark(var(--toggle-glow-light), var(--toggle-glow-dark));
     --switch-track-top: light-dark(var(--switch-track-top-light), var(--switch-track-top-dark));
     --switch-track-end: light-dark(var(--switch-track-end-light), var(--switch-track-end-dark));
     --switch-track-inset-top: light-dark(
@@ -416,40 +367,8 @@
       var(--switch-segment-hover-light),
       var(--switch-segment-hover-dark)
     );
-    --nav-blob-a: light-dark(var(--nav-blob-a-light), var(--nav-blob-a-dark));
-    --nav-blob-b: light-dark(var(--nav-blob-b-light), var(--nav-blob-b-dark));
-    --nav-blob-c: light-dark(var(--nav-blob-c-light), var(--nav-blob-c-dark));
-    --nav-blob-d: light-dark(var(--nav-blob-d-light), var(--nav-blob-d-dark));
-    --nav-blob-e: light-dark(var(--nav-blob-e-light), var(--nav-blob-e-dark));
-    --nav-blob-f: light-dark(var(--nav-blob-f-light), var(--nav-blob-f-dark));
-    --nav-blob-g: light-dark(var(--nav-blob-g-light), var(--nav-blob-g-dark));
-    --nav-blob-h: light-dark(var(--nav-blob-h-light), var(--nav-blob-h-dark));
-    --nav-border: light-dark(var(--nav-border-light), var(--nav-border-dark));
-    --nav-sub-border: light-dark(var(--nav-sub-border-light), var(--nav-sub-border-dark));
-    --nav-shadow-color: light-dark(var(--nav-shadow-color-light), var(--nav-shadow-color-dark));
-    --brand-glass-start: light-dark(var(--brand-glass-start-light), var(--brand-glass-start-dark));
-    --brand-glass-end: light-dark(var(--brand-glass-end-light), var(--brand-glass-end-dark));
-    --brand-glass-border: light-dark(var(--brand-glass-border-light), var(--brand-glass-border-dark));
-    --brand-inset-top: light-dark(var(--brand-inset-top-light), var(--brand-inset-top-dark));
-    --brand-inset-bottom: light-dark(var(--brand-inset-bottom-light), var(--brand-inset-bottom-dark));
-    --brand-inset-glow: light-dark(var(--brand-inset-glow-light), var(--brand-inset-glow-dark));
-    --brand-outer-shadow: light-dark(var(--brand-outer-shadow-light), var(--brand-outer-shadow-dark));
-    --brand-sheen: light-dark(var(--brand-sheen-light), var(--brand-sheen-dark));
-    --tagline-c1: light-dark(var(--tagline-c1-light), var(--tagline-c1-dark));
-    --tagline-c2: light-dark(var(--tagline-c2-light), var(--tagline-c2-dark));
-    --tagline-c3: light-dark(var(--tagline-c3-light), var(--tagline-c3-dark));
-    --tagline-c4: light-dark(var(--tagline-c4-light), var(--tagline-c4-dark));
-    --login-bg-start: light-dark(var(--login-bg-start-light), var(--login-bg-start-dark));
-    --login-bg-end: light-dark(var(--login-bg-end-light), var(--login-bg-end-dark));
-    --login-icon-bg: light-dark(var(--login-icon-bg-light), var(--login-icon-bg-dark));
-    --login-icon-color: light-dark(var(--login-icon-color-light), var(--login-icon-color-dark));
-    --toggle-bg-start: light-dark(var(--toggle-bg-start-light), var(--toggle-bg-start-dark));
-    --toggle-bg-end: light-dark(var(--toggle-bg-end-light), var(--toggle-bg-end-dark));
-    --toggle-icon: light-dark(var(--toggle-icon-light), var(--toggle-icon-dark));
-    --toggle-glow: light-dark(var(--toggle-glow-light), var(--toggle-glow-dark));
     --nav-pill-bg: light-dark(var(--nav-pill-bg-light), var(--nav-pill-bg-dark));
     --nav-pill-end: light-dark(var(--nav-pill-end-light), var(--nav-pill-end-dark));
-    --nav-pill-border: light-dark(var(--nav-pill-border-light), var(--nav-pill-border-dark));
     --nav-pill-inset: light-dark(var(--nav-pill-inset-light), var(--nav-pill-inset-dark));
     --nav-pill-shadow: light-dark(var(--nav-pill-shadow-light), var(--nav-pill-shadow-dark));
     --nav-ico-home: light-dark(var(--nav-ico-home-light), var(--nav-ico-home-dark));
@@ -457,6 +376,8 @@
     --nav-ico-practice: light-dark(var(--nav-ico-practice-light), var(--nav-ico-practice-dark));
     --nav-ico-projects: light-dark(var(--nav-ico-projects-light), var(--nav-ico-projects-dark));
     --nav-ico-about: light-dark(var(--nav-ico-about-light), var(--nav-ico-about-dark));
+    --auth-ico-register: light-dark(var(--auth-ico-register-light), var(--auth-ico-register-dark));
+    --auth-ico-login: light-dark(var(--auth-ico-login-light), var(--auth-ico-login-dark));
     --nav-popover-bg: light-dark(var(--nav-popover-bg-light), var(--nav-popover-bg-dark));
     --nav-popover-border: light-dark(var(--nav-popover-border-light), var(--nav-popover-border-dark));
     --nav-popover-shadow-color: light-dark(
@@ -465,17 +386,16 @@
     );
     --nav-text: light-dark(var(--nav-text-light), var(--nav-text-dark));
     --nav-text-strong: light-dark(var(--nav-text-strong-light), var(--nav-text-strong-dark));
-    --nav-hover-bg: light-dark(var(--nav-hover-bg-light), var(--nav-hover-bg-dark));
     --nav-hover-border: light-dark(var(--nav-hover-border-light), var(--nav-hover-border-dark));
     --nav-hover-text: light-dark(var(--nav-hover-text-light), var(--nav-hover-text-dark));
   }
 
-  --nav-shadow: 0 10px 30px -14px var(--nav-shadow-color);
+  --nav-shadow: 0 8px 26px -14px var(--nav-shadow-color);
   --nav-popover-shadow: 0 24px 52px -16px var(--nav-popover-shadow-color);
 }
 
 /* ==========================================================================
- * OUTER STICKY NAVBAR + 8-COLOR AMBIENT MIXING GRADIENT BACKDROP
+ * OUTER STICKY NAVBAR + AMBIENT MIXING PAINT GRADIENT BACKDROP
  * ========================================================================== */
 
 .edunexus-navbar {
@@ -495,7 +415,7 @@
   animation: none !important;
 }
 
-/* Clipped decorative gradient-mixing canvas behind both tiers (never clips popovers) */
+/* Clipped decorative gradient-mixing canvas behind the single bar (never clips popovers) */
 .edunexus-navbar-ambient {
   position: absolute;
   inset: 0;
@@ -504,7 +424,6 @@
   pointer-events: none;
 }
 
-/* Wide seamless horizontal spectrum ribbon that drifts smoothly beneath the color blobs */
 .edunexus-ambient-wash {
   position: absolute;
   inset-block: 0;
@@ -516,95 +435,109 @@
     var(--nav-blob-d) 12.5%,
     var(--nav-blob-e) 25%,
     var(--nav-blob-g) 37.5%,
-    var(--nav-blob-b) 50%,
-    var(--nav-blob-f) 62.5%,
-    var(--nav-blob-h) 75%,
-    var(--nav-blob-c) 87.5%,
+    var(--nav-blob-c) 50%,
+    var(--nav-blob-b) 62.5%,
+    var(--nav-blob-f) 75%,
+    var(--nav-blob-h) 87.5%,
     var(--nav-blob-a) 100%
   );
+  opacity: 0.48;
+}
+
+.edunexus-ambient-vortex {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 12%;
+  inline-size: 76%;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  background: conic-gradient(
+    from 0deg,
+    var(--nav-blob-a),
+    var(--nav-blob-d),
+    var(--nav-blob-e),
+    var(--nav-blob-g),
+    var(--nav-blob-c),
+    var(--nav-blob-b),
+    var(--nav-blob-a)
+  );
+  filter: blur(32px);
   opacity: 0.42;
+  transform: translate3d(0, -50%, 0);
 }
 
 .edunexus-ambient-blob {
   position: absolute;
-  border-radius: 9999px;
-  filter: blur(34px);
+  border-radius: 44% 56% 62% 38% / 54% 42% 58% 46%;
+  filter: blur(28px);
   opacity: 0.88;
 }
 
-/* 1. Electric Cyan */
 .edunexus-ambient-blob-a {
   inset-block-start: -90%;
-  inset-inline-start: -8%;
-  inline-size: 38%;
-  block-size: 265%;
+  inset-inline-start: -6%;
+  inline-size: 36%;
+  block-size: 280%;
   background: radial-gradient(circle at center, var(--nav-blob-a) 0%, transparent 72%);
 }
 
-/* 2. Deep Violet */
 .edunexus-ambient-blob-b {
   inset-block-start: -75%;
   inset-inline-start: 28%;
-  inline-size: 38%;
-  block-size: 255%;
+  inline-size: 36%;
+  block-size: 270%;
   background: radial-gradient(circle at center, var(--nav-blob-b) 0%, transparent 72%);
 }
 
-/* 3. Rose Fuchsia */
 .edunexus-ambient-blob-c {
   inset-block-start: -85%;
   inset-inline-end: -6%;
-  inline-size: 36%;
-  block-size: 260%;
+  inline-size: 34%;
+  block-size: 275%;
   background: radial-gradient(circle at center, var(--nav-blob-c) 0%, transparent 72%);
 }
 
-/* 4. Emerald-Mint Aurora */
 .edunexus-ambient-blob-d {
-  inset-block-start: -60%;
-  inset-inline-start: 10%;
-  inline-size: 34%;
-  block-size: 245%;
+  inset-block-start: -65%;
+  inset-inline-start: 12%;
+  inline-size: 32%;
+  block-size: 260%;
   background: radial-gradient(circle at center, var(--nav-blob-d) 0%, transparent 72%);
 }
 
-/* 5. Solar Amber-Gold */
 .edunexus-ambient-blob-e {
   inset-block-start: -95%;
-  inset-inline-start: 46%;
-  inline-size: 34%;
-  block-size: 255%;
+  inset-inline-start: 44%;
+  inline-size: 32%;
+  block-size: 270%;
   background: radial-gradient(circle at center, var(--nav-blob-e) 0%, transparent 72%);
 }
 
-/* 6. Royal Indigo-Sapphire */
 .edunexus-ambient-blob-f {
   inset-block-start: -70%;
-  inset-inline-start: 64%;
-  inline-size: 36%;
-  block-size: 250%;
+  inset-inline-start: 62%;
+  inline-size: 34%;
+  block-size: 265%;
   background: radial-gradient(circle at center, var(--nav-blob-f) 0%, transparent 72%);
 }
 
-/* 7. Coral-Sunset Rose */
 .edunexus-ambient-blob-g {
   inset-block-start: -80%;
-  inset-inline-start: 18%;
-  inline-size: 32%;
-  block-size: 240%;
+  inset-inline-start: 20%;
+  inline-size: 30%;
+  block-size: 255%;
   background: radial-gradient(circle at center, var(--nav-blob-g) 0%, transparent 72%);
 }
 
-/* 8. Aqua-Teal Prism */
 .edunexus-ambient-blob-h {
   inset-block-start: -65%;
-  inset-inline-end: 12%;
-  inline-size: 34%;
-  block-size: 245%;
+  inset-inline-end: 14%;
+  inline-size: 32%;
+  block-size: 260%;
   background: radial-gradient(circle at center, var(--nav-blob-h) 0%, transparent 72%);
 }
 
-/* Bottom luminous multi-color gradient hairline edge */
+/* Bottom luminous 5-color paint hairline edge */
 .edunexus-navbar-edge {
   position: relative;
   z-index: 2;
@@ -641,78 +574,90 @@
   }
 }
 
+@keyframes edunexus-vortex-spin {
+  0% {
+    transform: translate3d(-10%, -50%, 0) rotate(0deg) scale(1.08);
+  }
+  50% {
+    transform: translate3d(10%, -46%, 0) rotate(180deg) scale(1.18);
+  }
+  100% {
+    transform: translate3d(-10%, -50%, 0) rotate(360deg) scale(1.08);
+  }
+}
+
 @keyframes edunexus-blob-mix-a {
   0% {
-    transform: translate3d(-6%, -6%, 0) scale(1);
+    transform: translate3d(-6%, -6%, 0) rotate(0deg) scale(1);
     opacity: 0.92;
   }
   50% {
-    transform: translate3d(34%, 12%, 0) scale(1.18);
-    opacity: 0.55;
+    transform: translate3d(34%, 12%, 0) rotate(32deg) scale(1.18);
+    opacity: 0.58;
   }
   100% {
-    transform: translate3d(12%, -8%, 0) scale(1.06);
-    opacity: 0.95;
+    transform: translate3d(12%, -8%, 0) rotate(-14deg) scale(1.06);
+    opacity: 0.94;
   }
 }
 
 @keyframes edunexus-blob-mix-b {
   0% {
-    transform: translate3d(8%, 8%, 0) scale(1.05);
+    transform: translate3d(8%, 8%, 0) rotate(10deg) scale(1.05);
     opacity: 0.88;
   }
   50% {
-    transform: translate3d(-24%, -12%, 0) scale(1.2);
-    opacity: 0.45;
+    transform: translate3d(-24%, -12%, 0) rotate(-28deg) scale(1.2);
+    opacity: 0.48;
   }
   100% {
-    transform: translate3d(20%, 6%, 0) scale(0.98);
-    opacity: 0.96;
+    transform: translate3d(20%, 6%, 0) rotate(18deg) scale(0.98);
+    opacity: 0.95;
   }
 }
 
 @keyframes edunexus-blob-mix-c {
   0% {
-    transform: translate3d(6%, -4%, 0) scale(1);
-    opacity: 0.82;
+    transform: translate3d(6%, -4%, 0) rotate(-10deg) scale(1);
+    opacity: 0.84;
   }
   50% {
-    transform: translate3d(-30%, 10%, 0) scale(1.16);
-    opacity: 0.96;
+    transform: translate3d(-30%, 10%, 0) rotate(26deg) scale(1.16);
+    opacity: 0.95;
   }
   100% {
-    transform: translate3d(-10%, -8%, 0) scale(1.04);
-    opacity: 0.5;
+    transform: translate3d(-10%, -8%, 0) rotate(-18deg) scale(1.04);
+    opacity: 0.52;
   }
 }
 
 @keyframes edunexus-blob-mix-d {
   0% {
     transform: translate3d(0, 10%, 0) scale(0.94);
-    opacity: 0.25;
+    opacity: 0.3;
   }
   45% {
     transform: translate3d(42%, -10%, 0) scale(1.18);
-    opacity: 0.98;
+    opacity: 0.96;
   }
   100% {
     transform: translate3d(18%, 8%, 0) scale(1.02);
-    opacity: 0.35;
+    opacity: 0.4;
   }
 }
 
 @keyframes edunexus-blob-mix-e {
   0% {
     transform: translate3d(-10%, -10%, 0) scale(0.92);
-    opacity: 0.2;
+    opacity: 0.28;
   }
   50% {
     transform: translate3d(-34%, 12%, 0) scale(1.16);
-    opacity: 0.95;
+    opacity: 0.94;
   }
   100% {
     transform: translate3d(24%, -6%, 0) scale(1.04);
-    opacity: 0.3;
+    opacity: 0.36;
   }
 }
 
@@ -723,41 +668,41 @@
   }
   50% {
     transform: translate3d(-36%, -8%, 0) scale(1.2);
-    opacity: 0.95;
+    opacity: 0.92;
   }
   100% {
     transform: translate3d(-12%, 10%, 0) scale(0.96);
-    opacity: 0.55;
+    opacity: 0.52;
   }
 }
 
 @keyframes edunexus-blob-mix-g {
   0% {
     transform: translate3d(-8%, 8%, 0) scale(0.95);
-    opacity: 0.22;
+    opacity: 0.3;
   }
   55% {
     transform: translate3d(44%, -6%, 0) scale(1.14);
-    opacity: 0.92;
+    opacity: 0.94;
   }
   100% {
     transform: translate3d(14%, 6%, 0) scale(1);
-    opacity: 0.28;
+    opacity: 0.36;
   }
 }
 
 @keyframes edunexus-blob-mix-h {
   0% {
     transform: translate3d(8%, -8%, 0) scale(1);
-    opacity: 0.3;
+    opacity: 0.35;
   }
   50% {
     transform: translate3d(-32%, 10%, 0) scale(1.18);
-    opacity: 0.96;
+    opacity: 0.94;
   }
   100% {
     transform: translate3d(-6%, -6%, 0) scale(0.96);
-    opacity: 0.4;
+    opacity: 0.42;
   }
 }
 
@@ -789,25 +734,6 @@
   }
 }
 
-@keyframes edunexus-btn-sheen-sweep {
-  0%,
-  64% {
-    transform: translate3d(-150%, 0, 0) skewX(-22deg);
-    opacity: 0;
-  }
-  72% {
-    opacity: 0.85;
-  }
-  88% {
-    transform: translate3d(260%, 0, 0) skewX(-22deg);
-    opacity: 0;
-  }
-  100% {
-    transform: translate3d(260%, 0, 0) skewX(-22deg);
-    opacity: 0;
-  }
-}
-
 @keyframes edunexus-tagline-flow {
   0% {
     background-position: 0% 50%;
@@ -819,39 +745,43 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .edunexus-ambient-wash {
-    animation: edunexus-wash-flow 22s linear infinite;
+    animation: edunexus-wash-flow 20s linear infinite;
+  }
+
+  .edunexus-ambient-vortex {
+    animation: edunexus-vortex-spin 24s linear infinite;
   }
 
   .edunexus-ambient-blob-a {
-    animation: edunexus-blob-mix-a 14s ease-in-out infinite alternate;
+    animation: edunexus-blob-mix-a 13s ease-in-out infinite alternate;
   }
 
   .edunexus-ambient-blob-b {
-    animation: edunexus-blob-mix-b 18s ease-in-out infinite alternate;
+    animation: edunexus-blob-mix-b 17s ease-in-out infinite alternate;
   }
 
   .edunexus-ambient-blob-c {
-    animation: edunexus-blob-mix-c 16s ease-in-out infinite alternate;
+    animation: edunexus-blob-mix-c 15s ease-in-out infinite alternate;
   }
 
   .edunexus-ambient-blob-d {
-    animation: edunexus-blob-mix-d 15s ease-in-out infinite alternate;
+    animation: edunexus-blob-mix-d 14s ease-in-out infinite alternate;
   }
 
   .edunexus-ambient-blob-e {
-    animation: edunexus-blob-mix-e 19s ease-in-out infinite alternate;
+    animation: edunexus-blob-mix-e 18s ease-in-out infinite alternate;
   }
 
   .edunexus-ambient-blob-f {
-    animation: edunexus-blob-mix-f 17s ease-in-out infinite alternate;
+    animation: edunexus-blob-mix-f 16s ease-in-out infinite alternate;
   }
 
   .edunexus-ambient-blob-g {
-    animation: edunexus-blob-mix-g 21s ease-in-out infinite alternate;
+    animation: edunexus-blob-mix-g 19s ease-in-out infinite alternate;
   }
 
   .edunexus-ambient-blob-h {
-    animation: edunexus-blob-mix-h 13s ease-in-out infinite alternate;
+    animation: edunexus-blob-mix-h 12s ease-in-out infinite alternate;
   }
 
   .edunexus-navbar-edge-track {
@@ -860,89 +790,99 @@
 }
 
 /* ==========================================================================
- * 1. TOP PART (Reduced Side Margins | Brand Glass Pill Left | Auth + Theme Right)
+ * UNIFIED COMPACT SINGLE-ROW NAVIGATION SURFACE (Decreased Height: 52px)
  * ========================================================================== */
 
-.edunexus-navbar-top {
+.edunexus-navbar-surface {
   position: relative;
   z-index: 2;
-  background-color: var(--nav-top-glass);
-  backdrop-filter: blur(18px) saturate(175%);
-  border-block-end: 1px solid var(--nav-sub-border);
+  background-color: var(--nav-surface-glass);
 }
 
-.edunexus-navbar-top-inner {
+.edunexus-navbar-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  block-size: 4rem;
+  justify-content: flex-start;
+  gap: 0.65rem;
+  block-size: 3.25rem;
   inline-size: 100%;
   padding-inline: 0.75rem;
 }
 
 @media (min-width: 640px) {
-  .edunexus-navbar-top-inner {
+  .edunexus-navbar-inner {
     padding-inline: 1rem;
   }
 }
 
 @media (min-width: 1024px) {
-  .edunexus-navbar-top-inner {
+  .edunexus-navbar-inner {
     padding-inline: 1.5rem;
   }
 }
 
-.edunexus-top-left {
+/* Keep natural single-row width measurable for ResizeObserver */
+.edunexus-navbar-inner > * {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Mobile / Narrow Default: push Menu Button (Right-Side Left Part) + Right Controls to the Right */
+.edunexus-nav-left {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  min-inline-size: 0;
+  margin-inline-end: auto;
 }
 
-.edunexus-top-right {
+/* Desktop / Wide: space-between places Brand Left, Switch Menu Middle, Auth+Theme Right */
+.edunexus-navbar.is-wide .edunexus-navbar-inner {
+  justify-content: space-between;
+}
+
+.edunexus-navbar.is-wide .edunexus-nav-left {
+  margin-inline-end: 0;
+}
+
+.edunexus-nav-right {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.65rem;
-  flex-shrink: 0;
-}
-
-.edunexus-top-right-left {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  gap: 0.55rem;
 }
 
 .edunexus-top-divider {
   display: block;
   inline-size: 1px;
-  block-size: 1.65rem;
+  block-size: 1.45rem;
   background-image: linear-gradient(to bottom, transparent, var(--nav-border), transparent);
   flex-shrink: 0;
 }
 
-.edunexus-top-right-right {
+.edunexus-right-theme {
   display: flex;
   align-items: center;
 }
 
-/* Brand Home Button: Glass Color, Layered Inner Shadow & Animated Sheen + Tagline */
+/* ==========================================================================
+ * SUB-COMPONENT 1: BRAND HOME GLASS PILL (Left)
+ * ========================================================================== */
+
 .edunexus-home-link {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.625rem;
-  padding: 0.28rem 0.85rem 0.28rem 0.3rem;
+  gap: 0.5rem;
+  padding: 0.22rem 0.72rem 0.22rem 0.24rem;
   border-radius: 9999px;
   border: 1px solid var(--brand-glass-border);
   background-image: linear-gradient(135deg, var(--brand-glass-start), var(--brand-glass-end));
-  backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(14px) saturate(180%);
   box-shadow:
     inset 0 1.5px 1px var(--brand-inset-top),
-    inset 0 -4px 10px var(--brand-inset-bottom),
-    inset 0 0 14px var(--brand-inset-glow),
-    0 6px 18px -8px var(--brand-outer-shadow);
+    inset 0 -3px 8px var(--brand-inset-bottom),
+    inset 0 0 12px var(--brand-inset-glow),
+    0 5px 16px -8px var(--brand-outer-shadow);
   text-decoration: none;
   white-space: nowrap;
   transition:
@@ -950,9 +890,7 @@
     box-shadow 200ms ease;
 }
 
-/* Clipped inner glass sheen overlay (never clips the parent focus-visible outline) */
-.edunexus-home-sheen,
-.edunexus-btn-sheen {
+.edunexus-home-sheen {
   position: absolute;
   inset: 0;
   border-radius: inherit;
@@ -970,23 +908,13 @@
   opacity: 0;
 }
 
-.edunexus-btn-sheen::before {
-  content: "";
-  position: absolute;
-  inset-block: -25%;
-  inset-inline-start: 0;
-  inline-size: 42%;
-  background-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
-  opacity: 0;
-}
-
 .edunexus-home-link:hover {
   border-color: var(--nav-hover-border);
   box-shadow:
     inset 0 1.5px 1.5px var(--brand-inset-top),
-    inset 0 -5px 12px var(--brand-inset-bottom),
-    inset 0 0 18px var(--brand-inset-glow),
-    0 10px 24px -8px var(--brand-outer-shadow);
+    inset 0 -4px 10px var(--brand-inset-bottom),
+    inset 0 0 16px var(--brand-inset-glow),
+    0 8px 20px -8px var(--brand-outer-shadow);
 }
 
 .edunexus-home-logo-frame {
@@ -995,15 +923,15 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  inline-size: 2.35rem;
-  block-size: 2.35rem;
+  inline-size: 2rem;
+  block-size: 2rem;
   flex: none;
   overflow: hidden;
   border-radius: 9999px;
   border: 1px solid rgba(56, 189, 248, 0.55);
   box-shadow:
     inset 0 1px 2px rgba(255, 255, 255, 0.45),
-    0 4px 12px -4px rgba(14, 165, 233, 0.55);
+    0 3px 10px -4px rgba(14, 165, 233, 0.55);
 }
 
 .edunexus-home-logo-img {
@@ -1022,7 +950,7 @@
 }
 
 .edunexus-brand-title {
-  font-size: 1rem;
+  font-size: 0.94rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--nav-text-strong);
@@ -1035,10 +963,9 @@
   color: transparent;
 }
 
-/* Vibrant, Accessible Animated Color Tagline Text */
 .edunexus-home-tagline {
-  margin-block-start: 0.22rem;
-  font-size: 0.65rem;
+  margin-block-start: 0.16rem;
+  font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.03em;
   background-image: linear-gradient(
@@ -1055,13 +982,14 @@
   color: transparent;
 }
 
-@media (max-width: 479px) {
+@media (max-width: 580px) {
   .edunexus-home-tagline {
     display: none;
   }
 
   .edunexus-home-link {
-    padding-inline-end: 0.65rem;
+    padding-inline-end: 0.58rem;
+    gap: 0.4rem;
   }
 }
 
@@ -1081,10 +1009,6 @@
     animation: edunexus-brand-sheen-sweep 7.5s ease-in-out infinite;
   }
 
-  .edunexus-btn-sheen::before {
-    animation: edunexus-btn-sheen-sweep 6.5s ease-in-out infinite;
-  }
-
   .edunexus-home-tagline {
     animation: edunexus-tagline-flow 6.5s linear infinite;
   }
@@ -1099,9 +1023,6 @@
   .edunexus-home-link:hover .edunexus-home-logo-frame {
     transform: scale(1.07) rotate(-3deg);
     border-color: rgba(34, 211, 238, 0.9);
-    box-shadow:
-      inset 0 1px 2px rgba(255, 255, 255, 0.55),
-      0 8px 20px -6px rgba(139, 92, 246, 0.65);
   }
 
   .edunexus-home-link:active .edunexus-home-logo-frame {
@@ -1110,532 +1031,36 @@
 }
 
 /* ==========================================================================
- * ENHANCED REGISTRATION, LOGIN & THEME TOGGLE BUTTONS (Top-Right)
+ * SUB-COMPONENT 2: SEGMENTED SWITCH NAV MENU (Middle on Desktop / Right-Side Left on Mobile)
  * ========================================================================== */
 
-.edunexus-auth-register,
-.edunexus-auth-login {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.3rem 0.9rem 0.3rem 0.34rem;
-  border-radius: 9999px;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  line-height: 1.2;
-  text-decoration: none;
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.edunexus-auth-icon-wrap {
-  position: relative;
-  z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  inline-size: 1.65rem;
-  block-size: 1.65rem;
-  border-radius: 9999px;
-  flex: none;
-}
-
-.edunexus-auth-label {
-  position: relative;
-  z-index: 1;
-}
-
-/* Register: Vivid Luminous Gradient Pill with Specular Inner Bevel & Sheen */
-.edunexus-auth-register {
-  border: 1px solid rgba(165, 243, 252, 0.62);
-  background-image: linear-gradient(135deg, #06b6d4 0%, #3b82f6 42%, #7c3aed 78%, #d946ef 100%);
-  color: #ffffff;
-  box-shadow:
-    inset 0 1.5px 1px rgba(255, 255, 255, 0.45),
-    inset 0 -3px 7px rgba(30, 27, 75, 0.35),
-    0 8px 20px -7px rgba(124, 58, 237, 0.68);
-  transition:
-    filter 160ms ease,
-    box-shadow 180ms ease,
-    border-color 180ms ease;
-}
-
-.edunexus-auth-register .edunexus-auth-icon-wrap {
-  background-color: rgba(255, 255, 255, 0.22);
-  border: 1px solid rgba(255, 255, 255, 0.36);
-  color: #ffffff;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
-}
-
-.edunexus-auth-register:hover {
-  filter: brightness(1.07);
-  border-color: rgba(255, 255, 255, 0.85);
-  box-shadow:
-    inset 0 1.5px 1.5px rgba(255, 255, 255, 0.55),
-    inset 0 -3px 8px rgba(30, 27, 75, 0.38),
-    0 12px 26px -6px rgba(139, 92, 246, 0.78);
-}
-
-/* Login: Iridescent Gradient-Border Frosted Glass Pill with Inner Shadow */
-.edunexus-auth-login {
-  border: 1.5px solid transparent;
-  background-image:
-    linear-gradient(135deg, var(--login-bg-start), var(--login-bg-end)),
-    linear-gradient(135deg, #06b6d4 0%, #6366f1 55%, #ec4899 100%);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  color: var(--nav-text-strong);
-  backdrop-filter: blur(12px) saturate(165%);
-  box-shadow:
-    inset 0 1.5px 1px var(--brand-inset-top),
-    inset 0 -3px 8px var(--brand-inset-bottom),
-    0 4px 14px -6px var(--brand-outer-shadow);
-  transition:
-    color 160ms ease,
-    box-shadow 180ms ease,
-    filter 160ms ease;
-}
-
-.edunexus-auth-login .edunexus-auth-icon-wrap {
-  background-color: var(--login-icon-bg);
-  border: 1px solid var(--nav-border);
-  color: var(--login-icon-color);
-  transition:
-    background-color 180ms ease,
-    color 180ms ease;
-}
-
-.edunexus-auth-login:hover {
-  color: var(--nav-hover-text);
-  box-shadow:
-    inset 0 1.5px 1.5px var(--brand-inset-top),
-    inset 0 -4px 10px var(--brand-inset-bottom),
-    0 8px 20px -6px rgba(14, 165, 233, 0.45);
-}
-
-.edunexus-auth-login:hover .edunexus-auth-icon-wrap {
-  background-color: var(--nav-hover-bg);
-  color: var(--nav-hover-text);
-}
-
-@media (max-width: 520px) {
-  .edunexus-auth-register,
-  .edunexus-auth-login {
-    padding: 0.25rem 0.65rem 0.25rem 0.28rem;
-    gap: 0.32rem;
-    font-size: 0.75rem;
-  }
-
-  .edunexus-auth-icon-wrap {
-    inline-size: 1.45rem;
-    block-size: 1.45rem;
-  }
-}
-
-/* Theme Toggle Orb: Tactile Iridescent Glass Bezel with Dynamic Theme Ambient Glow */
-.edunexus-theme-toggle {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  inline-size: 2.35rem;
-  block-size: 2.35rem;
-  padding: 0;
-  border-radius: 9999px;
-  border: 1.5px solid transparent;
-  background-image:
-    linear-gradient(145deg, var(--toggle-bg-start), var(--toggle-bg-end)),
-    linear-gradient(135deg, #06b6d4 0%, #8b5cf6 52%, #f59e0b 100%);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  color: var(--toggle-icon);
-  backdrop-filter: blur(12px) saturate(165%);
-  box-shadow:
-    inset 0 1.5px 1.5px var(--brand-inset-top),
-    inset 0 -4px 8px var(--brand-inset-bottom),
-    0 5px 16px -5px var(--toggle-glow);
-  cursor: pointer;
-  transition:
-    box-shadow 180ms ease,
-    color 180ms ease,
-    filter 180ms ease;
-}
-
-.edunexus-theme-glow {
-  position: absolute;
-  inset: 3px;
-  border-radius: inherit;
-  background: radial-gradient(circle at 35% 30%, var(--toggle-glow), transparent 72%);
-  opacity: 0.55;
-  pointer-events: none;
-  transition: opacity 200ms ease;
-}
-
-.edunexus-theme-toggle:hover {
-  filter: brightness(1.06);
-  box-shadow:
-    inset 0 1.5px 1.5px var(--brand-inset-top),
-    inset 0 -4px 9px var(--brand-inset-bottom),
-    0 8px 22px -4px var(--toggle-glow);
-}
-
-.edunexus-theme-toggle:hover .edunexus-theme-glow {
-  opacity: 0.95;
-}
-
-.edunexus-theme-option {
-  position: relative;
-  z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Critical non-color branching for Theme Toggle icon + accessible text (works with zero JS) */
-.edunexus-theme-to-light {
-  display: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not(:has(> head > meta[name="color-scheme"][content="light"])) {
-    .edunexus-theme-to-dark {
-      display: none;
-    }
-
-    .edunexus-theme-to-light {
-      display: inline-flex;
-    }
-  }
-}
-
-:root:has(> head > meta[name="color-scheme"][content="dark"]) {
-  .edunexus-theme-to-dark {
-    display: none;
-  }
-
-  .edunexus-theme-to-light {
-    display: inline-flex;
-  }
-}
-
-/* ==========================================================================
- * 2. BOTTOM PART (Paint-Mixing Sky/Green/Yellow/Orange/Red Button Bar)
- * ========================================================================== */
-
-@keyframes edunexus-paint-base-flow {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
-@keyframes edunexus-paint-vortex-spin {
-  0% {
-    transform: translate3d(-12%, -50%, 0) rotate(0deg) scale(1.1);
-  }
-  50% {
-    transform: translate3d(12%, -46%, 0) rotate(180deg) scale(1.22);
-  }
-  100% {
-    transform: translate3d(-12%, -50%, 0) rotate(360deg) scale(1.1);
-  }
-}
-
-@keyframes edunexus-paint-mix-sky {
-  0% {
-    transform: translate3d(-10%, -18%, 0) rotate(0deg) scale(1, 0.95);
-    opacity: 0.94;
-  }
-  33% {
-    transform: translate3d(28%, 14%, 0) rotate(42deg) scale(1.28, 1.05);
-    opacity: 0.82;
-  }
-  66% {
-    transform: translate3d(52%, -16%, 0) rotate(-24deg) scale(1.12, 1.15);
-    opacity: 0.96;
-  }
-  100% {
-    transform: translate3d(6%, 8%, 0) rotate(16deg) scale(1.04, 0.98);
-    opacity: 0.88;
-  }
-}
-
-@keyframes edunexus-paint-mix-green {
-  0% {
-    transform: translate3d(12%, 16%, 0) rotate(12deg) scale(1.05, 1);
-    opacity: 0.88;
-  }
-  40% {
-    transform: translate3d(-24%, -18%, 0) rotate(-38deg) scale(1.24, 1.12);
-    opacity: 0.96;
-  }
-  75% {
-    transform: translate3d(34%, 10%, 0) rotate(28deg) scale(1.15, 0.94);
-    opacity: 0.78;
-  }
-  100% {
-    transform: translate3d(-6%, -8%, 0) rotate(-14deg) scale(1.02, 1.08);
-    opacity: 0.92;
-  }
-}
-
-@keyframes edunexus-paint-mix-yellow {
-  0% {
-    transform: translate3d(-16%, -12%, 0) rotate(-18deg) scale(1.08, 0.96);
-    opacity: 0.92;
-  }
-  45% {
-    transform: translate3d(30%, 16%, 0) rotate(36deg) scale(1.26, 1.14);
-    opacity: 0.82;
-  }
-  80% {
-    transform: translate3d(-28%, -10%, 0) rotate(-42deg) scale(1.16, 1.04);
-    opacity: 0.98;
-  }
-  100% {
-    transform: translate3d(10%, 8%, 0) rotate(14deg) scale(1, 1.02);
-    opacity: 0.88;
-  }
-}
-
-@keyframes edunexus-paint-mix-orange {
-  0% {
-    transform: translate3d(14%, -14%, 0) rotate(22deg) scale(1, 1.06);
-    opacity: 0.9;
-  }
-  40% {
-    transform: translate3d(-32%, 14%, 0) rotate(-30deg) scale(1.25, 0.98);
-    opacity: 0.96;
-  }
-  75% {
-    transform: translate3d(20%, -12%, 0) rotate(44deg) scale(1.14, 1.12);
-    opacity: 0.8;
-  }
-  100% {
-    transform: translate3d(-12%, 10%, 0) rotate(-16deg) scale(1.04, 1);
-    opacity: 0.92;
-  }
-}
-
-@keyframes edunexus-paint-mix-red {
-  0% {
-    transform: translate3d(8%, 12%, 0) rotate(-12deg) scale(1.06, 0.96);
-    opacity: 0.92;
-  }
-  38% {
-    transform: translate3d(-44%, -14%, 0) rotate(34deg) scale(1.26, 1.12);
-    opacity: 0.84;
-  }
-  72% {
-    transform: translate3d(-18%, 16%, 0) rotate(-28deg) scale(1.16, 1.04);
-    opacity: 0.96;
-  }
-  100% {
-    transform: translate3d(4%, -10%, 0) rotate(18deg) scale(1.02, 1.06);
-    opacity: 0.88;
-  }
-}
-
-.edunexus-navbar-bottom {
-  position: relative;
-  z-index: 2;
-  background-color: var(--nav-base-bg);
-  box-shadow: inset 0 1px 0 var(--nav-pill-inset);
-  min-block-size: 2.125rem;
-  block-size: 2.125rem;
-}
-
-/* Clipped Liquid Paint-Mixing Canvas (Sky, Green, Yellow, Orange, Red — never clips popovers) */
-.edunexus-bottom-paint {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-/* Soft glass veil on top of the paint canvas to keep Light/Dark themes refined */
-.edunexus-bottom-paint::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: var(--nav-bottom-veil);
-}
-
-.edunexus-paint-base {
-  position: absolute;
-  inset-block: 0;
-  inset-inline-start: 0;
-  inline-size: 200%;
-  background-image: linear-gradient(
-    90deg,
-    var(--paint-sky) 0%,
-    var(--paint-green) 20%,
-    var(--paint-yellow) 40%,
-    var(--paint-orange) 60%,
-    var(--paint-red) 80%,
-    var(--paint-sky) 100%
-  );
-  opacity: 0.72;
-}
-
-.edunexus-paint-vortex {
-  position: absolute;
-  inset-block-start: 50%;
-  inset-inline-start: 10%;
-  inline-size: 80%;
-  aspect-ratio: 1;
-  border-radius: 9999px;
-  background: conic-gradient(
-    from 0deg,
-    var(--paint-sky),
-    var(--paint-green),
-    var(--paint-yellow),
-    var(--paint-orange),
-    var(--paint-red),
-    var(--paint-sky)
-  );
-  filter: blur(26px);
-  opacity: 0.52;
-  transform: translate3d(0, -50%, 0);
-}
-
-.edunexus-paint-swirl {
-  position: absolute;
-  border-radius: 44% 56% 62% 38% / 54% 42% 58% 46%;
-  filter: blur(18px);
-  opacity: 0.92;
-}
-
-.edunexus-paint-sky {
-  inset-block-start: -110%;
-  inset-inline-start: -4%;
-  inline-size: 32%;
-  block-size: 320%;
-  background: radial-gradient(ellipse at center, var(--paint-sky) 0%, transparent 72%);
-}
-
-.edunexus-paint-green {
-  inset-block-start: -100%;
-  inset-inline-start: 18%;
-  inline-size: 30%;
-  block-size: 310%;
-  background: radial-gradient(ellipse at center, var(--paint-green) 0%, transparent 72%);
-}
-
-.edunexus-paint-yellow {
-  inset-block-start: -115%;
-  inset-inline-start: 38%;
-  inline-size: 30%;
-  block-size: 320%;
-  background: radial-gradient(ellipse at center, var(--paint-yellow) 0%, transparent 72%);
-}
-
-.edunexus-paint-orange {
-  inset-block-start: -105%;
-  inset-inline-start: 58%;
-  inline-size: 30%;
-  block-size: 310%;
-  background: radial-gradient(ellipse at center, var(--paint-orange) 0%, transparent 72%);
-}
-
-.edunexus-paint-red {
-  inset-block-start: -110%;
-  inset-inline-end: -4%;
-  inline-size: 32%;
-  block-size: 320%;
-  background: radial-gradient(ellipse at center, var(--paint-red) 0%, transparent 72%);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .edunexus-paint-base {
-    animation: edunexus-paint-base-flow 16s linear infinite;
-  }
-
-  .edunexus-paint-vortex {
-    animation: edunexus-paint-vortex-spin 22s linear infinite;
-  }
-
-  .edunexus-paint-sky {
-    animation: edunexus-paint-mix-sky 11s ease-in-out infinite alternate;
-  }
-
-  .edunexus-paint-green {
-    animation: edunexus-paint-mix-green 13s ease-in-out infinite alternate;
-  }
-
-  .edunexus-paint-yellow {
-    animation: edunexus-paint-mix-yellow 12s ease-in-out infinite alternate;
-  }
-
-  .edunexus-paint-orange {
-    animation: edunexus-paint-mix-orange 14s ease-in-out infinite alternate;
-  }
-
-  .edunexus-paint-red {
-    animation: edunexus-paint-mix-red 10.5s ease-in-out infinite alternate;
-  }
-}
-
-.edunexus-navbar-bottom-inner {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  block-size: 100%;
-  inline-size: 100%;
-  padding-inline: 0.75rem;
-}
-
-@media (min-width: 640px) {
-  .edunexus-navbar-bottom-inner {
-    padding-inline: 1rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .edunexus-navbar-bottom-inner {
-    padding-inline: 1.5rem;
-  }
-}
-
-/* Keep the bottom menu row's natural width measurable */
-.edunexus-navbar-bottom-inner > * {
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-
-/* Primary Nav Container */
 .edunexus-site-nav {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
-/* Narrow Menu Trigger: Sculpted 5-Color Paint-Bordered Glass Pill */
+/* Mobile Menu Toggle Button (Right-Side Left Part when collapsed) */
 .edunexus-menu-button {
   anchor-name: --edunexus-menu-button;
   display: inline-flex;
   align-items: center;
-  gap: 0.38rem;
-  block-size: 1.55rem;
-  padding: 0 0.82rem;
+  justify-content: center;
+  gap: 0.35rem;
+  block-size: 1.88rem;
+  padding: 0 0.72rem;
   border-radius: 9999px;
   border: 1.25px solid transparent;
   background-image:
-    linear-gradient(180deg, var(--nav-pill-bg), var(--nav-pill-end)),
+    linear-gradient(180deg, var(--switch-track-top), var(--switch-track-end)),
     linear-gradient(120deg, #38bdf8 0%, #22c55e 28%, #facc15 52%, #f97316 76%, #ef4444 100%);
   background-origin: border-box;
   background-clip: padding-box, border-box;
   color: var(--nav-text-strong);
   box-shadow:
-    inset 0 1px 0 var(--nav-pill-inset),
-    0 3px 10px -3px var(--nav-pill-shadow);
+    inset 0 1.5px 3px var(--switch-track-inset-top),
+    inset 0 -1px 0 var(--switch-track-inset-bottom),
+    0 3px 10px -4px var(--nav-pill-shadow);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.01em;
@@ -1647,10 +1072,11 @@
     filter 160ms ease;
 }
 
-.edunexus-menu-button svg {
-  inline-size: 0.9rem;
-  block-size: 0.9rem;
+.edunexus-menu-icon {
+  font-size: 0.85rem;
   color: var(--nav-ico-home);
+  flex: none;
+  pointer-events: none;
 }
 
 .edunexus-menu-button:hover {
@@ -1658,28 +1084,49 @@
   filter: brightness(1.04);
   box-shadow:
     inset 0 1px 0 var(--nav-pill-inset),
-    0 5px 14px -4px rgba(14, 165, 233, 0.5);
+    0 5px 14px -4px rgba(14, 165, 233, 0.45);
 }
 
-/* Narrow Layout Default: Native Top-Layer Popover Menu anchored to Left Menu Button */
+/* Keep Menu button ultra-compact on very small phones while preserving accessible text */
+@media (max-width: 459px) {
+  .edunexus-menu-button {
+    inline-size: 1.88rem;
+    padding: 0;
+  }
+
+  .edunexus-menu-label {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
+/* Narrow Layout Default: Native Top-Layer Popover Menu anchored beneath Menu Button */
 .edunexus-site-menu {
   position: fixed;
   inset: auto;
-  /* Fallback offsets for browsers without CSS Anchor Positioning */
-  inset-block-start: 6.25rem;
+  /* Static fallback offsets for browsers without CSS Anchor Positioning */
+  inset-block-start: 3.65rem;
   inset-block-start: anchor(--edunexus-menu-button bottom);
-  inset-inline-start: 0.75rem;
-  inset-inline-start: anchor(--edunexus-menu-button left);
-  inline-size: min(84dvw, 22rem);
+  inset-inline-end: 0.75rem;
+  inset-inline-end: anchor(--edunexus-menu-button right);
+  position-try-fallbacks: flip-inline;
+  inline-size: min(82dvw, 18rem);
   max-inline-size: calc(100dvw - 1.5rem);
   block-size: fit-content;
-  max-block-size: calc(100dvh - 6.85rem);
+  max-block-size: calc(100dvh - 4.5rem);
   margin: 0;
-  margin-block-start: 0.4rem;
-  padding: 0.625rem;
+  margin-block-start: 0.45rem;
+  padding: 0.55rem;
   list-style: none;
   overflow: auto;
-  border-radius: 1.25rem;
+  border-radius: 1.2rem;
   border: 1px solid var(--nav-popover-border);
   background-color: var(--nav-popover-bg);
   backdrop-filter: blur(18px) saturate(170%);
@@ -1690,10 +1137,10 @@
 .edunexus-site-menu[popover]:is(:popover-open, .\:popover-open) {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.28rem;
 }
 
-/* Entry / Exit Animation for Narrow Top-Layer Popover (separate transition-behavior: allow-discrete) */
+/* Entry / Exit Animation for Narrow Top-Layer Popover */
 .edunexus-site-menu[popover] {
   opacity: 0;
   translate: 0 -8px;
@@ -1810,7 +1257,7 @@
   color: var(--nav-text-strong);
 }
 
-/* Narrow Popover Active Item Styling (direct thumb fill, zero white dot) */
+/* Narrow Popover Active Item Styling */
 .edunexus-navbar:not(.is-wide) .edunexus-nav-link[aria-current="page"] {
   border-color: rgba(255, 255, 255, 0.45);
   background-image: linear-gradient(135deg, var(--thumb-bg-start), var(--thumb-bg-end));
@@ -1825,77 +1272,11 @@
   color: #ffffff;
 }
 
-/* Icon Layout & Compositor-Only Micro-Animations */
-.edunexus-nav-icon,
-.edunexus-auth-icon,
-.edunexus-theme-icon {
-  flex: none;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .edunexus-menu-button,
-  .edunexus-auth-register,
-  .edunexus-auth-login,
-  .edunexus-theme-toggle {
-    transition:
-      transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
-      background-color 160ms ease,
-      color 160ms ease,
-      border-color 160ms ease,
-      box-shadow 180ms ease,
-      filter 160ms ease;
-  }
-
-  .edunexus-menu-button:hover,
-  .edunexus-auth-register:hover,
-  .edunexus-auth-login:hover,
-  .edunexus-theme-toggle:hover {
-    transform: translate3d(0, -1.5px, 0);
-  }
-
-  .edunexus-menu-button:active,
-  .edunexus-auth-register:active,
-  .edunexus-auth-login:active,
-  .edunexus-theme-toggle:active {
-    transform: scale(0.96);
-  }
-
-  .edunexus-nav-icon,
-  .edunexus-auth-icon,
-  .edunexus-theme-icon {
-    transition:
-      transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
-      color 200ms ease;
-  }
-
-  .edunexus-nav-link:hover .edunexus-nav-icon {
-    transform: scale(1.14);
-  }
-
-  .edunexus-auth-register:hover .edunexus-auth-icon,
-  .edunexus-auth-login:hover .edunexus-auth-icon {
-    transform: translate3d(1.5px, 0, 0) scale(1.08);
-  }
-
-  .edunexus-theme-toggle:hover .edunexus-theme-icon {
-    transform: rotate(-20deg) scale(1.12);
-  }
-
-  .edunexus-theme-toggle:active .edunexus-theme-icon {
-    transform: rotate(10deg) scale(0.9);
-  }
-}
-
-/* ==========================================================================
- * WIDE LAYOUT: TACTILE SEGMENTED SWITCH WITH ANCHOR-POSITIONED SLIDING THUMB
- * ========================================================================== */
-
+/* Wide Layout: Center Multi-Position Segmented Switch */
 .edunexus-navbar.is-wide .edunexus-menu-button {
   display: none;
 }
 
-/* Recessed Multi-Position Switch Housing */
 .edunexus-navbar.is-wide .edunexus-site-menu {
   position: relative;
   isolation: isolate;
@@ -1906,11 +1287,11 @@
   gap: 0;
   inline-size: auto;
   max-inline-size: none;
-  block-size: 1.76rem;
+  block-size: 1.9rem;
   max-block-size: none;
   overflow: visible;
   margin: 0;
-  padding: 2px;
+  padding: 2.5px;
   border-radius: 9999px;
   border: 1.25px solid transparent;
   background-image:
@@ -1931,7 +1312,6 @@
   display: none;
 }
 
-/* Switch Segments inside the Recessed Track */
 .edunexus-navbar.is-wide .edunexus-switch-item {
   position: relative;
   z-index: 1;
@@ -1940,12 +1320,11 @@
   block-size: 100%;
 }
 
-/* Subtle Hardware Segment Divider Ticks between inactive positions */
 .edunexus-navbar.is-wide .edunexus-switch-item + .edunexus-switch-item::before {
   content: "";
   position: absolute;
   inset-inline-start: 0;
-  inset-block: 0.34rem;
+  inset-block: 0.36rem;
   inline-size: 1px;
   border-radius: 9999px;
   background-color: var(--switch-divider);
@@ -1953,18 +1332,16 @@
   transition: opacity 160ms ease;
 }
 
-/* Hide divider ticks touching the active switch thumb */
 .edunexus-navbar.is-wide .edunexus-switch-item.is-active::before,
 .edunexus-navbar.is-wide .edunexus-switch-item.is-active + .edunexus-switch-item::before {
   opacity: 0;
 }
 
-/* Active Segment becomes the CSS Anchor target for the sliding Switch Thumb */
 .edunexus-navbar.is-wide .edunexus-switch-item.is-active {
   anchor-name: --edunexus-switch-active;
 }
 
-/* Single Decorative Sliding Tactile Switch Thumb (Zero extra DOM nodes) */
+/* Single Decorative Sliding Tactile Switch Thumb (Nav Menu) */
 .edunexus-navbar.is-wide .edunexus-site-menu::before {
   content: "";
   position: absolute;
@@ -1985,10 +1362,8 @@
     0 1px 2px rgba(0, 0, 0, 0.22);
 }
 
-/* Spring-Physics Sliding Transition (strictly inside prefers-reduced-motion: no-preference) */
 @media (prefers-reduced-motion: no-preference) {
   .edunexus-navbar.is-wide .edunexus-site-menu::before {
-    /* Standard easing fallback before linear() spring physics */
     transition:
       inset 360ms ease-out,
       box-shadow 260ms ease;
@@ -1996,13 +1371,12 @@
   }
 }
 
-/* Segment Links sit cleanly over the recessed track and active sliding thumb */
 .edunexus-navbar.is-wide .edunexus-nav-link {
   inline-size: auto;
   block-size: 100%;
   padding: 0 0.78rem;
-  gap: 0.34rem;
-  font-size: 0.74rem;
+  gap: 0.36rem;
+  font-size: 0.76rem;
   font-weight: 700;
   line-height: 1;
   border: 0;
@@ -2021,13 +1395,300 @@
 }
 
 .edunexus-navbar.is-wide .edunexus-nav-link .edunexus-nav-icon {
-  inline-size: 0.82rem;
-  block-size: 0.82rem;
+  font-size: 0.78rem;
 }
 
-/* Fallback for browsers without CSS Anchor Positioning (e.g. Firefox) */
+/* ==========================================================================
+ * SUB-COMPONENT 3: REGISTRATION & LOGIN SEGMENTED SWITCH (Matching Button Status Bar Style)
+ * ========================================================================== */
+
+.edunexus-auth-switch {
+  position: relative;
+  isolation: isolate;
+  anchor-scope: --edunexus-auth-active;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  block-size: 1.9rem;
+  padding: 2.5px;
+  border-radius: 9999px;
+  border: 1.25px solid transparent;
+  background-image:
+    linear-gradient(180deg, var(--switch-track-top), var(--switch-track-end)),
+    linear-gradient(90deg, #38bdf8 0%, #22c55e 25%, #facc15 50%, #f97316 75%, #ef4444 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow:
+    inset 0 2px 5px var(--switch-track-inset-top),
+    inset 0 -1px 0 var(--switch-track-inset-bottom),
+    0 3px 12px -4px var(--nav-pill-shadow);
+}
+
+.edunexus-auth-switch[data-active-auth="register"] {
+  --auth-thumb-start: #0284c7;
+  --auth-thumb-end: #6d28d9;
+  --auth-thumb-glow: rgba(109, 40, 217, 0.54);
+}
+
+.edunexus-auth-switch[data-active-auth="login"] {
+  --auth-thumb-start: #0d9488;
+  --auth-thumb-end: #0369a1;
+  --auth-thumb-glow: rgba(13, 148, 136, 0.54);
+}
+
+/* Sliding Tactile Thumb for Register / Login Switch */
+.edunexus-auth-switch::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  position-anchor: --edunexus-auth-active;
+  inset-block-start: anchor(top);
+  inset-block-end: anchor(bottom);
+  inset-inline-start: anchor(left);
+  inset-inline-end: anchor(right);
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background-image: linear-gradient(135deg, var(--auth-thumb-start), var(--auth-thumb-end));
+  box-shadow:
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.52),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.28),
+    0 3px 10px -2px var(--auth-thumb-glow),
+    0 1px 2px rgba(0, 0, 0, 0.22);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .edunexus-auth-switch::before {
+    transition:
+      inset 360ms ease-out,
+      box-shadow 260ms ease;
+    transition-timing-function: var(--switch-spring), ease;
+  }
+}
+
+.edunexus-auth-segment {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.36rem;
+  block-size: 100%;
+  padding: 0 0.76rem;
+  border-radius: 9999px;
+  color: var(--nav-text);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    color 180ms ease,
+    background-color 160ms ease;
+}
+
+.edunexus-auth-segment[data-auth-action="register"] .edunexus-auth-icon {
+  color: var(--auth-ico-register);
+}
+
+.edunexus-auth-segment[data-auth-action="login"] .edunexus-auth-icon {
+  color: var(--auth-ico-login);
+}
+
+.edunexus-auth-segment:hover:not(.is-active) {
+  background-color: var(--switch-segment-hover);
+  color: var(--nav-text-strong);
+}
+
+.edunexus-auth-segment.is-active {
+  anchor-name: --edunexus-auth-active;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.edunexus-auth-segment.is-active .edunexus-auth-icon {
+  color: #ffffff;
+}
+
+@media (max-width: 520px) {
+  .edunexus-auth-switch {
+    block-size: 1.88rem;
+  }
+
+  .edunexus-auth-segment {
+    padding: 0 0.55rem;
+    gap: 0.26rem;
+    font-size: 0.72rem;
+  }
+}
+
+/* ==========================================================================
+ * SUB-COMPONENT 4: THEME TOGGLE GLASS ORB (Right-Side Right)
+ * ========================================================================== */
+
+.edunexus-theme-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2rem;
+  block-size: 2rem;
+  padding: 0;
+  border-radius: 9999px;
+  border: 1.25px solid transparent;
+  background-image:
+    linear-gradient(145deg, var(--toggle-bg-start), var(--toggle-bg-end)),
+    linear-gradient(135deg, #38bdf8 0%, #22c55e 34%, #facc15 66%, #ef4444 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  color: var(--toggle-icon);
+  backdrop-filter: blur(12px) saturate(165%);
+  box-shadow:
+    inset 0 1.5px 1.5px var(--brand-inset-top),
+    inset 0 -3px 6px var(--brand-inset-bottom),
+    0 4px 14px -5px var(--toggle-glow);
+  cursor: pointer;
+  transition:
+    box-shadow 180ms ease,
+    color 180ms ease,
+    filter 160ms ease;
+}
+
+.edunexus-theme-glow {
+  position: absolute;
+  inset: 3px;
+  border-radius: inherit;
+  background: radial-gradient(circle at 35% 30%, var(--toggle-glow), transparent 72%);
+  opacity: 0.55;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+.edunexus-theme-toggle:hover {
+  filter: brightness(1.06);
+  box-shadow:
+    inset 0 1.5px 1.5px var(--brand-inset-top),
+    inset 0 -3px 8px var(--brand-inset-bottom),
+    0 7px 18px -4px var(--toggle-glow);
+}
+
+.edunexus-theme-toggle:hover .edunexus-theme-glow {
+  opacity: 0.95;
+}
+
+.edunexus-theme-option {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Critical non-color branching for Theme Toggle icon + accessible text (works with zero JS) */
+.edunexus-theme-to-light {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(:has(> head > meta[name="color-scheme"][content="light"])) {
+    .edunexus-theme-to-dark {
+      display: none;
+    }
+
+    .edunexus-theme-to-light {
+      display: inline-flex;
+    }
+  }
+}
+
+:root:has(> head > meta[name="color-scheme"][content="dark"]) {
+  .edunexus-theme-to-dark {
+    display: none;
+  }
+
+  .edunexus-theme-to-light {
+    display: inline-flex;
+  }
+}
+
+/* ==========================================================================
+ * FONT AWESOME ICON LAYOUT & COMPOSITOR-ONLY MICRO-ANIMATIONS
+ * ========================================================================== */
+
+.edunexus-navbar .svg-inline--fa {
+  display: inline-block;
+  block-size: 1em;
+  inline-size: 1.25em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+
+.edunexus-nav-icon,
+.edunexus-auth-icon,
+.edunexus-theme-icon {
+  flex: none;
+  pointer-events: none;
+}
+
+.edunexus-auth-icon {
+  font-size: 0.76rem;
+}
+
+.edunexus-theme-icon {
+  font-size: 0.88rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .edunexus-menu-button,
+  .edunexus-theme-toggle {
+    transition:
+      transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+      color 160ms ease,
+      box-shadow 180ms ease,
+      filter 160ms ease;
+  }
+
+  .edunexus-menu-button:hover,
+  .edunexus-theme-toggle:hover {
+    transform: translate3d(0, -1.5px, 0);
+  }
+
+  .edunexus-menu-button:active,
+  .edunexus-theme-toggle:active {
+    transform: scale(0.95);
+  }
+
+  .edunexus-nav-icon,
+  .edunexus-auth-icon,
+  .edunexus-theme-icon {
+    transition:
+      transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
+      color 200ms ease;
+  }
+
+  .edunexus-nav-link:hover .edunexus-nav-icon,
+  .edunexus-auth-segment:hover .edunexus-auth-icon {
+    transform: scale(1.14);
+  }
+
+  .edunexus-theme-toggle:hover .edunexus-theme-icon {
+    transform: rotate(-20deg) scale(1.12);
+  }
+
+  .edunexus-theme-toggle:active .edunexus-theme-icon {
+    transform: rotate(10deg) scale(0.9);
+  }
+}
+
+/* ==========================================================================
+ * FALLBACKS (Firefox Anchor Positioning) & ACCESSIBILITY (Focus + Forced Colors)
+ * ========================================================================== */
+
 @supports not (position-anchor: auto) {
-  .edunexus-navbar.is-wide .edunexus-site-menu::before {
+  .edunexus-navbar.is-wide .edunexus-site-menu::before,
+  .edunexus-auth-switch::before {
     display: none;
   }
 
@@ -2039,24 +1700,29 @@
       inset 0 -2px 4px rgba(0, 0, 0, 0.28),
       0 3px 10px -2px var(--thumb-glow);
   }
+
+  .edunexus-auth-segment.is-active {
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    background-image: linear-gradient(135deg, var(--auth-thumb-start), var(--auth-thumb-end));
+    box-shadow:
+      inset 0 1.5px 1px rgba(255, 255, 255, 0.52),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.28),
+      0 3px 10px -2px var(--auth-thumb-glow);
+  }
 }
 
-/* Keyboard Focus & Forced-Colors Mode Compliance */
 .edunexus-home-link:focus-visible,
-.edunexus-auth-register:focus-visible,
-.edunexus-auth-login:focus-visible,
-.edunexus-theme-toggle:focus-visible,
 .edunexus-menu-button:focus-visible,
-.edunexus-nav-link:focus-visible {
+.edunexus-nav-link:focus-visible,
+.edunexus-auth-segment:focus-visible,
+.edunexus-theme-toggle:focus-visible {
   outline: 2px solid #0ea5e9;
   outline-offset: 2px;
 }
 
 @media (forced-colors: active) {
   .edunexus-navbar-ambient,
-  .edunexus-bottom-paint,
   .edunexus-home-sheen,
-  .edunexus-btn-sheen,
   .edunexus-theme-glow {
     display: none;
   }
@@ -2071,14 +1737,16 @@
     color: CanvasText;
   }
 
-  .edunexus-navbar.is-wide .edunexus-site-menu::before {
+  .edunexus-navbar.is-wide .edunexus-site-menu::before,
+  .edunexus-auth-switch::before {
     background-image: none;
     background-color: Highlight;
     border: 2px solid Highlight;
   }
 
   .edunexus-nav-link[aria-current="page"],
-  .edunexus-navbar.is-wide .edunexus-nav-link[aria-current="page"] {
+  .edunexus-navbar.is-wide .edunexus-nav-link[aria-current="page"],
+  .edunexus-auth-segment.is-active {
     background-image: none;
     background-color: Highlight;
     color: HighlightText;
@@ -2086,16 +1754,16 @@
     text-shadow: none;
   }
 
-  .edunexus-nav-link[aria-current="page"] .edunexus-nav-icon {
+  .edunexus-nav-link[aria-current="page"] .edunexus-nav-icon,
+  .edunexus-auth-segment.is-active .edunexus-auth-icon {
     color: HighlightText;
   }
 
   .edunexus-home-link,
   .edunexus-menu-button,
   .edunexus-site-menu,
-  .edunexus-theme-toggle,
-  .edunexus-auth-login,
-  .edunexus-auth-register {
+  .edunexus-auth-switch,
+  .edunexus-theme-toggle {
     border: 1px solid CanvasText;
   }
 }
