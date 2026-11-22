@@ -9,6 +9,17 @@ export const coursesRouter = Router()
 
 const courseListCache = new TtlCache<unknown>(env.CACHE_TTL_MS, 32)
 const courseDetailCache = new TtlCache<unknown>(env.CACHE_TTL_MS, 64)
+const isProd = env.NODE_ENV === 'production'
+const debugProviderField = isProd ? {} : { provider: databaseProvider }
+
+function parseQuestionOptions(rawJson: string): string[] {
+  try {
+    const parsed: unknown = JSON.parse(rawJson)
+    return Array.isArray(parsed) ? parsed.filter((item): item is string => typeof item === 'string') : []
+  } catch {
+    return []
+  }
+}
 
 const listCoursesQuerySchema = z.object({
   featured: z
@@ -35,7 +46,9 @@ coursesRouter.get('/', async (req, res) => {
   const cacheKey = JSON.stringify(query)
 
   res.setHeader('Cache-Control', 'public, max-age=60, stale-while-revalidate=300')
-  res.setHeader('X-Database-Provider', databaseProvider)
+  if (!isProd) {
+    res.setHeader('X-Database-Provider', databaseProvider)
+  }
 
   const cached = courseListCache.get(cacheKey)
   if (cached !== undefined) {
@@ -97,7 +110,7 @@ coursesRouter.get('/', async (req, res) => {
 
   const payload = {
     count: courses.length,
-    provider: databaseProvider,
+    ...debugProviderField,
     data: courses.map((course) => ({
       id: course.id,
       slug: course.slug,
@@ -136,7 +149,9 @@ coursesRouter.get('/:slug', async (req, res) => {
   const { slug } = slugParamSchema.parse(req.params)
 
   res.setHeader('Cache-Control', 'public, max-age=60, stale-while-revalidate=300')
-  res.setHeader('X-Database-Provider', databaseProvider)
+  if (!isProd) {
+    res.setHeader('X-Database-Provider', databaseProvider)
+  }
 
   const cached = courseDetailCache.get(slug)
   if (cached !== undefined) {
@@ -213,7 +228,7 @@ coursesRouter.get('/:slug', async (req, res) => {
   }
 
   const payload = {
-    provider: databaseProvider,
+    ...debugProviderField,
     data: {
       id: course.id,
       slug: course.slug,
@@ -242,7 +257,7 @@ coursesRouter.get('/:slug', async (req, res) => {
         id: q.id,
         difficulty: q.difficulty,
         prompt: q.prompt,
-        options: JSON.parse(q.optionsJson) as string[],
+        options: parseQuestionOptions(q.optionsJson),
         answerIndex: q.answerIndex,
         explanation: q.explanation,
         xpReward: q.xpReward,

@@ -15,7 +15,10 @@ export class HttpError extends Error {
 export function notFoundHandler(req: Request, res: Response): void {
   res.status(404).json({
     error: 'Not Found',
-    message: `Route ${req.method} ${req.originalUrl} does not exist`,
+    message:
+      env.NODE_ENV === 'production'
+        ? 'The requested resource does not exist'
+        : `Route ${req.method} ${req.originalUrl} does not exist`,
   })
 }
 

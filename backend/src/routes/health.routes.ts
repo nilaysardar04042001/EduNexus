@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import { env } from '../config/env.js'
 import { databaseProvider, prisma } from '../db/prisma.js'
 
 export const healthRouter = Router()
@@ -19,7 +20,7 @@ healthRouter.get('/', async (_req, res) => {
     timestamp: new Date().toISOString(),
     database: {
       connected: true,
-      provider: databaseProvider,
+      ...(env.NODE_ENV === 'production' ? {} : { provider: databaseProvider }),
       latencyMs,
       courses,
       modules,

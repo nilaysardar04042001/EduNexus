@@ -24,6 +24,7 @@ const envSchema = z.object({
   ),
   TURSO_AUTH_TOKEN: optionalNonEmptyString,
   FRONTEND_ORIGIN: z.string().url().default('http://localhost:5173'),
+  TRUST_PROXY: z.coerce.number().int().min(0).max(10).default(0),
   CACHE_TTL_MS: z.coerce.number().int().min(0).max(3_600_000).default(60_000),
 })
 

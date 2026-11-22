@@ -11,15 +11,7 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
-    <script>
-      try {
-        const storedScheme = localStorage.getItem('color-scheme');
-        if (storedScheme === 'light' || storedScheme === 'dark') {
-          const meta = document.querySelector('meta[name="color-scheme"]');
-          if (meta) meta.content = storedScheme;
-        }
-      } catch {}
-    </script>
+    <script>try{const s=localStorage.getItem('color-scheme');if(s==='light'||s==='dark'){const m=document.querySelector('meta[name="color-scheme"]');if(m)m.content=s}}catch{}</script>
     <meta
       name="description"
       content="EduNexus — Learn, Practice, Create, Excel. Modern learning and practice platform."

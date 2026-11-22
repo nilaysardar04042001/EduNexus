@@ -3,11 +3,17 @@ import type { Response } from 'express'
 import { z } from 'zod'
 import { prisma } from '../db/prisma.js'
 import { HttpError } from '../middleware/errorHandler.js'
+import { createRateLimiter } from '../middleware/rateLimit.js'
 import { requireAuth } from '../middleware/requireAuth.js'
 import type { AuthLocals } from '../middleware/requireAuth.js'
 import { getAuthenticatedSession } from '../utils/session.js'
 
 export const progressRouter = Router()
+
+const progressWriteRateLimit = createRateLimiter({
+  windowMs: 15 * 60 * 1000,
+  maxRequests: 120,
+})
 
 progressRouter.use((_req, res, next) => {
   res.setHeader('Cache-Control', 'no-store')
@@ -95,6 +101,7 @@ progressRouter.get('/:slug', async (req, res, next) => {
  */
 progressRouter.put(
   '/lessons/:lessonId',
+  progressWriteRateLimit,
   requireAuth,
   async (req, res: Response<unknown, AuthLocals>, next) => {
     try {
@@ -115,6 +122,7 @@ progressRouter.put(
               courseId: true,
               course: {
                 select: {
+                  isPublished: true,
                   modules: {
                     select: {
                       lessons: { select: { id: true } },
@@ -127,7 +135,7 @@ progressRouter.put(
         },
       })
 
-      if (!lesson) {
+      if (!lesson || !lesson.module.course.isPublished) {
         throw new HttpError(404, 'Lesson not found')
       }
 

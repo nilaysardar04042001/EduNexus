@@ -48,6 +48,17 @@ export async function hashPassword(password: string): Promise<string> {
   return `scrypt$${SCRYPT_N}$${SCRYPT_R}$${SCRYPT_P}$${salt.toString('hex')}$${derived.toString('hex')}`
 }
 
+const MIN_SCRYPT_N = 1024
+const MAX_SCRYPT_N = 65_536
+const MAX_SCRYPT_R = 16
+const MAX_SCRYPT_P = 4
+const MIN_KEY_LENGTH = 16
+const MAX_KEY_LENGTH = 128
+
+function isPowerOfTwo(value: number): boolean {
+  return value > 0 && (value & (value - 1)) === 0
+}
+
 /**
  * Timing-safe password verification against a stored scrypt hash.
  */
@@ -67,6 +78,13 @@ export async function verifyPassword(password: string, storedHash: string): Prom
     !Number.isInteger(cost) ||
     !Number.isInteger(blockSize) ||
     !Number.isInteger(parallelization) ||
+    cost < MIN_SCRYPT_N ||
+    cost > MAX_SCRYPT_N ||
+    !isPowerOfTwo(cost) ||
+    blockSize < 1 ||
+    blockSize > MAX_SCRYPT_R ||
+    parallelization < 1 ||
+    parallelization > MAX_SCRYPT_P ||
     !saltHex ||
     !expectedHex
   ) {
@@ -75,7 +93,11 @@ export async function verifyPassword(password: string, storedHash: string): Prom
 
   const salt = Buffer.from(saltHex, 'hex')
   const expected = Buffer.from(expectedHex, 'hex')
-  if (salt.length === 0 || expected.length === 0) {
+  if (
+    salt.length < 8 ||
+    expected.length < MIN_KEY_LENGTH ||
+    expected.length > MAX_KEY_LENGTH
+  ) {
     return false
   }
 

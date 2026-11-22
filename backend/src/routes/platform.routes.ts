@@ -6,6 +6,8 @@ import { TtlCache } from '../utils/ttlCache.js'
 export const platformRouter = Router()
 
 const statsCache = new TtlCache<unknown>(env.CACHE_TTL_MS, 4)
+const isProd = env.NODE_ENV === 'production'
+const debugProviderField = isProd ? {} : { provider: databaseProvider }
 
 interface PillarBucket {
   courses: number
@@ -20,7 +22,9 @@ interface PillarBucket {
  */
 platformRouter.get('/stats', async (_req, res) => {
   res.setHeader('Cache-Control', 'public, max-age=60, stale-while-revalidate=300')
-  res.setHeader('X-Database-Provider', databaseProvider)
+  if (!isProd) {
+    res.setHeader('X-Database-Provider', databaseProvider)
+  }
 
   const cached = statsCache.get('stats')
   if (cached !== undefined) {
@@ -135,7 +139,7 @@ platformRouter.get('/stats', async (_req, res) => {
   }
 
   const payload = {
-    provider: databaseProvider,
+    ...debugProviderField,
     totals: {
       courses: courses.length,
       modules: totalModules,

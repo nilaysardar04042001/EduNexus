@@ -3,7 +3,9 @@ import type { Request, Response } from 'express'
 import { env } from '../config/env.js'
 import { prisma } from '../db/prisma.js'
 
-export const SESSION_COOKIE_NAME = 'edunexus_session'
+// Use __Host- cookie prefix in production (requires Secure, Path=/, and no Domain attribute)
+export const SESSION_COOKIE_NAME =
+  env.NODE_ENV === 'production' ? '__Host-edunexus_session' : 'edunexus_session'
 const SESSION_TTL_MS = 7 * 24 * 60 * 60 * 1000 // 7 days
 const SESSION_REFRESH_THRESHOLD_MS = SESSION_TTL_MS / 2
 

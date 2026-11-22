@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import type { Response } from 'express'
 import { z } from 'zod'
+import { env } from '../config/env.js'
 import { databaseProvider, prisma } from '../db/prisma.js'
 import { HttpError } from '../middleware/errorHandler.js'
 import { createRateLimiter } from '../middleware/rateLimit.js'
@@ -18,6 +19,8 @@ import type { PublicUser } from '../utils/session.js'
 
 export const authRouter = Router()
 
+const debugProviderField = env.NODE_ENV === 'production' ? {} : { provider: databaseProvider }
+
 // Auth responses must never be cached by browsers or intermediaries
 authRouter.use((_req, res, next) => {
   res.setHeader('Cache-Control', 'no-store')
@@ -27,6 +30,11 @@ authRouter.use((_req, res, next) => {
 const authRateLimit = createRateLimiter({
   windowMs: 15 * 60 * 1000, // 15 minutes
   maxRequests: 25,
+})
+
+const profileRateLimit = createRateLimiter({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  maxRequests: 60,
 })
 
 const PASSWORD_COMPLEXITY_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,128}$/
@@ -112,7 +120,7 @@ authRouter.get('/me', async (req, res, next) => {
     if (!auth) {
       res.json({
         authenticated: false,
-        provider: databaseProvider,
+        ...debugProviderField,
         user: null,
       })
       return
@@ -120,7 +128,7 @@ authRouter.get('/me', async (req, res, next) => {
 
     res.json({
       authenticated: true,
-      provider: databaseProvider,
+      ...debugProviderField,
       user: auth.user,
     })
   } catch (error) {
@@ -142,10 +150,8 @@ authRouter.post('/register', authRateLimit, async (req, res, next) => {
     })
 
     if (existing) {
-      throw new HttpError(
-        409,
-        'An account with this email already exists. Try signing in instead.',
-      )
+      await runDummyPasswordWork(password)
+      throw new HttpError(400, 'Unable to complete registration with these details.')
     }
 
     const passwordHash = await hashPassword(password)
@@ -163,7 +169,7 @@ authRouter.post('/register', authRateLimit, async (req, res, next) => {
 
     res.status(201).json({
       authenticated: true,
-      provider: databaseProvider,
+      ...debugProviderField,
       user: formatPublicUser(created),
     })
   } catch (error) {
@@ -208,7 +214,7 @@ authRouter.post('/login', authRateLimit, async (req, res, next) => {
 
     res.json({
       authenticated: true,
-      provider: databaseProvider,
+      ...debugProviderField,
       user: formatPublicUser(user, {
         enrollments: user._count.enrollments,
         completedLessons: user._count.lessonProgress,
@@ -221,12 +227,13 @@ authRouter.post('/login', authRateLimit, async (req, res, next) => {
 
 /**
  * POST /api/auth/logout
- * Revokes the current session in Turso/SQLite and clears the HttpOnly cookie.
+ * Revokes the current session in Turso/SQLite, clears the HttpOnly cookie, and sends Clear-Site-Data.
  */
-authRouter.post('/logout', async (req, res, next) => {
+authRouter.post('/logout', authRateLimit, async (req, res, next) => {
   try {
     await revokeSessionByRequest(req)
     clearSessionCookie(res)
+    res.setHeader('Clear-Site-Data', '"cookies", "storage", "cache"')
     res.json({ ok: true })
   } catch (error) {
     next(error)
@@ -237,50 +244,55 @@ authRouter.post('/logout', async (req, res, next) => {
  * PATCH /api/auth/me
  * Updates the signed-in user's profile (display name or daily study goal).
  */
-authRouter.patch('/me', requireAuth, async (req, res: Response<unknown, AuthLocals>, next) => {
-  try {
-    const auth = res.locals.auth
-    if (!auth) {
-      throw new HttpError(401, 'Authentication required.')
-    }
+authRouter.patch(
+  '/me',
+  profileRateLimit,
+  requireAuth,
+  async (req, res: Response<unknown, AuthLocals>, next) => {
+    try {
+      const auth = res.locals.auth
+      if (!auth) {
+        throw new HttpError(401, 'Authentication required.')
+      }
 
-    const payload = updateProfileSchema.parse(req.body)
-    if (payload.name === undefined && payload.dailyGoalMins === undefined) {
-      res.json({
-        authenticated: true,
-        provider: databaseProvider,
-        user: auth.user,
-      })
-      return
-    }
+      const payload = updateProfileSchema.parse(req.body)
+      if (payload.name === undefined && payload.dailyGoalMins === undefined) {
+        res.json({
+          authenticated: true,
+          ...debugProviderField,
+          user: auth.user,
+        })
+        return
+      }
 
-    const updated = await prisma.user.update({
-      where: { id: auth.user.id },
-      data: {
-        ...(payload.name === undefined ? {} : { name: payload.name }),
-        ...(payload.dailyGoalMins === undefined ? {} : { dailyGoalMins: payload.dailyGoalMins }),
-      },
-      include: {
-        _count: {
-          select: {
-            enrollments: true,
-            lessonProgress: {
-              where: { status: 'completed' },
+      const updated = await prisma.user.update({
+        where: { id: auth.user.id },
+        data: {
+          ...(payload.name === undefined ? {} : { name: payload.name }),
+          ...(payload.dailyGoalMins === undefined ? {} : { dailyGoalMins: payload.dailyGoalMins }),
+        },
+        include: {
+          _count: {
+            select: {
+              enrollments: true,
+              lessonProgress: {
+                where: { status: 'completed' },
+              },
             },
           },
         },
-      },
-    })
+      })
 
-    res.json({
-      authenticated: true,
-      provider: databaseProvider,
-      user: formatPublicUser(updated, {
-        enrollments: updated._count.enrollments,
-        completedLessons: updated._count.lessonProgress,
-      }),
-    })
-  } catch (error) {
-    next(error)
-  }
-})
+      res.json({
+        authenticated: true,
+        ...debugProviderField,
+        user: formatPublicUser(updated, {
+          enrollments: updated._count.enrollments,
+          completedLessons: updated._count.lessonProgress,
+        }),
+      })
+    } catch (error) {
+      next(error)
+    }
+  },
+)
