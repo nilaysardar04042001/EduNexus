@@ -1,16 +1,28 @@
 import { memo, useCallback, useEffect, useId, useRef, useState } from 'react'
 import type { MouseEvent } from 'react'
-import { ArrowRightIcon, ChevronDownIcon, MenuBarsIcon, NavIcon } from './NavbarIcons'
+import { subscribeColorSchemeStorageSync, toggleColorScheme } from '../../utils/theme'
+import {
+  ChevronDownIcon,
+  LoginIcon,
+  MenuBarsIcon,
+  MoonIcon,
+  NavIcon,
+  RegisterIcon,
+  SunIcon,
+} from './NavbarIcons'
 import type { NavIconName } from './NavbarIcons'
 import './Navbar.css'
 
 export type NavSectionId = 'home' | 'courses' | 'practice' | 'projects' | 'about'
+export type NavAuthAction = 'register' | 'login'
 
 export interface NavbarProps {
   /** Currently active section/page identifier for aria-current="page" */
   activeSection?: NavSectionId
-  /** Callback invoked when user selects a navigation link or Home button */
+  /** Callback invoked when user selects a navigation link or Brand Home button */
   onNavigate?: (section: NavSectionId, subItem?: string) => void
+  /** Callback invoked when user clicks Registration or Login in the top-right bar */
+  onAuthAction?: (action: NavAuthAction) => void
   /** Optional extra classes on the outer navbar wrapper */
   className?: string
 }
@@ -99,9 +111,14 @@ function isNavSectionId(value: string | undefined): value is NavSectionId {
   )
 }
 
+function isNavAuthAction(value: string | undefined): value is NavAuthAction {
+  return value === 'register' || value === 'login'
+}
+
 export const Navbar = memo(function Navbar({
   activeSection = 'home',
   onNavigate,
+  onAuthAction,
   className = '',
 }: NavbarProps) {
   const uid = useId()
@@ -109,7 +126,7 @@ export const Navbar = memo(function Navbar({
   const coursesMenuId = `${uid}-courses-menu`
 
   const barRef = useRef<HTMLDivElement | null>(null)
-  const innerRef = useRef<HTMLDivElement | null>(null)
+  const bottomInnerRef = useRef<HTMLDivElement | null>(null)
   const menuRef = useRef<HTMLUListElement | null>(null)
   const submenuRef = useRef<HTMLUListElement | null>(null)
   const dropdownLiRef = useRef<HTMLLIElement | null>(null)
@@ -121,19 +138,22 @@ export const Navbar = memo(function Navbar({
 
   const [isCoursesOpen, setIsCoursesOpen] = useState<boolean>(false)
 
-  // Dynamically measure whether the full inline row fits (no hardcoded breakpoint)
+  // Keep <meta name="color-scheme"> synchronized across tabs via window storage events
+  useEffect(() => subscribeColorSchemeStorageSync(), [])
+
+  // Dynamically measure whether the full inline menu row fits inside the bottom bar
   useEffect(() => {
     const bar = barRef.current
-    const inner = innerRef.current
+    const bottomInner = bottomInnerRef.current
     const menu = menuRef.current
     const submenu = submenuRef.current
     const trigger = dropdownTriggerRef.current
-    if (!bar || !inner || !menu || !submenu || !trigger) return undefined
+    if (!bar || !bottomInner || !menu || !submenu || !trigger) return undefined
 
     let measureRafId: number | null = null
 
     const syncLayout = (forceMeasure = false) => {
-      const currentWidth = bar.clientWidth
+      const currentWidth = bottomInner.clientWidth
       // While collapsed, only remeasure when the bar grows to prevent shrink thrashing
       if (!forceMeasure && !isWideRef.current && currentWidth <= lastWidthRef.current) {
         lastWidthRef.current = currentWidth
@@ -147,11 +167,11 @@ export const Navbar = memo(function Navbar({
       bar.classList.add('is-wide')
       menu.removeAttribute('popover')
 
-      // Ensure submenu is hidden during measurement so it cannot distort row width
+      // Keep submenu hidden during measurement so it cannot distort row width
       submenu.removeAttribute('popover')
       submenu.hidden = true
 
-      const fitsInline = inner.scrollWidth <= inner.clientWidth
+      const fitsInline = bottomInner.scrollWidth <= bottomInner.clientWidth
 
       if (fitsInline) {
         isWideRef.current = true
@@ -186,7 +206,7 @@ export const Navbar = memo(function Navbar({
     const observer = new ResizeObserver(() => {
       syncLayout(false)
     })
-    observer.observe(bar)
+    observer.observe(bottomInner)
     observer.observe(menu)
 
     return () => {
@@ -320,6 +340,24 @@ export const Navbar = memo(function Navbar({
     [closeOpenMenus, onNavigate],
   )
 
+  const handleAuthLinkClick = useCallback(
+    (event: MouseEvent<HTMLAnchorElement>) => {
+      const action = event.currentTarget.dataset.authAction
+      if (isNavAuthAction(action)) {
+        if (onAuthAction) {
+          event.preventDefault()
+          onAuthAction(action)
+        }
+        closeOpenMenus()
+      }
+    },
+    [closeOpenMenus, onAuthAction],
+  )
+
+  const handleThemeToggleClick = useCallback(() => {
+    toggleColorScheme()
+  }, [])
+
   const handleDropdownTriggerClick = useCallback((event: MouseEvent<HTMLButtonElement>) => {
     const submenu = submenuRef.current
     if (!submenu) return
@@ -342,156 +380,198 @@ export const Navbar = memo(function Navbar({
 
   return (
     <div ref={barRef} className={`edunexus-navbar ${className}`.trim()}>
-      <div ref={innerRef} className="edunexus-navbar-inner">
-        {/* Home Page Button powered by Frontend/public/EduNexus.png */}
-        <a
-          href="#home"
-          data-section="home"
-          onClick={handleNavLinkClick}
-          aria-label="EduNexus — Go to Home page"
-          className="edunexus-home-link"
-        >
-          <span className="edunexus-home-logo-frame">
-            <img
-              src="/EduNexus.png"
-              alt=""
-              width={40}
-              height={40}
-              decoding="async"
-              fetchPriority="high"
-              className="edunexus-home-logo-img"
-            />
-          </span>
-          <span className="flex flex-col leading-none">
-            <span className="text-base font-extrabold tracking-tight text-slate-900 dark:text-white">
-              Edu
-              <span className="bg-linear-to-r from-cyan-500 via-sky-500 to-violet-500 bg-clip-text text-transparent dark:from-cyan-300 dark:via-sky-300 dark:to-fuchsia-400">
-                Nexus
+      {/* Top Part: space-between Left (Brand Home Button) and Right (Auth + Theme Toggle) */}
+      <div className="edunexus-navbar-top" data-nav-part="top">
+        <div className="edunexus-navbar-top-inner">
+          {/* Top-Left Part: Brand Home Button */}
+          <div className="edunexus-top-left" data-nav-part="top-left">
+            <a
+              href="#home"
+              data-section="home"
+              onClick={handleNavLinkClick}
+              aria-label="EduNexus — Go to Home page"
+              className="edunexus-home-link"
+            >
+              <span className="edunexus-home-logo-frame">
+                <img
+                  src="/EduNexus.png"
+                  alt=""
+                  width={40}
+                  height={40}
+                  decoding="async"
+                  fetchPriority="high"
+                  className="edunexus-home-logo-img"
+                />
               </span>
-            </span>
-            <span className="mt-1 text-[10px] font-semibold tracking-wide text-slate-500 dark:text-slate-400">
-              Learn • Practice • Create • Excel
-            </span>
-          </span>
-        </a>
+              <span className="flex flex-col leading-none">
+                <span className="text-base font-extrabold tracking-tight text-slate-900 dark:text-white">
+                  Edu
+                  <span className="bg-linear-to-r from-cyan-500 via-sky-500 to-violet-500 bg-clip-text text-transparent dark:from-cyan-300 dark:via-sky-300 dark:to-fuchsia-400">
+                    Nexus
+                  </span>
+                </span>
+                <span className="edunexus-home-tagline mt-1 text-[10px] font-semibold tracking-wide text-slate-500 dark:text-slate-400">
+                  Learn • Practice • Create • Excel
+                </span>
+              </span>
+            </a>
+          </div>
 
-        {/* Single Semantic Navigation Tree (Popover when narrow, Inline when wide) */}
-        <nav className="edunexus-site-nav" aria-label="Primary navigation">
-          <button
-            type="button"
-            className="edunexus-menu-button"
-            popoverTarget={siteMenuId}
-            popoverTargetAction="toggle"
-            aria-controls={siteMenuId}
-          >
-            <MenuBarsIcon />
-            <span>Menu</span>
-          </button>
-
-          <ul ref={menuRef} id={siteMenuId} className="edunexus-site-menu" popover="auto">
-            <li>
+          {/* Top-Right Part: Divided into Right-Side Left (Register & Login) + Right-Side Right (Theme Toggle) */}
+          <div className="edunexus-top-right" data-nav-part="top-right">
+            <div className="edunexus-top-right-left" data-nav-part="top-right-left">
               <a
-                href="#home"
-                data-section="home"
-                onClick={handleNavLinkClick}
-                aria-current={activeSection === 'home' ? 'page' : undefined}
-                className="edunexus-nav-link"
+                href="#register"
+                data-auth-action="register"
+                onClick={handleAuthLinkClick}
+                className="edunexus-auth-register"
               >
-                <NavIcon name="home" />
-                <span>Home</span>
+                <RegisterIcon />
+                <span>Register</span>
               </a>
-            </li>
+              <a
+                href="#login"
+                data-auth-action="login"
+                onClick={handleAuthLinkClick}
+                className="edunexus-auth-login"
+              >
+                <LoginIcon />
+                <span>Login</span>
+              </a>
+            </div>
 
-            <li ref={dropdownLiRef}>
+            <span className="edunexus-top-divider" aria-hidden="true" />
+
+            <div className="edunexus-top-right-right" data-nav-part="top-right-right">
               <button
-                ref={dropdownTriggerRef}
                 type="button"
-                className="edunexus-dropdown-trigger"
-                aria-expanded={isCoursesOpen}
-                aria-controls={coursesMenuId}
-                popoverTarget={coursesMenuId}
-                onClick={handleDropdownTriggerClick}
+                className="edunexus-theme-toggle"
+                onClick={handleThemeToggleClick}
               >
-                <NavIcon name="courses" />
-                <span>Courses</span>
-                <ChevronDownIcon />
+                <span className="edunexus-theme-option edunexus-theme-to-dark">
+                  <MoonIcon />
+                  <span className="sr-only">Switch to dark theme</span>
+                </span>
+                <span className="edunexus-theme-option edunexus-theme-to-light">
+                  <SunIcon />
+                  <span className="sr-only">Switch to light theme</span>
+                </span>
               </button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-              <ul ref={submenuRef} id={coursesMenuId} className="edunexus-dropdown-list">
-                {COURSE_SUBMENU_ITEMS.map((item) => (
-                  <li key={item.id}>
-                    <a
-                      href={item.href}
-                      data-section="courses"
-                      data-sub-item={item.id}
-                      onClick={handleNavLinkClick}
-                      className="edunexus-sub-link"
-                    >
-                      <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-cyan-500/12 text-cyan-600 dark:bg-cyan-400/15 dark:text-cyan-300">
-                        <NavIcon name={item.icon} />
-                      </span>
-                      <span className="flex flex-col leading-tight">
-                        <span className="text-xs font-bold">{item.label}</span>
-                        <span className="mt-0.5 text-[11px] font-medium text-slate-500 dark:text-slate-400">
-                          {item.caption}
+      {/* Bottom Part: h-12 (48px / 3rem) for left-aligned Navigation Menu */}
+      <div className="edunexus-navbar-bottom" data-nav-part="bottom">
+        <div ref={bottomInnerRef} className="edunexus-navbar-bottom-inner">
+          <nav className="edunexus-site-nav" aria-label="Primary navigation">
+            <button
+              type="button"
+              className="edunexus-menu-button"
+              popoverTarget={siteMenuId}
+              popoverTargetAction="toggle"
+              aria-controls={siteMenuId}
+            >
+              <MenuBarsIcon />
+              <span>Menu</span>
+            </button>
+
+            <ul ref={menuRef} id={siteMenuId} className="edunexus-site-menu" popover="auto">
+              <li>
+                <a
+                  href="#home"
+                  data-section="home"
+                  onClick={handleNavLinkClick}
+                  aria-current={activeSection === 'home' ? 'page' : undefined}
+                  className="edunexus-nav-link"
+                >
+                  <NavIcon name="home" />
+                  <span>Home</span>
+                </a>
+              </li>
+
+              <li ref={dropdownLiRef}>
+                <button
+                  ref={dropdownTriggerRef}
+                  type="button"
+                  className="edunexus-dropdown-trigger"
+                  aria-expanded={isCoursesOpen}
+                  aria-controls={coursesMenuId}
+                  popoverTarget={coursesMenuId}
+                  onClick={handleDropdownTriggerClick}
+                >
+                  <NavIcon name="courses" />
+                  <span>Courses</span>
+                  <ChevronDownIcon />
+                </button>
+
+                <ul ref={submenuRef} id={coursesMenuId} className="edunexus-dropdown-list">
+                  {COURSE_SUBMENU_ITEMS.map((item) => (
+                    <li key={item.id}>
+                      <a
+                        href={item.href}
+                        data-section="courses"
+                        data-sub-item={item.id}
+                        onClick={handleNavLinkClick}
+                        className="edunexus-sub-link"
+                      >
+                        <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-cyan-500/12 text-cyan-600 dark:bg-cyan-400/15 dark:text-cyan-300">
+                          <NavIcon name={item.icon} />
                         </span>
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </li>
+                        <span className="flex flex-col leading-tight">
+                          <span className="text-xs font-bold">{item.label}</span>
+                          <span className="mt-0.5 text-[11px] font-medium text-slate-500 dark:text-slate-400">
+                            {item.caption}
+                          </span>
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
 
-            <li>
-              <a
-                href="#practice"
-                data-section="practice"
-                onClick={handleNavLinkClick}
-                aria-current={activeSection === 'practice' ? 'page' : undefined}
-                className="edunexus-nav-link"
-              >
-                <NavIcon name="practice" />
-                <span>Practice</span>
-              </a>
-            </li>
+              <li>
+                <a
+                  href="#practice"
+                  data-section="practice"
+                  onClick={handleNavLinkClick}
+                  aria-current={activeSection === 'practice' ? 'page' : undefined}
+                  className="edunexus-nav-link"
+                >
+                  <NavIcon name="practice" />
+                  <span>Practice</span>
+                </a>
+              </li>
 
-            <li>
-              <a
-                href="#projects"
-                data-section="projects"
-                onClick={handleNavLinkClick}
-                aria-current={activeSection === 'projects' ? 'page' : undefined}
-                className="edunexus-nav-link"
-              >
-                <NavIcon name="projects" />
-                <span>Projects</span>
-              </a>
-            </li>
+              <li>
+                <a
+                  href="#projects"
+                  data-section="projects"
+                  onClick={handleNavLinkClick}
+                  aria-current={activeSection === 'projects' ? 'page' : undefined}
+                  className="edunexus-nav-link"
+                >
+                  <NavIcon name="projects" />
+                  <span>Projects</span>
+                </a>
+              </li>
 
-            <li>
-              <a
-                href="#about"
-                data-section="about"
-                onClick={handleNavLinkClick}
-                aria-current={activeSection === 'about' ? 'page' : undefined}
-                className="edunexus-nav-link"
-              >
-                <NavIcon name="about" />
-                <span>About</span>
-              </a>
-            </li>
-          </ul>
-
-          <a
-            href="#courses"
-            data-section="courses"
-            onClick={handleNavLinkClick}
-            className="edunexus-nav-cta"
-          >
-            <span>Get Started</span>
-            <ArrowRightIcon />
-          </a>
-        </nav>
+              <li>
+                <a
+                  href="#about"
+                  data-section="about"
+                  onClick={handleNavLinkClick}
+                  aria-current={activeSection === 'about' ? 'page' : undefined}
+                  className="edunexus-nav-link"
+                >
+                  <NavIcon name="about" />
+                  <span>About</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </div>
   )

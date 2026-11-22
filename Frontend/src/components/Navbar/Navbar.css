@@ -1,23 +1,160 @@
-/* EduNexus Modern Responsive Navigation Bar
- * Follows modern-web-guidance: navbar, icons, motion, and animate-element-entry-exit
+/* EduNexus Two-Tier Modern Responsive Navigation Bar
+ * Follows modern-web-guidance: navbar, dark-mode, dark-mode-toggle, icons, motion, and animate-element-entry-exit
  */
+
+/* Theme-aware custom properties: light/dark fallback + light-dark() upgrade */
+:root {
+  --nav-top-bg-light: rgba(255, 255, 255, 0.97);
+  --nav-top-bg-dark: rgba(4, 11, 31, 0.97);
+  --nav-bottom-bg-light: rgba(248, 250, 252, 0.96);
+  --nav-bottom-bg-dark: rgba(9, 19, 46, 0.96);
+  --nav-border-light: rgba(148, 163, 184, 0.26);
+  --nav-border-dark: rgba(56, 189, 248, 0.18);
+  --nav-sub-border-light: rgba(148, 163, 184, 0.2);
+  --nav-sub-border-dark: rgba(56, 189, 248, 0.14);
+  --nav-shadow-color-light: rgba(2, 6, 23, 0.16);
+  --nav-shadow-color-dark: rgba(0, 0, 0, 0.65);
+
+  --nav-surface-light: rgba(248, 250, 252, 0.92);
+  --nav-surface-dark: rgba(15, 23, 42, 0.92);
+  --nav-surface-border-light: rgba(148, 163, 184, 0.36);
+  --nav-surface-border-dark: rgba(148, 163, 184, 0.28);
+
+  --nav-popover-bg-light: #ffffff;
+  --nav-popover-bg-dark: #07122e;
+  --nav-popover-border-light: rgba(148, 163, 184, 0.28);
+  --nav-popover-border-dark: rgba(56, 189, 248, 0.26);
+  --nav-popover-shadow-color-light: rgba(2, 6, 23, 0.28);
+  --nav-popover-shadow-color-dark: rgba(0, 0, 0, 0.74);
+
+  --nav-text-light: #334155;
+  --nav-text-dark: #cbd5e1;
+  --nav-text-strong-light: #0f172a;
+  --nav-text-strong-dark: #f1f5f9;
+  --nav-sub-text-light: #1e293b;
+  --nav-sub-text-dark: #e2e8f0;
+
+  --nav-hover-bg-light: rgba(14, 165, 233, 0.09);
+  --nav-hover-bg-dark: rgba(34, 211, 238, 0.12);
+  --nav-hover-border-light: rgba(14, 165, 233, 0.55);
+  --nav-hover-border-dark: rgba(34, 211, 238, 0.55);
+  --nav-hover-text-light: #0284c7;
+  --nav-hover-text-dark: #67e8f9;
+
+  --nav-active-bg-light: rgba(14, 165, 233, 0.12);
+  --nav-active-bg-dark: rgba(34, 211, 238, 0.14);
+  --nav-active-border-light: rgba(14, 165, 233, 0.35);
+  --nav-active-border-dark: rgba(34, 211, 238, 0.42);
+  --nav-active-text-light: #0369a1;
+  --nav-active-text-dark: #a5f3fc;
+
+  /* Default (light) values for browsers without light-dark() */
+  --nav-top-bg: var(--nav-top-bg-light);
+  --nav-bottom-bg: var(--nav-bottom-bg-light);
+  --nav-border: var(--nav-border-light);
+  --nav-sub-border: var(--nav-sub-border-light);
+  --nav-shadow-color: var(--nav-shadow-color-light);
+  --nav-surface: var(--nav-surface-light);
+  --nav-surface-border: var(--nav-surface-border-light);
+  --nav-popover-bg: var(--nav-popover-bg-light);
+  --nav-popover-border: var(--nav-popover-border-light);
+  --nav-popover-shadow-color: var(--nav-popover-shadow-color-light);
+  --nav-text: var(--nav-text-light);
+  --nav-text-strong: var(--nav-text-strong-light);
+  --nav-sub-text: var(--nav-sub-text-light);
+  --nav-hover-bg: var(--nav-hover-bg-light);
+  --nav-hover-border: var(--nav-hover-border-light);
+  --nav-hover-text: var(--nav-hover-text-light);
+  --nav-active-bg: var(--nav-active-bg-light);
+  --nav-active-border: var(--nav-active-border-light);
+  --nav-active-text: var(--nav-active-text-light);
+
+  /* Fallback for browsers without light-dark() */
+  @supports not (color: light-dark(white, black)) {
+    @media (prefers-color-scheme: dark) {
+      &:not(:has(> head > meta[name="color-scheme"][content="light"])) {
+        --nav-top-bg: var(--nav-top-bg-dark);
+        --nav-bottom-bg: var(--nav-bottom-bg-dark);
+        --nav-border: var(--nav-border-dark);
+        --nav-sub-border: var(--nav-sub-border-dark);
+        --nav-shadow-color: var(--nav-shadow-color-dark);
+        --nav-surface: var(--nav-surface-dark);
+        --nav-surface-border: var(--nav-surface-border-dark);
+        --nav-popover-bg: var(--nav-popover-bg-dark);
+        --nav-popover-border: var(--nav-popover-border-dark);
+        --nav-popover-shadow-color: var(--nav-popover-shadow-color-dark);
+        --nav-text: var(--nav-text-dark);
+        --nav-text-strong: var(--nav-text-strong-dark);
+        --nav-sub-text: var(--nav-sub-text-dark);
+        --nav-hover-bg: var(--nav-hover-bg-dark);
+        --nav-hover-border: var(--nav-hover-border-dark);
+        --nav-hover-text: var(--nav-hover-text-dark);
+        --nav-active-bg: var(--nav-active-bg-dark);
+        --nav-active-border: var(--nav-active-border-dark);
+        --nav-active-text: var(--nav-active-text-dark);
+      }
+    }
+
+    &:has(> head > meta[name="color-scheme"][content="dark"]) {
+      --nav-top-bg: var(--nav-top-bg-dark);
+      --nav-bottom-bg: var(--nav-bottom-bg-dark);
+      --nav-border: var(--nav-border-dark);
+      --nav-sub-border: var(--nav-sub-border-dark);
+      --nav-shadow-color: var(--nav-shadow-color-dark);
+      --nav-surface: var(--nav-surface-dark);
+      --nav-surface-border: var(--nav-surface-border-dark);
+      --nav-popover-bg: var(--nav-popover-bg-dark);
+      --nav-popover-border: var(--nav-popover-border-dark);
+      --nav-popover-shadow-color: var(--nav-popover-shadow-color-dark);
+      --nav-text: var(--nav-text-dark);
+      --nav-text-strong: var(--nav-text-strong-dark);
+      --nav-sub-text: var(--nav-sub-text-dark);
+      --nav-hover-bg: var(--nav-hover-bg-dark);
+      --nav-hover-border: var(--nav-hover-border-dark);
+      --nav-hover-text: var(--nav-hover-text-dark);
+      --nav-active-bg: var(--nav-active-bg-dark);
+      --nav-active-border: var(--nav-active-border-dark);
+      --nav-active-text: var(--nav-active-text-dark);
+    }
+  }
+
+  /* Modern automatic light-dark() resolution keyed to computed color-scheme */
+  @supports (color: light-dark(white, black)) {
+    --nav-top-bg: light-dark(var(--nav-top-bg-light), var(--nav-top-bg-dark));
+    --nav-bottom-bg: light-dark(var(--nav-bottom-bg-light), var(--nav-bottom-bg-dark));
+    --nav-border: light-dark(var(--nav-border-light), var(--nav-border-dark));
+    --nav-sub-border: light-dark(var(--nav-sub-border-light), var(--nav-sub-border-dark));
+    --nav-shadow-color: light-dark(var(--nav-shadow-color-light), var(--nav-shadow-color-dark));
+    --nav-surface: light-dark(var(--nav-surface-light), var(--nav-surface-dark));
+    --nav-surface-border: light-dark(var(--nav-surface-border-light), var(--nav-surface-border-dark));
+    --nav-popover-bg: light-dark(var(--nav-popover-bg-light), var(--nav-popover-bg-dark));
+    --nav-popover-border: light-dark(var(--nav-popover-border-light), var(--nav-popover-border-dark));
+    --nav-popover-shadow-color: light-dark(
+      var(--nav-popover-shadow-color-light),
+      var(--nav-popover-shadow-color-dark)
+    );
+    --nav-text: light-dark(var(--nav-text-light), var(--nav-text-dark));
+    --nav-text-strong: light-dark(var(--nav-text-strong-light), var(--nav-text-strong-dark));
+    --nav-sub-text: light-dark(var(--nav-sub-text-light), var(--nav-sub-text-dark));
+    --nav-hover-bg: light-dark(var(--nav-hover-bg-light), var(--nav-hover-bg-dark));
+    --nav-hover-border: light-dark(var(--nav-hover-border-light), var(--nav-hover-border-dark));
+    --nav-hover-text: light-dark(var(--nav-hover-text-light), var(--nav-hover-text-dark));
+    --nav-active-bg: light-dark(var(--nav-active-bg-light), var(--nav-active-bg-dark));
+    --nav-active-border: light-dark(var(--nav-active-border-light), var(--nav-active-border-dark));
+    --nav-active-text: light-dark(var(--nav-active-text-light), var(--nav-active-text-dark));
+  }
+
+  --nav-shadow: 0 6px 24px -12px var(--nav-shadow-color);
+  --nav-popover-shadow: 0 22px 48px -16px var(--nav-popover-shadow-color);
+}
 
 .edunexus-navbar {
   position: sticky;
   inset-block-start: 0;
   z-index: 50;
   inline-size: 100%;
-  border-block-end: 1px solid rgba(148, 163, 184, 0.24);
-  background-color: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 4px 20px -12px rgba(2, 6, 23, 0.16);
-}
-
-@media (prefers-color-scheme: dark) {
-  .edunexus-navbar {
-    border-block-end-color: rgba(56, 189, 248, 0.16);
-    background-color: rgba(4, 11, 31, 0.96);
-    box-shadow: 0 8px 28px -12px rgba(0, 0, 0, 0.65);
-  }
+  border-block-end: 1px solid var(--nav-border);
+  box-shadow: var(--nav-shadow);
 }
 
 /* Disable transitions while measuring natural inline width so resizing never flickers */
@@ -28,7 +165,16 @@
   animation: none !important;
 }
 
-.edunexus-navbar-inner {
+/* ==========================================================================
+ * 1. TOP PART (Brand Home Button on Left | Auth + Theme Toggle on Right)
+ * ========================================================================== */
+
+.edunexus-navbar-top {
+  background-color: var(--nav-top-bg);
+  border-block-end: 1px solid var(--nav-sub-border);
+}
+
+.edunexus-navbar-top-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -40,21 +186,49 @@
 }
 
 @media (min-width: 640px) {
-  .edunexus-navbar-inner {
+  .edunexus-navbar-top-inner {
     padding-inline: 1.5rem;
   }
 }
 
 @media (min-width: 1024px) {
-  .edunexus-navbar-inner {
+  .edunexus-navbar-top-inner {
     padding-inline: 2rem;
   }
 }
 
-/* Keep the row's natural width measurable */
-.edunexus-navbar-inner > * {
+.edunexus-top-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-inline-size: 0;
+}
+
+.edunexus-top-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.625rem;
   flex-shrink: 0;
-  white-space: nowrap;
+}
+
+.edunexus-top-right-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.edunexus-top-divider {
+  display: block;
+  inline-size: 1px;
+  block-size: 1.5rem;
+  background-color: var(--nav-border);
+  flex-shrink: 0;
+}
+
+.edunexus-top-right-right {
+  display: flex;
+  align-items: center;
 }
 
 /* Brand Home Page Button (powered by /EduNexus.png) */
@@ -66,21 +240,15 @@
   border-radius: 0.875rem;
   border: 1px solid transparent;
   text-decoration: none;
+  white-space: nowrap;
   transition:
     background-color 180ms ease,
     border-color 180ms ease;
 }
 
 .edunexus-home-link:hover {
-  background-color: rgba(14, 165, 233, 0.08);
-  border-color: rgba(14, 165, 233, 0.25);
-}
-
-@media (prefers-color-scheme: dark) {
-  .edunexus-home-link:hover {
-    background-color: rgba(34, 211, 238, 0.1);
-    border-color: rgba(34, 211, 238, 0.28);
-  }
+  background-color: var(--nav-hover-bg);
+  border-color: var(--nav-active-border);
 }
 
 .edunexus-home-logo-frame {
@@ -104,6 +272,12 @@
   object-fit: cover;
 }
 
+@media (max-width: 479px) {
+  .edunexus-home-tagline {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .edunexus-home-logo-frame {
     transition:
@@ -123,11 +297,161 @@
   }
 }
 
+/* Registration & Login Buttons (Top Right-Side Left Part) */
+.edunexus-auth-register,
+.edunexus-auth-login {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.edunexus-auth-register {
+  border: 1px solid rgba(125, 211, 252, 0.5);
+  background-image: linear-gradient(135deg, #06b6d4 0%, #3b82f6 52%, #7c3aed 100%);
+  color: #ffffff;
+  box-shadow: 0 6px 18px -6px rgba(14, 165, 233, 0.55);
+  transition:
+    filter 160ms ease,
+    box-shadow 180ms ease;
+}
+
+.edunexus-auth-register:hover {
+  filter: brightness(1.07);
+  box-shadow: 0 8px 22px -6px rgba(124, 58, 237, 0.6);
+}
+
+.edunexus-auth-login {
+  border: 1px solid var(--nav-surface-border);
+  background-color: var(--nav-surface);
+  color: var(--nav-text-strong);
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.edunexus-auth-login:hover {
+  background-color: var(--nav-hover-bg);
+  border-color: var(--nav-hover-border);
+  color: var(--nav-hover-text);
+}
+
+@media (max-width: 479px) {
+  .edunexus-auth-register,
+  .edunexus-auth-login {
+    padding: 0.4rem 0.65rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Theme Toggle Button (Top Right-Side Right Part) */
+.edunexus-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2.35rem;
+  block-size: 2.35rem;
+  padding: 0;
+  border-radius: 9999px;
+  border: 1px solid var(--nav-surface-border);
+  background-color: var(--nav-surface);
+  color: var(--nav-text-strong);
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.edunexus-theme-toggle:hover {
+  background-color: var(--nav-hover-bg);
+  border-color: var(--nav-hover-border);
+  color: var(--nav-hover-text);
+}
+
+.edunexus-theme-option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Critical non-color branching for Theme Toggle icon + accessible text (works with zero JS) */
+.edunexus-theme-to-light {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(:has(> head > meta[name="color-scheme"][content="light"])) {
+    .edunexus-theme-to-dark {
+      display: none;
+    }
+
+    .edunexus-theme-to-light {
+      display: inline-flex;
+    }
+  }
+}
+
+:root:has(> head > meta[name="color-scheme"][content="dark"]) {
+  .edunexus-theme-to-dark {
+    display: none;
+  }
+
+  .edunexus-theme-to-light {
+    display: inline-flex;
+  }
+}
+
+/* ==========================================================================
+ * 2. BOTTOM PART (h-12 / 3rem / 48px — Left-Aligned Navigation Menu)
+ * ========================================================================== */
+
+.edunexus-navbar-bottom {
+  background-color: var(--nav-bottom-bg);
+  block-size: 3rem;
+}
+
+.edunexus-navbar-bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  block-size: 100%;
+  max-inline-size: 80rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .edunexus-navbar-bottom-inner {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .edunexus-navbar-bottom-inner {
+    padding-inline: 2rem;
+  }
+}
+
+/* Keep the bottom menu row's natural width measurable */
+.edunexus-navbar-bottom-inner > * {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
 /* Primary Nav Container */
 .edunexus-site-nav {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  justify-content: flex-start;
 }
 
 .edunexus-menu-button {
@@ -135,11 +459,11 @@
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.5rem 0.85rem;
+  padding: 0.4rem 0.85rem;
   border-radius: 9999px;
-  border: 1px solid rgba(148, 163, 184, 0.35);
-  background-color: rgba(248, 250, 252, 0.9);
-  color: #0f172a;
+  border: 1px solid var(--nav-surface-border);
+  background-color: var(--nav-surface);
+  color: var(--nav-text-strong);
   font-size: 0.8125rem;
   font-weight: 700;
   cursor: pointer;
@@ -150,54 +474,34 @@
 }
 
 .edunexus-menu-button:hover {
-  border-color: rgba(14, 165, 233, 0.6);
-  color: #0284c7;
+  background-color: var(--nav-hover-bg);
+  border-color: var(--nav-hover-border);
+  color: var(--nav-hover-text);
 }
 
-@media (prefers-color-scheme: dark) {
-  .edunexus-menu-button {
-    border-color: rgba(148, 163, 184, 0.28);
-    background-color: rgba(15, 23, 42, 0.9);
-    color: #f1f5f9;
-  }
-
-  .edunexus-menu-button:hover {
-    border-color: rgba(34, 211, 238, 0.6);
-    color: #67e8f9;
-  }
-}
-
-/* Narrow Layout Default: Native Top-Layer Popover Menu */
+/* Narrow Layout Default: Native Top-Layer Popover Menu anchored to Left Menu Button */
 .edunexus-site-menu {
   position: fixed;
   inset: auto;
-  /* Fallback offset for browsers without CSS Anchor Positioning */
-  inset-block-start: 4.5rem;
+  /* Fallback offsets for browsers without CSS Anchor Positioning */
+  inset-block-start: 7.25rem;
   inset-block-start: anchor(--edunexus-menu-button bottom);
-  inset-inline-end: 1rem;
+  inset-inline-start: 1rem;
+  inset-inline-start: anchor(--edunexus-menu-button left);
   inline-size: min(84dvw, 22rem);
   max-inline-size: calc(100dvw - 2rem);
   block-size: fit-content;
-  max-block-size: calc(100dvh - 5.5rem);
+  max-block-size: calc(100dvh - 8rem);
   margin: 0;
   margin-block-start: 0.5rem;
   padding: 0.625rem;
   list-style: none;
   overflow: auto;
   border-radius: 1.25rem;
-  border: 1px solid rgba(148, 163, 184, 0.28);
-  background-color: #ffffff;
-  color: #0f172a;
-  box-shadow: 0 22px 45px -16px rgba(2, 6, 23, 0.28);
-}
-
-@media (prefers-color-scheme: dark) {
-  .edunexus-site-menu {
-    border-color: rgba(56, 189, 248, 0.24);
-    background-color: #07122e;
-    color: #f8fafc;
-    box-shadow: 0 24px 50px -16px rgba(0, 0, 0, 0.72);
-  }
+  border: 1px solid var(--nav-popover-border);
+  background-color: var(--nav-popover-bg);
+  color: var(--nav-text-strong);
+  box-shadow: var(--nav-popover-shadow);
 }
 
 .edunexus-site-menu[popover]:is(:popover-open, .\:popover-open) {
@@ -256,11 +560,11 @@
   align-items: center;
   gap: 0.45rem;
   inline-size: 100%;
-  padding: 0.55rem 0.8rem;
-  border-radius: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.65rem;
   border: 1px solid transparent;
   background: transparent;
-  color: #334155;
+  color: var(--nav-text);
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
@@ -273,63 +577,41 @@
 
 .edunexus-nav-link:hover,
 .edunexus-dropdown-trigger:hover {
-  background-color: rgba(14, 165, 233, 0.09);
-  color: #0284c7;
-}
-
-@media (prefers-color-scheme: dark) {
-  .edunexus-nav-link,
-  .edunexus-dropdown-trigger {
-    color: #cbd5e1;
-  }
-
-  .edunexus-nav-link:hover,
-  .edunexus-dropdown-trigger:hover {
-    background-color: rgba(34, 211, 238, 0.12);
-    color: #67e8f9;
-  }
+  background-color: var(--nav-hover-bg);
+  color: var(--nav-hover-text);
 }
 
 /* Active Current Page Styling (WCAG 1.4.1 non-color affordance: pill border + bottom indicator bar) */
 .edunexus-nav-link[aria-current="page"] {
-  background-color: rgba(14, 165, 233, 0.12);
-  border-color: rgba(14, 165, 233, 0.35);
-  color: #0369a1;
+  background-color: var(--nav-active-bg);
+  border-color: var(--nav-active-border);
+  color: var(--nav-active-text);
   font-weight: 700;
 }
 
 .edunexus-nav-link[aria-current="page"]::after {
   content: "";
   position: absolute;
-  inset-inline: 0.75rem;
-  inset-block-end: 0.15rem;
+  inset-inline: 0.7rem;
+  inset-block-end: 0.12rem;
   block-size: 2.5px;
   border-radius: 9999px;
   background-image: linear-gradient(90deg, #06b6d4, #6366f1);
 }
 
-@media (prefers-color-scheme: dark) {
-  .edunexus-nav-link[aria-current="page"] {
-    background-color: rgba(34, 211, 238, 0.14);
-    border-color: rgba(34, 211, 238, 0.42);
-    color: #a5f3fc;
-  }
-
-  .edunexus-nav-link[aria-current="page"]::after {
-    background-image: linear-gradient(90deg, #22d3ee, #a78bfa);
-  }
-}
-
 /* Icon Layout & Compositor-Only Hover Micro-Animations */
 .edunexus-nav-icon,
 .edunexus-chevron,
-.edunexus-cta-arrow {
+.edunexus-auth-icon,
+.edunexus-theme-icon {
   flex: none;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .edunexus-nav-icon {
+  .edunexus-nav-icon,
+  .edunexus-auth-icon,
+  .edunexus-theme-icon {
     transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
@@ -339,16 +621,21 @@
     transform: translate3d(0, -1.5px, 0) scale(1.1);
   }
 
+  .edunexus-auth-register:hover .edunexus-auth-icon,
+  .edunexus-auth-login:hover .edunexus-auth-icon {
+    transform: translate3d(1.5px, 0, 0) scale(1.06);
+  }
+
+  .edunexus-theme-toggle:hover .edunexus-theme-icon {
+    transform: rotate(-14deg) scale(1.1);
+  }
+
+  .edunexus-theme-toggle:active .edunexus-theme-icon {
+    transform: scale(0.92);
+  }
+
   .edunexus-chevron {
     transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .edunexus-cta-arrow {
-    transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .edunexus-nav-cta:hover .edunexus-cta-arrow {
-    transform: translate3d(3px, 0, 0);
   }
 }
 
@@ -402,29 +689,18 @@
   padding: 0.55rem 0.75rem;
   border-radius: 0.75rem;
   text-decoration: none;
-  color: #1e293b;
+  color: var(--nav-sub-text);
   transition:
     background-color 150ms ease,
     color 150ms ease;
 }
 
 .edunexus-sub-link:hover {
-  background-color: rgba(14, 165, 233, 0.1);
-  color: #0284c7;
+  background-color: var(--nav-hover-bg);
+  color: var(--nav-hover-text);
 }
 
-@media (prefers-color-scheme: dark) {
-  .edunexus-sub-link {
-    color: #e2e8f0;
-  }
-
-  .edunexus-sub-link:hover {
-    background-color: rgba(34, 211, 238, 0.12);
-    color: #67e8f9;
-  }
-}
-
-/* Wide Layout: Inline Navigation Row */
+/* Wide Layout: Inline Navigation Row inside h-12 Bottom Bar */
 .edunexus-navbar.is-wide .edunexus-menu-button {
   display: none;
 }
@@ -457,7 +733,7 @@
 .edunexus-navbar.is-wide .edunexus-nav-link,
 .edunexus-navbar.is-wide .edunexus-dropdown-trigger {
   inline-size: auto;
-  padding: 0.48rem 0.75rem;
+  padding: 0.38rem 0.75rem;
 }
 
 /* Wide Floating Submenu Popover with CSS Anchor Positioning & Hover Bridge */
@@ -473,19 +749,11 @@
   margin-block-start: 0.5rem;
   padding: 0.5rem;
   border-radius: 1rem;
-  border: 1px solid rgba(148, 163, 184, 0.28);
+  border: 1px solid var(--nav-popover-border);
   border-inline-start-width: 1px;
-  background-color: #ffffff;
-  box-shadow: 0 20px 44px -14px rgba(2, 6, 23, 0.26);
+  background-color: var(--nav-popover-bg);
+  box-shadow: var(--nav-popover-shadow);
   overflow: visible;
-}
-
-@media (prefers-color-scheme: dark) {
-  .edunexus-navbar.is-wide .edunexus-dropdown-list[popover] {
-    border-color: rgba(56, 189, 248, 0.26);
-    background-color: #07122e;
-    box-shadow: 0 24px 50px -14px rgba(0, 0, 0, 0.75);
-  }
 }
 
 .edunexus-navbar.is-wide .edunexus-dropdown-list::before {
@@ -512,37 +780,15 @@
   }
 }
 
-/* Action CTA Button */
-.edunexus-nav-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.5rem 0.95rem;
-  border-radius: 9999px;
-  border: 1px solid rgba(125, 211, 252, 0.5);
-  background-image: linear-gradient(135deg, #06b6d4 0%, #3b82f6 52%, #7c3aed 100%);
-  color: #ffffff;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  text-decoration: none;
-  box-shadow: 0 6px 18px -6px rgba(14, 165, 233, 0.55);
-  transition:
-    filter 160ms ease,
-    box-shadow 180ms ease;
-}
-
-.edunexus-nav-cta:hover {
-  filter: brightness(1.07);
-  box-shadow: 0 8px 22px -6px rgba(124, 58, 237, 0.6);
-}
-
 /* Keyboard Focus & Forced-Colors Mode Compliance */
 .edunexus-home-link:focus-visible,
+.edunexus-auth-register:focus-visible,
+.edunexus-auth-login:focus-visible,
+.edunexus-theme-toggle:focus-visible,
 .edunexus-menu-button:focus-visible,
 .edunexus-nav-link:focus-visible,
 .edunexus-dropdown-trigger:focus-visible,
-.edunexus-sub-link:focus-visible,
-.edunexus-nav-cta:focus-visible {
+.edunexus-sub-link:focus-visible {
   outline: 2px solid #0ea5e9;
   outline-offset: 2px;
 }
@@ -557,7 +803,9 @@
   }
 
   .edunexus-site-menu,
-  .edunexus-dropdown-list {
+  .edunexus-dropdown-list,
+  .edunexus-theme-toggle,
+  .edunexus-auth-login {
     border: 1px solid CanvasText;
   }
 }

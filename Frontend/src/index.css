@@ -1,1 +1,56 @@
 @import "tailwindcss";
+
+/* Keep Tailwind dark:* utilities synchronized with <meta name="color-scheme"> override and OS fallback */
+@custom-variant dark {
+  &:where(:root:has(> head > meta[name="color-scheme"][content="dark"]) *) {
+    @slot;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not(:has(> head > meta[name="color-scheme"][content="light"])) *) {
+      @slot;
+    }
+  }
+}
+
+/* Reflect <meta name="color-scheme"> override in CSS so light-dark() and browser UI follow it */
+:root {
+  color-scheme: light dark;
+  --color-scheme: light;
+
+  --edunexus-accent-light: #0284c7;
+  --edunexus-accent-dark: #38bdf8;
+  --edunexus-accent: var(--edunexus-accent-light);
+
+  @media (prefers-color-scheme: dark) {
+    --color-scheme: dark;
+  }
+
+  &:has(> head > meta[name="color-scheme"][content="dark"]) {
+    color-scheme: dark;
+    --color-scheme: dark;
+  }
+
+  &:has(> head > meta[name="color-scheme"][content="light"]) {
+    color-scheme: light;
+    --color-scheme: light;
+  }
+
+  @supports not (color: light-dark(white, black)) {
+    @media (prefers-color-scheme: dark) {
+      &:not(:has(> head > meta[name="color-scheme"][content="light"])) {
+        --edunexus-accent: var(--edunexus-accent-dark);
+      }
+    }
+
+    &:has(> head > meta[name="color-scheme"][content="dark"]) {
+      --edunexus-accent: var(--edunexus-accent-dark);
+    }
+  }
+
+  @supports (color: light-dark(white, black)) {
+    --edunexus-accent: light-dark(var(--edunexus-accent-light), var(--edunexus-accent-dark));
+  }
+
+  accent-color: var(--edunexus-accent);
+}

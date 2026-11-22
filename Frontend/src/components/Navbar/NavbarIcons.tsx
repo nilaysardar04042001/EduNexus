@@ -70,28 +70,49 @@ export function NavIcon({ name, className = 'edunexus-nav-icon' }: { name: NavIc
       return (
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" className={className} aria-hidden="true">
           <rect x="7" y="7" width="10" height="10" rx="2" stroke="currentColor" strokeWidth="1.8" />
-          <path d="M9 3V7M15 3V7M9 17V21M15 17V21M3 9H7M3 15H7M17 9H21M17 15H21" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <path
+            d="M9 3V7M15 3V7M9 17V21M15 17V21M3 9H7M3 15H7M17 9H21M17 15H21"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+          />
         </svg>
       )
     case 'code':
       return (
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" className={className} aria-hidden="true">
           <rect x="3" y="4.5" width="18" height="15" rx="2.5" stroke="currentColor" strokeWidth="1.8" />
-          <path d="M3 9H21M9 13L7 15L9 17M15 13L17 15L15 17" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <path
+            d="M3 9H21M9 13L7 15L9 17M15 13L17 15L15 17"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       )
     case 'terminal':
       return (
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" className={className} aria-hidden="true">
           <rect x="3" y="4.5" width="18" height="15" rx="2.5" stroke="currentColor" strokeWidth="1.8" />
-          <path d="M7.5 10L10.5 12.5L7.5 15M12.5 15H16.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <path
+            d="M7.5 10L10.5 12.5L7.5 15M12.5 15H16.5"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       )
     case 'database':
       return (
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" className={className} aria-hidden="true">
           <ellipse cx="12" cy="6.5" rx="7" ry="3" stroke="currentColor" strokeWidth="1.8" />
-          <path d="M5 6.5V17.5C5 19.16 8.13 20.5 12 20.5C15.87 20.5 19 19.16 19 17.5V6.5M5 12C5 13.66 8.13 15 12 15C15.87 15 19 13.66 19 12" stroke="currentColor" strokeWidth="1.8" />
+          <path
+            d="M5 6.5V17.5C5 19.16 8.13 20.5 12 20.5C15.87 20.5 19 19.16 19 17.5V6.5M5 12C5 13.66 8.13 15 12 15C15.87 15 19 13.66 19 12"
+            stroke="currentColor"
+            strokeWidth="1.8"
+          />
         </svg>
       )
   }
@@ -113,10 +134,66 @@ export function MenuBarsIcon({ className = '' }: { className?: string }) {
   )
 }
 
-export function ArrowRightIcon({ className = 'edunexus-cta-arrow' }: { className?: string }) {
+export function RegisterIcon({ className = 'edunexus-auth-icon' }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" width="15" height="15" fill="none" className={className} aria-hidden="true">
-      <path d="M5 12H19M13 6L19 12L13 18" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="9.5" cy="7.5" r="3.5" stroke="currentColor" strokeWidth="1.9" />
+      <path
+        d="M3.5 19.5C3.5 16.46 6.19 14 9.5 14C12.81 14 15.5 16.46 15.5 19.5"
+        stroke="currentColor"
+        strokeWidth="1.9"
+        strokeLinecap="round"
+      />
+      <path d="M18.5 8V14M15.5 11H21.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  )
+}
+
+export function LoginIcon({ className = 'edunexus-auth-icon' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" className={className} aria-hidden="true">
+      <path
+        d="M14 4.5H18.5A1.5 1.5 0 0 1 20 6V18A1.5 1.5 0 0 1 18.5 19.5H14"
+        stroke="currentColor"
+        strokeWidth="1.9"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M4 12H14.5M10.5 8L14.5 12L10.5 16"
+        stroke="currentColor"
+        strokeWidth="1.9"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+export function SunIcon({ className = 'edunexus-theme-icon' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" className={className} aria-hidden="true">
+      <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1.9" />
+      <path
+        d="M12 2.75V5M12 19V21.25M4.75 12H2.5M21.5 12H19.25M6.34 6.34L4.75 4.75M19.25 19.25L17.66 17.66M17.66 6.34L19.25 4.75M4.75 19.25L6.34 17.66"
+        stroke="currentColor"
+        strokeWidth="1.9"
+        strokeLinecap="round"
+      />
+    </svg>
+  )
+}
+
+export function MoonIcon({ className = 'edunexus-theme-icon' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" width="17" height="17" fill="none" className={className} aria-hidden="true">
+      <path
+        d="M20.2 14.3A8.2 8.2 0 0 1 9.7 3.8A8.5 8.5 0 1 0 20.2 14.3Z"
+        stroke="currentColor"
+        strokeWidth="1.9"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   )
 }

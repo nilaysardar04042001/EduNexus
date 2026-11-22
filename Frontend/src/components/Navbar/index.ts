@@ -1,2 +1,2 @@
 export { Navbar, default } from './Navbar'
-export type { NavbarProps, NavSectionId } from './Navbar'
+export type { NavAuthAction, NavbarProps, NavSectionId } from './Navbar'
