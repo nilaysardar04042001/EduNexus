@@ -1,0 +1,374 @@
+/* HeaderSlide1 — Edge-to-Edge Welcome to EduNexus Hero Slide
+ * Uses the full parent slide space without nested boxes while keeping BOTH
+ * the transparent light green + yellow + sky blue banner aura AND WCAG >= 4.5:1 text visibility.
+ */
+
+/* Blend a soft directional readability veil directly over the parent slide's transparent gradient
+ * so text stays crisp (>5.6:1 even over bright banner pixels) while the parent banner shines through. */
+.edunexus-banner-slide[data-slide-id="slide-1"] {
+  background-image:
+    linear-gradient(
+      100deg,
+      rgba(4, 12, 36, 0.64) 0%,
+      rgba(6, 18, 46, 0.48) 58%,
+      rgba(4, 14, 38, 0.16) 100%
+    ),
+    linear-gradient(
+      115deg,
+      rgba(134, 239, 172, 0.34) 0%,
+      rgba(253, 224, 71, 0.28) 50%,
+      rgba(56, 189, 248, 0.34) 100%
+    );
+}
+
+.edunexus-slide1-surface {
+  container-type: inline-size;
+  container-name: slide1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  inline-size: 100%;
+  min-block-size: 100%;
+  color: #f8fafc;
+}
+
+.edunexus-slide1-grid {
+  display: grid;
+  flex: 1;
+  inline-size: 100%;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    'header media'
+    'desc   desc'
+    'feats  feats'
+    'cta    cta';
+  align-items: center;
+  align-content: space-between;
+  gap: 0.6rem 0.75rem;
+}
+
+.edunexus-slide1-header {
+  grid-area: header;
+  min-inline-size: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.edunexus-slide1-heading {
+  margin: 0;
+  font-size: clamp(1.25rem, 0.9rem + 2cqi, 2.25rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-shadow: 0 2px 14px rgba(2, 6, 23, 0.85);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.edunexus-slide1-brand {
+  color: #7dd3fc;
+  background-image: linear-gradient(95deg, #7dd3fc 0%, #86efac 52%, #fde047 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+}
+
+.edunexus-slide1-subheading {
+  margin: 0;
+  font-size: clamp(0.86rem, 0.76rem + 0.5cqi, 1.12rem);
+  font-weight: 700;
+  line-height: 1.28;
+  color: #a7f3d0;
+  text-shadow: 0 1px 10px rgba(2, 6, 23, 0.88);
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.edunexus-slide1-desc {
+  grid-area: desc;
+  margin: 0;
+  max-inline-size: 68ch;
+  font-size: clamp(0.82rem, 0.77rem + 0.28cqi, 0.98rem);
+  font-weight: 500;
+  line-height: 1.45;
+  color: #f1f5f9;
+  text-shadow: 0 1px 10px rgba(2, 6, 23, 0.92);
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+
+.edunexus-slide1-features {
+  grid-area: feats;
+  margin: 0;
+  padding: 0;
+  inline-size: 100%;
+  list-style: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.45rem;
+}
+
+.edunexus-slide1-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.45rem 0.65rem;
+  border-radius: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background-color: rgba(4, 12, 36, 0.56);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.edunexus-slide1-feature-icon {
+  --feature-accent: #38bdf8;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  margin-block-start: 0.05rem;
+  border-radius: 0.45rem;
+  border: 1px solid color-mix(in oklab, var(--feature-accent) 55%, transparent);
+  background-color: color-mix(in oklab, var(--feature-accent) 22%, rgba(2, 6, 23, 0.72));
+  color: var(--feature-accent);
+}
+
+.edunexus-slide1-feature[data-highlight="learn"] .edunexus-slide1-feature-icon {
+  --feature-accent: #38bdf8;
+}
+
+.edunexus-slide1-feature[data-highlight="practice"] .edunexus-slide1-feature-icon {
+  --feature-accent: #4ade80;
+}
+
+.edunexus-slide1-feature[data-highlight="create"] .edunexus-slide1-feature-icon {
+  --feature-accent: #facc15;
+}
+
+.edunexus-slide1-feature[data-highlight="excel"] .edunexus-slide1-feature-icon {
+  --feature-accent: #e879f9;
+}
+
+.edunexus-slide1-svg {
+  display: inline-block;
+  inline-size: 0.8rem;
+  block-size: 0.8rem;
+  pointer-events: none;
+}
+
+.edunexus-slide1-feature-text {
+  margin: 0;
+  min-inline-size: 0;
+  font-size: clamp(0.77rem, 0.74rem + 0.2cqi, 0.88rem);
+  line-height: 1.38;
+  color: #e2e8f0;
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+
+.edunexus-slide1-feature-title {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.edunexus-slide1-actions {
+  grid-area: cta;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  padding-block-start: 0.1rem;
+}
+
+.edunexus-slide1-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-block-size: 2.4rem;
+  padding: 0.45rem 1.05rem;
+  border-radius: 9999px;
+  font-size: clamp(0.81rem, 0.77rem + 0.2cqi, 0.92rem);
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition:
+    transform 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.edunexus-slide1-cta:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 2px;
+}
+
+.edunexus-slide1-cta-primary {
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  background-image: linear-gradient(110deg, #38bdf8 0%, #4ade80 56%, #fde047 100%);
+  color: #041028;
+  box-shadow: 0 8px 22px -8px rgba(56, 189, 248, 0.8);
+}
+
+.edunexus-slide1-cta-secondary {
+  border: 1.5px solid rgba(125, 211, 252, 0.78);
+  background-color: rgba(4, 12, 36, 0.72);
+  color: #ffffff;
+  box-shadow: 0 8px 20px -12px rgba(2, 6, 23, 0.8);
+}
+
+@media (hover: hover) {
+  .edunexus-slide1-cta-primary:hover {
+    box-shadow: 0 10px 26px -8px rgba(74, 222, 128, 0.9);
+  }
+
+  .edunexus-slide1-cta-secondary:hover {
+    border-color: #bae6fd;
+    background-color: rgba(14, 165, 233, 0.34);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @media (hover: hover) {
+    .edunexus-slide1-cta:hover {
+      transform: translateY(-1px);
+    }
+  }
+
+  .edunexus-slide1-cta:active {
+    transform: translateY(0) scale(0.98);
+  }
+}
+
+/* Right-side Square Cover & Fit Cloudinary Emblem */
+.edunexus-slide1-media {
+  grid-area: media;
+  justify-self: end;
+  align-self: center;
+  inline-size: clamp(5rem, 23cqi, 6.5rem);
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 0.9rem;
+  border: 1.5px solid rgba(186, 230, 253, 0.52);
+  background-color: rgba(5, 11, 43, 0.9);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    0 12px 28px -10px rgba(2, 6, 23, 0.85),
+    0 0 26px -8px rgba(56, 189, 248, 0.42);
+}
+
+.edunexus-slide1-img {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: center;
+  user-select: none;
+}
+
+.edunexus-slide1-extra {
+  grid-column: 1 / -1;
+}
+
+/* Wider mobile (>= 26rem / 416px container): 2x2 feature highlight grid */
+@container slide1 (min-width: 26rem) {
+  .edunexus-slide1-features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+}
+
+/* Tablet & Desktop (>= 38rem / 608px container): full-bleed 2-column hero filling parent space */
+@container slide1 (min-width: 38rem) {
+  .edunexus-slide1-grid {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      'header media'
+      'desc   media'
+      'feats  media'
+      'cta    media';
+    column-gap: 1.35rem;
+    row-gap: 0.6rem;
+  }
+
+  .edunexus-slide1-media {
+    inline-size: clamp(11.5rem, 24cqi, 17.5rem);
+    border-radius: 1.2rem;
+  }
+}
+
+/* Laptop & Wide Desktop (>= 56rem / 896px container): expanded spacing across full parent width */
+@container slide1 (min-width: 56rem) {
+  .edunexus-slide1-grid {
+    column-gap: 2rem;
+    row-gap: 0.7rem;
+  }
+
+  .edunexus-slide1-features {
+    gap: 0.6rem;
+  }
+
+  .edunexus-slide1-feature {
+    padding: 0.55rem 0.75rem;
+  }
+}
+
+@media (forced-colors: active) {
+  .edunexus-banner-slide[data-slide-id="slide-1"] {
+    background-image: none;
+    background-color: Canvas;
+  }
+
+  .edunexus-slide1-surface {
+    color: CanvasText;
+  }
+
+  .edunexus-slide1-heading,
+  .edunexus-slide1-subheading,
+  .edunexus-slide1-desc,
+  .edunexus-slide1-feature-title,
+  .edunexus-slide1-feature-text {
+    color: CanvasText;
+    text-shadow: none;
+  }
+
+  .edunexus-slide1-brand {
+    background-image: none;
+    -webkit-text-fill-color: CanvasText;
+    color: CanvasText;
+  }
+
+  .edunexus-slide1-feature {
+    background-color: Canvas;
+    border: 1px solid CanvasText;
+    box-shadow: none;
+  }
+
+  .edunexus-slide1-feature-icon {
+    background-color: Canvas;
+    border: 1px solid CanvasText;
+    color: CanvasText;
+  }
+
+  .edunexus-slide1-cta-primary,
+  .edunexus-slide1-cta-secondary {
+    background-image: none;
+    background-color: ButtonFace;
+    color: ButtonText;
+    border: 1px solid ButtonText;
+    box-shadow: none;
+  }
+
+  .edunexus-slide1-media {
+    border: 1px solid CanvasText;
+    box-shadow: none;
+  }
+}

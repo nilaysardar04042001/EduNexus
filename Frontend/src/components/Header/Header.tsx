@@ -1,16 +1,22 @@
 import { memo } from 'react'
 import type { ReactNode } from 'react'
+import { HeaderCards } from './HeaderCards'
 import { HeaderImage } from './HeaderImage'
+import type { HeaderSlideItem } from './slides'
 
 export interface HeaderProps {
-  /** Content for the left slot */
+  /** Content for the left card */
   left?: ReactNode
-  /** Content for the center slot */
+  /** Content for the middle card */
+  middle?: ReactNode
+  /** Alias for middle card content */
   center?: ReactNode
-  /** Content for the right slot */
+  /** Content for the right card */
   right?: ReactNode
-  /** Optional full-width content rendered inside the header */
+  /** Optional full-width content replacing the default three-card grid */
   children?: ReactNode
+  /** Optional custom overlay slides for the header banner slider */
+  slides?: readonly HeaderSlideItem[]
   /** Whether to render the Cloudinary header-image banner section (default: true) */
   showBanner?: boolean
   /** Optional extra classes on the outer header element */
@@ -19,9 +25,11 @@ export interface HeaderProps {
 
 export const Header = memo(function Header({
   left,
+  middle,
   center,
   right,
   children,
+  slides,
   showBanner = true,
   className = '',
 }: HeaderProps) {
@@ -29,27 +37,15 @@ export const Header = memo(function Header({
     <header
       className={`relative flex min-h-[calc(100dvh-var(--edunexus-navbar-height,3.375rem))] w-full flex-col border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 ${className}`.trim()}
     >
-      {showBanner && <HeaderImage />}
+      {showBanner && <HeaderImage slides={slides} />}
 
-      <div className="grid w-full flex-1 grid-cols-[auto_1fr_auto] items-center gap-4 px-3 py-8 sm:px-4 sm:py-10 lg:gap-6 lg:px-6 lg:py-12">
-        {children === undefined ? (
-          <>
-            <div className="flex min-w-0 items-center justify-start gap-2" data-header-slot="left">
-              {left}
-            </div>
-
-            <div className="flex min-w-0 items-center justify-center gap-2" data-header-slot="center">
-              {center}
-            </div>
-
-            <div className="flex min-w-0 items-center justify-end gap-2" data-header-slot="right">
-              {right}
-            </div>
-          </>
-        ) : (
-          <div className="col-span-3 min-w-0">{children}</div>
-        )}
-      </div>
+      {children === undefined ? (
+        <HeaderCards left={left} middle={middle ?? center} right={right} />
+      ) : (
+        <div className="flex w-full flex-1 flex-col px-2 py-3 sm:px-2.5 sm:py-3.5 lg:px-3.5 lg:py-4">
+          {children}
+        </div>
+      )}
     </header>
   )
 })
