@@ -184,8 +184,10 @@ export const Navbar = memo(function Navbar({
           <NavbarNavMenu
             siteMenuId={siteMenuId}
             activeSection={activeSection}
+            activeAuthAction={currentAuthAction}
             menuRef={menuRef}
             onNavLinkClick={handleNavLinkClick}
+            onAuthClick={handleAuthLinkClick}
           />
 
           {/* Right Part: Registration & Login Switch + Theme Toggle */}
