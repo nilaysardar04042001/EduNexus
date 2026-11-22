@@ -23,6 +23,8 @@ export const NavbarBrand = memo(function NavbarBrand({ onHomeClick }: NavbarBran
         <span className="edunexus-home-logo-frame">
           <img
             src="/EduNexus.png"
+            srcSet="/EduNexus-64.png 64w, /EduNexus.png 128w"
+            sizes="34px"
             alt=""
             width={34}
             height={34}

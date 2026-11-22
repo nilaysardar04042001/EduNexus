@@ -34,11 +34,11 @@
   --nav-shadow-color-light: rgba(15, 23, 42, 0.14);
   --nav-shadow-color-dark: rgba(0, 0, 0, 0.74);
 
-  /* Brand Glass Pill & Inner Shadow Tokens */
-  --brand-glass-start-light: rgba(255, 255, 255, 0.88);
-  --brand-glass-start-dark: rgba(15, 29, 66, 0.78);
-  --brand-glass-end-light: rgba(224, 242, 254, 0.72);
-  --brand-glass-end-dark: rgba(49, 28, 92, 0.62);
+  /* Brand Glass Pill & Inner Shadow Tokens (opaque-enough frosted glass, zero live backdrop-filter cost) */
+  --brand-glass-start-light: rgba(255, 255, 255, 0.94);
+  --brand-glass-start-dark: rgba(15, 29, 66, 0.88);
+  --brand-glass-end-light: rgba(224, 242, 254, 0.86);
+  --brand-glass-end-dark: rgba(41, 24, 82, 0.8);
   --brand-glass-border-light: rgba(56, 189, 248, 0.46);
   --brand-glass-border-dark: rgba(103, 232, 249, 0.38);
   --brand-inset-top-light: rgba(255, 255, 255, 0.94);
@@ -421,103 +421,37 @@
   inset: 0;
   z-index: 0;
   overflow: hidden;
+  contain: strict;
   pointer-events: none;
+  /* Static rainbow pigment under-wash (0 extra compositor layers) */
+  background-image: linear-gradient(
+    90deg,
+    var(--marble-red) 0%,
+    var(--marble-orange) 14%,
+    var(--marble-yellow) 28%,
+    var(--marble-green) 42%,
+    var(--marble-cyan) 57%,
+    var(--marble-blue) 71%,
+    var(--marble-violet) 85%,
+    var(--marble-magenta) 100%
+  );
 }
 
-/* Continuous seamless rainbow under-stream (exact 90deg horizontal 2x period = zero loop seam) */
-.edunexus-marble-base {
+/* Seamless 200%-wide height-bounded (52px) SVG marbled liquid rainbow ribbon strips (zero CSS blur) */
+.edunexus-marble-svg {
   position: absolute;
   inset-block: 0;
   inset-inline-start: 0;
   inline-size: 200%;
-  background-image: linear-gradient(
-    90deg,
-    var(--marble-red) 0%,
-    var(--marble-orange) 6.25%,
-    var(--marble-yellow) 12.5%,
-    var(--marble-green) 18.75%,
-    var(--marble-cyan) 25%,
-    var(--marble-blue) 31.25%,
-    var(--marble-violet) 37.5%,
-    var(--marble-magenta) 43.75%,
-    var(--marble-red) 50%,
-    var(--marble-orange) 56.25%,
-    var(--marble-yellow) 62.5%,
-    var(--marble-green) 68.75%,
-    var(--marble-cyan) 75%,
-    var(--marble-blue) 81.25%,
-    var(--marble-violet) 87.5%,
-    var(--marble-magenta) 93.75%,
-    var(--marble-red) 100%
-  );
-  opacity: 0.54;
-}
-
-/* Soft marbled liquid pigment swirls beneath the ribbons */
-.edunexus-marble-swirl {
-  position: absolute;
-  inset-block-start: 50%;
-  inline-size: 72%;
-  aspect-ratio: 1;
-  border-radius: 9999px;
-  filter: blur(26px);
-  opacity: 0.46;
-  transform: translate3d(0, -50%, 0);
-}
-
-.edunexus-marble-swirl-a {
-  inset-inline-start: -4%;
-  background: conic-gradient(
-    from 0deg,
-    var(--marble-red),
-    var(--marble-orange),
-    var(--marble-yellow),
-    var(--marble-green),
-    var(--marble-cyan),
-    var(--marble-blue),
-    var(--marble-violet),
-    var(--marble-magenta),
-    var(--marble-red)
-  );
-}
-
-.edunexus-marble-swirl-b {
-  inset-inline-end: -4%;
-  background: conic-gradient(
-    from 180deg,
-    var(--marble-cyan),
-    var(--marble-violet),
-    var(--marble-magenta),
-    var(--marble-red),
-    var(--marble-orange),
-    var(--marble-yellow),
-    var(--marble-green),
-    var(--marble-cyan)
-  );
-}
-
-/* Seamless 200%-wide SVG marbled liquid rainbow ribbon streams */
-.edunexus-marble-svg {
-  position: absolute;
-  inset-block: -12%;
-  inset-inline-start: 0;
-  inline-size: 200%;
-  block-size: 124%;
-  filter: blur(3.5px) saturate(135%);
+  block-size: 100%;
 }
 
 .edunexus-marble-stream-a {
-  opacity: 0.88;
+  opacity: 0.92;
 }
 
 .edunexus-marble-stream-b {
-  filter: blur(2px) saturate(140%);
-  opacity: 0.78;
-}
-
-.edunexus-marble-stream-c {
-  filter: blur(0.6px);
-  opacity: 0.78;
+  opacity: 0.88;
 }
 
 /* Bottom luminous full-rainbow flowing hairline edge */
@@ -527,6 +461,7 @@
   inline-size: 100%;
   block-size: 2px;
   overflow: hidden;
+  contain: strict;
   pointer-events: none;
   background-color: var(--nav-border);
 }
@@ -558,7 +493,7 @@
   opacity: 0.95;
 }
 
-/* Compositor-only continuous marbled liquid ribbon animations */
+/* Compositor-only continuous marbled liquid ribbon animations (pure translate3d, zero scale/blur re-raster) */
 @keyframes edunexus-marble-flow-left {
   0% {
     transform: translate3d(0, 0, 0);
@@ -574,54 +509,6 @@
   }
   100% {
     transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes edunexus-marble-ribbon-drift-a {
-  0% {
-    transform: translate3d(-50%, -3%, 0) scaleY(1.04);
-  }
-  50% {
-    transform: translate3d(-25%, 4%, 0) scaleY(0.95);
-  }
-  100% {
-    transform: translate3d(0, -3%, 0) scaleY(1.04);
-  }
-}
-
-@keyframes edunexus-marble-ribbon-drift-b {
-  0% {
-    transform: translate3d(0, 4%, 0) scaleY(0.96);
-  }
-  50% {
-    transform: translate3d(-25%, -4%, 0) scaleY(1.06);
-  }
-  100% {
-    transform: translate3d(-50%, 4%, 0) scaleY(0.96);
-  }
-}
-
-@keyframes edunexus-marble-swirl-spin-a {
-  0% {
-    transform: translate3d(-6%, -50%, 0) rotate(0deg) scale(1.08);
-  }
-  50% {
-    transform: translate3d(14%, -46%, 0) rotate(180deg) scale(1.22);
-  }
-  100% {
-    transform: translate3d(-6%, -50%, 0) rotate(360deg) scale(1.08);
-  }
-}
-
-@keyframes edunexus-marble-swirl-spin-b {
-  0% {
-    transform: translate3d(6%, -50%, 0) rotate(360deg) scale(1.12);
-  }
-  50% {
-    transform: translate3d(-14%, -54%, 0) rotate(180deg) scale(1.24);
-  }
-  100% {
-    transform: translate3d(6%, -50%, 0) rotate(0deg) scale(1.12);
   }
 }
 
@@ -644,43 +531,25 @@
   }
 }
 
-@keyframes edunexus-tagline-flow {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 240% 50%;
-  }
-}
-
 @media (prefers-reduced-motion: no-preference) {
-  .edunexus-marble-base {
-    animation: edunexus-marble-flow-left 18s linear infinite;
-  }
-
-  .edunexus-marble-swirl-a {
-    animation: edunexus-marble-swirl-spin-a 22s linear infinite;
-  }
-
-  .edunexus-marble-swirl-b {
-    animation: edunexus-marble-swirl-spin-b 26s linear infinite;
-  }
-
   .edunexus-marble-stream-a {
-    animation: edunexus-marble-ribbon-drift-a 14s linear infinite;
+    animation: edunexus-marble-flow-right 14s linear infinite;
   }
 
   .edunexus-marble-stream-b {
-    animation: edunexus-marble-ribbon-drift-b 19s linear infinite;
-  }
-
-  .edunexus-marble-stream-c {
-    animation: edunexus-marble-flow-right 11s linear infinite;
+    animation: edunexus-marble-flow-left 19s linear infinite;
   }
 
   .edunexus-navbar-edge-track {
     animation: edunexus-marble-flow-left 10s linear infinite;
   }
+}
+
+/* Freeze ambient GPU animations when tab is hidden to consume 0% background GPU/CPU */
+.edunexus-navbar.is-paused .edunexus-marble-svg,
+.edunexus-navbar.is-paused .edunexus-navbar-edge-track,
+.edunexus-navbar.is-paused .edunexus-home-sheen::before {
+  animation-play-state: paused;
 }
 
 /* ==========================================================================
@@ -690,6 +559,7 @@
 .edunexus-navbar-surface {
   position: relative;
   z-index: 2;
+  contain: layout style;
   background-color: var(--nav-surface-glass);
 }
 
@@ -771,7 +641,6 @@
   border-radius: 9999px;
   border: 1px solid var(--brand-glass-border);
   background-image: linear-gradient(135deg, var(--brand-glass-start), var(--brand-glass-end));
-  backdrop-filter: blur(14px) saturate(180%);
   box-shadow:
     inset 0 1.5px 1px var(--brand-inset-top),
     inset 0 -3px 8px var(--brand-inset-bottom),
@@ -789,6 +658,7 @@
   inset: 0;
   border-radius: inherit;
   overflow: hidden;
+  contain: layout style paint;
   pointer-events: none;
 }
 
@@ -865,12 +735,10 @@
   background-image: linear-gradient(
     90deg,
     var(--tagline-c1) 0%,
-    var(--tagline-c2) 25%,
-    var(--tagline-c3) 50%,
-    var(--tagline-c4) 75%,
-    var(--tagline-c1) 100%
+    var(--tagline-c2) 34%,
+    var(--tagline-c3) 68%,
+    var(--tagline-c4) 100%
   );
-  background-size: 240% 100%;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -903,10 +771,6 @@
     animation: edunexus-brand-sheen-sweep 7.5s ease-in-out infinite;
   }
 
-  .edunexus-home-tagline {
-    animation: edunexus-tagline-flow 6.5s linear infinite;
-  }
-
   .edunexus-home-logo-frame {
     transition:
       transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -934,15 +798,15 @@
   justify-content: center;
 }
 
-/* Mobile Menu Toggle Button (Icon-only circular orb on Right-Side Left Part when collapsed) */
+/* Mobile Menu Toggle Button (Right-Side Left Part when collapsed) */
 .edunexus-menu-button {
   anchor-name: --edunexus-menu-button;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  inline-size: 2rem;
-  block-size: 2rem;
-  padding: 0;
+  gap: 0.35rem;
+  block-size: 1.88rem;
+  padding: 0 0.72rem;
   border-radius: 9999px;
   border: 1.25px solid transparent;
   background-image:
@@ -955,6 +819,10 @@
     inset 0 1.5px 3px var(--switch-track-inset-top),
     inset 0 -1px 0 var(--switch-track-inset-bottom),
     0 3px 10px -4px var(--nav-pill-shadow);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1;
   cursor: pointer;
   transition:
     color 160ms ease,
@@ -963,7 +831,7 @@
 }
 
 .edunexus-menu-icon {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--nav-ico-home);
   flex: none;
   pointer-events: none;
@@ -1441,7 +1309,6 @@
   background-origin: border-box;
   background-clip: padding-box, border-box;
   color: var(--toggle-icon);
-  backdrop-filter: blur(12px) saturate(165%);
   box-shadow:
     inset 0 1.5px 1.5px var(--brand-inset-top),
     inset 0 -3px 6px var(--brand-inset-bottom),
@@ -1457,6 +1324,7 @@
   position: absolute;
   inset: 3px;
   border-radius: inherit;
+  contain: layout style paint;
   background: radial-gradient(circle at 35% 30%, var(--toggle-glow), transparent 72%);
   opacity: 0.55;
   pointer-events: none;
@@ -1608,9 +1476,8 @@
   }
 
   .edunexus-menu-button {
-    inline-size: 1.92rem;
-    block-size: 1.92rem;
-    padding: 0;
+    block-size: 1.85rem;
+    padding: 0 0.7rem;
   }
 
   .edunexus-theme-toggle {

@@ -38,7 +38,7 @@ export const NavbarNavMenu = memo(function NavbarNavMenu({
         aria-controls={siteMenuId}
       >
         <MenuBarsIcon />
-        <span className="sr-only">Menu</span>
+        <span className="edunexus-menu-label">Menu</span>
       </button>
 
       <ul

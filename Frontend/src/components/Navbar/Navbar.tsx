@@ -66,6 +66,22 @@ export const Navbar = memo(function Navbar({
   // Keep <meta name="color-scheme"> synchronized across tabs via window storage events
   useEffect(() => subscribeColorSchemeStorageSync(), [])
 
+  // Pause navbar ambient animations when tab is hidden to avoid background GPU/CPU work
+  useEffect(() => {
+    const bar = barRef.current
+    if (!bar) return undefined
+
+    const syncVisibility = () => {
+      bar.classList.toggle('is-paused', document.hidden)
+    }
+
+    syncVisibility()
+    document.addEventListener('visibilitychange', syncVisibility)
+    return () => {
+      document.removeEventListener('visibilitychange', syncVisibility)
+    }
+  }, [])
+
   // Dynamically measure whether Brand + Middle Switch + Right Controls fit inline in one bar
   useEffect(() => {
     const bar = barRef.current
@@ -74,6 +90,7 @@ export const Navbar = memo(function Navbar({
     if (!bar || !inner || !menu) return undefined
 
     let measureRafId: number | null = null
+    let resizeRafId: number | null = null
 
     const syncLayout = (forceMeasure = false) => {
       const currentWidth = bar.clientWidth
@@ -117,13 +134,20 @@ export const Navbar = memo(function Navbar({
     syncLayout(true)
 
     const observer = new ResizeObserver(() => {
-      syncLayout(false)
+      if (resizeRafId !== null) return
+      resizeRafId = requestAnimationFrame(() => {
+        resizeRafId = null
+        syncLayout(false)
+      })
     })
     observer.observe(bar)
     observer.observe(menu)
 
     return () => {
       observer.disconnect()
+      if (resizeRafId !== null) {
+        cancelAnimationFrame(resizeRafId)
+      }
       if (measureRafId !== null) {
         cancelAnimationFrame(measureRafId)
       }

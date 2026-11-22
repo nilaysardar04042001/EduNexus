@@ -215,7 +215,6 @@
 .edunexus-bar-fill {
   transform: translate3d(-96%, 0, 0);
   transform-origin: left center;
-  will-change: transform;
 }
 
 .edunexus-bar-shimmer::after {
@@ -247,9 +246,5 @@
   .edunexus-bar-shimmer::after {
     animation: none !important;
     transition: none !important;
-  }
-
-  .edunexus-bar-fill {
-    will-change: auto;
   }
 }

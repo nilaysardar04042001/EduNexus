@@ -1,6 +1,9 @@
-import { useCallback, useState } from 'react'
-import { Header, Navbar, SplashScreen } from './components'
-import type { NavSectionId } from './components'
+import { lazy, Suspense, useCallback, useState } from 'react'
+import { Header } from './components/Header'
+import { Navbar } from './components/Navbar'
+import type { NavSectionId } from './components/Navbar'
+
+const SplashScreen = lazy(() => import('./components/SplashScreen'))
 
 const SPLASH_SEEN_KEY = 'edunexus_splash_seen'
 
@@ -35,7 +38,11 @@ function App() {
 
   return (
     <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
-      {showSplash && <SplashScreen duration={1500} onFinish={handleSplashFinish} />}
+      {showSplash && (
+        <Suspense fallback={null}>
+          <SplashScreen duration={1500} onFinish={handleSplashFinish} />
+        </Suspense>
+      )}
       <Navbar activeSection={activeSection} onNavigate={handleNavigate} />
       <Header />
       <main className="flex flex-1 flex-col" />
