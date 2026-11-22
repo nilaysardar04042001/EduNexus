@@ -1,13 +1,4 @@
-export type NavIconName =
-  | 'home'
-  | 'courses'
-  | 'practice'
-  | 'projects'
-  | 'about'
-  | 'cpu'
-  | 'code'
-  | 'terminal'
-  | 'database'
+export type NavIconName = 'home' | 'courses' | 'practice' | 'projects' | 'about'
 
 export function NavIcon({ name, className = 'edunexus-nav-icon' }: { name: NavIconName; className?: string }) {
   switch (name) {
@@ -66,64 +57,7 @@ export function NavIcon({ name, className = 'edunexus-nav-icon' }: { name: NavIc
           <path d="M12 16V11.5M12 8.2H12.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
         </svg>
       )
-    case 'cpu':
-      return (
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" className={className} aria-hidden="true">
-          <rect x="7" y="7" width="10" height="10" rx="2" stroke="currentColor" strokeWidth="1.8" />
-          <path
-            d="M9 3V7M15 3V7M9 17V21M15 17V21M3 9H7M3 15H7M17 9H21M17 15H21"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-          />
-        </svg>
-      )
-    case 'code':
-      return (
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" className={className} aria-hidden="true">
-          <rect x="3" y="4.5" width="18" height="15" rx="2.5" stroke="currentColor" strokeWidth="1.8" />
-          <path
-            d="M3 9H21M9 13L7 15L9 17M15 13L17 15L15 17"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      )
-    case 'terminal':
-      return (
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" className={className} aria-hidden="true">
-          <rect x="3" y="4.5" width="18" height="15" rx="2.5" stroke="currentColor" strokeWidth="1.8" />
-          <path
-            d="M7.5 10L10.5 12.5L7.5 15M12.5 15H16.5"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      )
-    case 'database':
-      return (
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" className={className} aria-hidden="true">
-          <ellipse cx="12" cy="6.5" rx="7" ry="3" stroke="currentColor" strokeWidth="1.8" />
-          <path
-            d="M5 6.5V17.5C5 19.16 8.13 20.5 12 20.5C15.87 20.5 19 19.16 19 17.5V6.5M5 12C5 13.66 8.13 15 12 15C15.87 15 19 13.66 19 12"
-            stroke="currentColor"
-            strokeWidth="1.8"
-          />
-        </svg>
-      )
   }
-}
-
-export function ChevronDownIcon({ className = 'edunexus-chevron' }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" className={className} aria-hidden="true">
-      <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  )
 }
 
 export function MenuBarsIcon({ className = '' }: { className?: string }) {
