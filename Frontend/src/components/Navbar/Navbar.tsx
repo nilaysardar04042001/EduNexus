@@ -510,6 +510,7 @@ export const Navbar = memo(function Navbar({
                 <button
                   ref={dropdownTriggerRef}
                   type="button"
+                  data-section="courses"
                   className="edunexus-dropdown-trigger"
                   aria-expanded={isCoursesOpen}
                   aria-controls={coursesMenuId}
