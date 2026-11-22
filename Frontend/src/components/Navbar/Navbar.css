@@ -1,61 +1,127 @@
-/* EduNexus Two-Tier Modern Responsive Navigation Bar
- * Follows modern-web-guidance: navbar, dark-mode, dark-mode-toggle, icons, motion, and animate-element-entry-exit
+/* EduNexus Enhanced Two-Tier Glass & Mixing-Gradient Navigation Bar
+ * Follows modern-web-guidance: navbar, dark-mode, dark-mode-toggle, selector-atrule-combinations,
+ * motion, color, icons, and animate-element-entry-exit
  */
 
-/* Theme-aware custom properties: light/dark fallback + light-dark() upgrade */
 :root {
-  --nav-top-bg-light: rgba(255, 255, 255, 0.97);
-  --nav-top-bg-dark: rgba(4, 11, 31, 0.97);
-  --nav-bottom-bg-light: rgba(248, 250, 252, 0.96);
-  --nav-bottom-bg-dark: rgba(9, 19, 46, 0.96);
-  --nav-border-light: rgba(148, 163, 184, 0.26);
-  --nav-border-dark: rgba(56, 189, 248, 0.18);
-  --nav-sub-border-light: rgba(148, 163, 184, 0.2);
-  --nav-sub-border-dark: rgba(56, 189, 248, 0.14);
-  --nav-shadow-color-light: rgba(2, 6, 23, 0.16);
-  --nav-shadow-color-dark: rgba(0, 0, 0, 0.65);
+  /* Dual-theme base glass surfaces */
+  --nav-base-bg-light: #f4f8ff;
+  --nav-base-bg-dark: #040b1f;
+  --nav-top-glass-light: rgba(255, 255, 255, 0.68);
+  --nav-top-glass-dark: rgba(6, 14, 38, 0.72);
+  --nav-bottom-glass-light: rgba(248, 251, 255, 0.72);
+  --nav-bottom-glass-dark: rgba(8, 18, 46, 0.74);
 
-  --nav-surface-light: rgba(248, 250, 252, 0.92);
-  --nav-surface-dark: rgba(15, 23, 42, 0.92);
-  --nav-surface-border-light: rgba(148, 163, 184, 0.36);
-  --nav-surface-border-dark: rgba(148, 163, 184, 0.28);
+  /* Dual-theme mixing gradient ambient blob stops */
+  --nav-blob-a-light: rgba(6, 182, 212, 0.34);
+  --nav-blob-a-dark: rgba(34, 211, 238, 0.36);
+  --nav-blob-b-light: rgba(139, 92, 246, 0.28);
+  --nav-blob-b-dark: rgba(139, 92, 246, 0.4);
+  --nav-blob-c-light: rgba(236, 72, 153, 0.22);
+  --nav-blob-c-dark: rgba(217, 70, 239, 0.28);
 
-  --nav-popover-bg-light: #ffffff;
-  --nav-popover-bg-dark: #07122e;
-  --nav-popover-border-light: rgba(148, 163, 184, 0.28);
-  --nav-popover-border-dark: rgba(56, 189, 248, 0.26);
-  --nav-popover-shadow-color-light: rgba(2, 6, 23, 0.28);
-  --nav-popover-shadow-color-dark: rgba(0, 0, 0, 0.74);
+  /* Borders & Elevation */
+  --nav-border-light: rgba(14, 165, 233, 0.24);
+  --nav-border-dark: rgba(56, 189, 248, 0.24);
+  --nav-sub-border-light: rgba(148, 163, 184, 0.24);
+  --nav-sub-border-dark: rgba(56, 189, 248, 0.16);
+  --nav-shadow-color-light: rgba(15, 23, 42, 0.14);
+  --nav-shadow-color-dark: rgba(0, 0, 0, 0.72);
 
-  --nav-text-light: #334155;
-  --nav-text-dark: #cbd5e1;
+  /* Brand Glass Pill & Inner Shadow Tokens */
+  --brand-glass-start-light: rgba(255, 255, 255, 0.84);
+  --brand-glass-start-dark: rgba(15, 29, 66, 0.74);
+  --brand-glass-end-light: rgba(224, 242, 254, 0.64);
+  --brand-glass-end-dark: rgba(49, 28, 92, 0.56);
+  --brand-glass-border-light: rgba(56, 189, 248, 0.42);
+  --brand-glass-border-dark: rgba(103, 232, 249, 0.34);
+  --brand-inset-top-light: rgba(255, 255, 255, 0.92);
+  --brand-inset-top-dark: rgba(186, 230, 253, 0.3);
+  --brand-inset-bottom-light: rgba(14, 165, 233, 0.22);
+  --brand-inset-bottom-dark: rgba(2, 6, 23, 0.78);
+  --brand-inset-glow-light: rgba(139, 92, 246, 0.12);
+  --brand-inset-glow-dark: rgba(56, 189, 248, 0.18);
+  --brand-outer-shadow-light: rgba(14, 165, 233, 0.26);
+  --brand-outer-shadow-dark: rgba(0, 0, 0, 0.68);
+  --brand-sheen-light: rgba(255, 255, 255, 0.72);
+  --brand-sheen-dark: rgba(165, 243, 252, 0.24);
+
+  /* Tagline Colorful Spectrum Stops (WCAG-compliant contrast in both themes) */
+  --tagline-c1-light: #0369a1;
+  --tagline-c1-dark: #67e8f9;
+  --tagline-c2-light: #0d9488;
+  --tagline-c2-dark: #38bdf8;
+  --tagline-c3-light: #6d28d9;
+  --tagline-c3-dark: #c084fc;
+  --tagline-c4-light: #be185d;
+  --tagline-c4-dark: #f472b6;
+
+  /* Pill Surface, Hover & Active Tokens */
+  --nav-pill-bg-light: rgba(255, 255, 255, 0.7);
+  --nav-pill-bg-dark: rgba(15, 23, 42, 0.62);
+  --nav-pill-border-light: rgba(148, 163, 184, 0.38);
+  --nav-pill-border-dark: rgba(148, 163, 184, 0.26);
+  --nav-pill-inset-light: rgba(255, 255, 255, 0.9);
+  --nav-pill-inset-dark: rgba(226, 232, 240, 0.14);
+  --nav-pill-shadow-light: rgba(15, 23, 42, 0.08);
+  --nav-pill-shadow-dark: rgba(0, 0, 0, 0.42);
+
+  --nav-popover-bg-light: rgba(255, 255, 255, 0.96);
+  --nav-popover-bg-dark: rgba(7, 18, 46, 0.96);
+  --nav-popover-border-light: rgba(14, 165, 233, 0.28);
+  --nav-popover-border-dark: rgba(56, 189, 248, 0.3);
+  --nav-popover-shadow-color-light: rgba(2, 6, 23, 0.26);
+  --nav-popover-shadow-color-dark: rgba(0, 0, 0, 0.78);
+
+  --nav-text-light: #1e293b;
+  --nav-text-dark: #e2e8f0;
   --nav-text-strong-light: #0f172a;
-  --nav-text-strong-dark: #f1f5f9;
+  --nav-text-strong-dark: #f8fafc;
   --nav-sub-text-light: #1e293b;
   --nav-sub-text-dark: #e2e8f0;
 
-  --nav-hover-bg-light: rgba(14, 165, 233, 0.09);
-  --nav-hover-bg-dark: rgba(34, 211, 238, 0.12);
-  --nav-hover-border-light: rgba(14, 165, 233, 0.55);
-  --nav-hover-border-dark: rgba(34, 211, 238, 0.55);
-  --nav-hover-text-light: #0284c7;
-  --nav-hover-text-dark: #67e8f9;
+  --nav-hover-bg-light: rgba(224, 242, 254, 0.92);
+  --nav-hover-bg-dark: rgba(34, 211, 238, 0.16);
+  --nav-hover-border-light: rgba(2, 132, 199, 0.52);
+  --nav-hover-border-dark: rgba(56, 189, 248, 0.58);
+  --nav-hover-text-light: #0369a1;
+  --nav-hover-text-dark: #a5f3fc;
 
-  --nav-active-bg-light: rgba(14, 165, 233, 0.12);
-  --nav-active-bg-dark: rgba(34, 211, 238, 0.14);
-  --nav-active-border-light: rgba(14, 165, 233, 0.35);
-  --nav-active-border-dark: rgba(34, 211, 238, 0.42);
-  --nav-active-text-light: #0369a1;
-  --nav-active-text-dark: #a5f3fc;
+  --nav-active-start-light: rgba(14, 165, 233, 0.22);
+  --nav-active-start-dark: rgba(6, 182, 212, 0.3);
+  --nav-active-end-light: rgba(139, 92, 246, 0.2);
+  --nav-active-end-dark: rgba(139, 92, 246, 0.32);
+  --nav-active-border-light: rgba(2, 132, 199, 0.62);
+  --nav-active-border-dark: rgba(56, 189, 248, 0.68);
+  --nav-active-text-light: #0c4a6e;
+  --nav-active-text-dark: #ecfeff;
 
   /* Default (light) values for browsers without light-dark() */
-  --nav-top-bg: var(--nav-top-bg-light);
-  --nav-bottom-bg: var(--nav-bottom-bg-light);
+  --nav-base-bg: var(--nav-base-bg-light);
+  --nav-top-glass: var(--nav-top-glass-light);
+  --nav-bottom-glass: var(--nav-bottom-glass-light);
+  --nav-blob-a: var(--nav-blob-a-light);
+  --nav-blob-b: var(--nav-blob-b-light);
+  --nav-blob-c: var(--nav-blob-c-light);
   --nav-border: var(--nav-border-light);
   --nav-sub-border: var(--nav-sub-border-light);
   --nav-shadow-color: var(--nav-shadow-color-light);
-  --nav-surface: var(--nav-surface-light);
-  --nav-surface-border: var(--nav-surface-border-light);
+  --brand-glass-start: var(--brand-glass-start-light);
+  --brand-glass-end: var(--brand-glass-end-light);
+  --brand-glass-border: var(--brand-glass-border-light);
+  --brand-inset-top: var(--brand-inset-top-light);
+  --brand-inset-bottom: var(--brand-inset-bottom-light);
+  --brand-inset-glow: var(--brand-inset-glow-light);
+  --brand-outer-shadow: var(--brand-outer-shadow-light);
+  --brand-sheen: var(--brand-sheen-light);
+  --tagline-c1: var(--tagline-c1-light);
+  --tagline-c2: var(--tagline-c2-light);
+  --tagline-c3: var(--tagline-c3-light);
+  --tagline-c4: var(--tagline-c4-light);
+  --nav-pill-bg: var(--nav-pill-bg-light);
+  --nav-pill-border: var(--nav-pill-border-light);
+  --nav-pill-inset: var(--nav-pill-inset-light);
+  --nav-pill-shadow: var(--nav-pill-shadow-light);
   --nav-popover-bg: var(--nav-popover-bg-light);
   --nav-popover-border: var(--nav-popover-border-light);
   --nav-popover-shadow-color: var(--nav-popover-shadow-color-light);
@@ -65,7 +131,8 @@
   --nav-hover-bg: var(--nav-hover-bg-light);
   --nav-hover-border: var(--nav-hover-border-light);
   --nav-hover-text: var(--nav-hover-text-light);
-  --nav-active-bg: var(--nav-active-bg-light);
+  --nav-active-start: var(--nav-active-start-light);
+  --nav-active-end: var(--nav-active-end-light);
   --nav-active-border: var(--nav-active-border-light);
   --nav-active-text: var(--nav-active-text-light);
 
@@ -73,13 +140,31 @@
   @supports not (color: light-dark(white, black)) {
     @media (prefers-color-scheme: dark) {
       &:not(:has(> head > meta[name="color-scheme"][content="light"])) {
-        --nav-top-bg: var(--nav-top-bg-dark);
-        --nav-bottom-bg: var(--nav-bottom-bg-dark);
+        --nav-base-bg: var(--nav-base-bg-dark);
+        --nav-top-glass: var(--nav-top-glass-dark);
+        --nav-bottom-glass: var(--nav-bottom-glass-dark);
+        --nav-blob-a: var(--nav-blob-a-dark);
+        --nav-blob-b: var(--nav-blob-b-dark);
+        --nav-blob-c: var(--nav-blob-c-dark);
         --nav-border: var(--nav-border-dark);
         --nav-sub-border: var(--nav-sub-border-dark);
         --nav-shadow-color: var(--nav-shadow-color-dark);
-        --nav-surface: var(--nav-surface-dark);
-        --nav-surface-border: var(--nav-surface-border-dark);
+        --brand-glass-start: var(--brand-glass-start-dark);
+        --brand-glass-end: var(--brand-glass-end-dark);
+        --brand-glass-border: var(--brand-glass-border-dark);
+        --brand-inset-top: var(--brand-inset-top-dark);
+        --brand-inset-bottom: var(--brand-inset-bottom-dark);
+        --brand-inset-glow: var(--brand-inset-glow-dark);
+        --brand-outer-shadow: var(--brand-outer-shadow-dark);
+        --brand-sheen: var(--brand-sheen-dark);
+        --tagline-c1: var(--tagline-c1-dark);
+        --tagline-c2: var(--tagline-c2-dark);
+        --tagline-c3: var(--tagline-c3-dark);
+        --tagline-c4: var(--tagline-c4-dark);
+        --nav-pill-bg: var(--nav-pill-bg-dark);
+        --nav-pill-border: var(--nav-pill-border-dark);
+        --nav-pill-inset: var(--nav-pill-inset-dark);
+        --nav-pill-shadow: var(--nav-pill-shadow-dark);
         --nav-popover-bg: var(--nav-popover-bg-dark);
         --nav-popover-border: var(--nav-popover-border-dark);
         --nav-popover-shadow-color: var(--nav-popover-shadow-color-dark);
@@ -89,20 +174,39 @@
         --nav-hover-bg: var(--nav-hover-bg-dark);
         --nav-hover-border: var(--nav-hover-border-dark);
         --nav-hover-text: var(--nav-hover-text-dark);
-        --nav-active-bg: var(--nav-active-bg-dark);
+        --nav-active-start: var(--nav-active-start-dark);
+        --nav-active-end: var(--nav-active-end-dark);
         --nav-active-border: var(--nav-active-border-dark);
         --nav-active-text: var(--nav-active-text-dark);
       }
     }
 
     &:has(> head > meta[name="color-scheme"][content="dark"]) {
-      --nav-top-bg: var(--nav-top-bg-dark);
-      --nav-bottom-bg: var(--nav-bottom-bg-dark);
+      --nav-base-bg: var(--nav-base-bg-dark);
+      --nav-top-glass: var(--nav-top-glass-dark);
+      --nav-bottom-glass: var(--nav-bottom-glass-dark);
+      --nav-blob-a: var(--nav-blob-a-dark);
+      --nav-blob-b: var(--nav-blob-b-dark);
+      --nav-blob-c: var(--nav-blob-c-dark);
       --nav-border: var(--nav-border-dark);
       --nav-sub-border: var(--nav-sub-border-dark);
       --nav-shadow-color: var(--nav-shadow-color-dark);
-      --nav-surface: var(--nav-surface-dark);
-      --nav-surface-border: var(--nav-surface-border-dark);
+      --brand-glass-start: var(--brand-glass-start-dark);
+      --brand-glass-end: var(--brand-glass-end-dark);
+      --brand-glass-border: var(--brand-glass-border-dark);
+      --brand-inset-top: var(--brand-inset-top-dark);
+      --brand-inset-bottom: var(--brand-inset-bottom-dark);
+      --brand-inset-glow: var(--brand-inset-glow-dark);
+      --brand-outer-shadow: var(--brand-outer-shadow-dark);
+      --brand-sheen: var(--brand-sheen-dark);
+      --tagline-c1: var(--tagline-c1-dark);
+      --tagline-c2: var(--tagline-c2-dark);
+      --tagline-c3: var(--tagline-c3-dark);
+      --tagline-c4: var(--tagline-c4-dark);
+      --nav-pill-bg: var(--nav-pill-bg-dark);
+      --nav-pill-border: var(--nav-pill-border-dark);
+      --nav-pill-inset: var(--nav-pill-inset-dark);
+      --nav-pill-shadow: var(--nav-pill-shadow-dark);
       --nav-popover-bg: var(--nav-popover-bg-dark);
       --nav-popover-border: var(--nav-popover-border-dark);
       --nav-popover-shadow-color: var(--nav-popover-shadow-color-dark);
@@ -112,7 +216,8 @@
       --nav-hover-bg: var(--nav-hover-bg-dark);
       --nav-hover-border: var(--nav-hover-border-dark);
       --nav-hover-text: var(--nav-hover-text-dark);
-      --nav-active-bg: var(--nav-active-bg-dark);
+      --nav-active-start: var(--nav-active-start-dark);
+      --nav-active-end: var(--nav-active-end-dark);
       --nav-active-border: var(--nav-active-border-dark);
       --nav-active-text: var(--nav-active-text-dark);
     }
@@ -120,13 +225,31 @@
 
   /* Modern automatic light-dark() resolution keyed to computed color-scheme */
   @supports (color: light-dark(white, black)) {
-    --nav-top-bg: light-dark(var(--nav-top-bg-light), var(--nav-top-bg-dark));
-    --nav-bottom-bg: light-dark(var(--nav-bottom-bg-light), var(--nav-bottom-bg-dark));
+    --nav-base-bg: light-dark(var(--nav-base-bg-light), var(--nav-base-bg-dark));
+    --nav-top-glass: light-dark(var(--nav-top-glass-light), var(--nav-top-glass-dark));
+    --nav-bottom-glass: light-dark(var(--nav-bottom-glass-light), var(--nav-bottom-glass-dark));
+    --nav-blob-a: light-dark(var(--nav-blob-a-light), var(--nav-blob-a-dark));
+    --nav-blob-b: light-dark(var(--nav-blob-b-light), var(--nav-blob-b-dark));
+    --nav-blob-c: light-dark(var(--nav-blob-c-light), var(--nav-blob-c-dark));
     --nav-border: light-dark(var(--nav-border-light), var(--nav-border-dark));
     --nav-sub-border: light-dark(var(--nav-sub-border-light), var(--nav-sub-border-dark));
     --nav-shadow-color: light-dark(var(--nav-shadow-color-light), var(--nav-shadow-color-dark));
-    --nav-surface: light-dark(var(--nav-surface-light), var(--nav-surface-dark));
-    --nav-surface-border: light-dark(var(--nav-surface-border-light), var(--nav-surface-border-dark));
+    --brand-glass-start: light-dark(var(--brand-glass-start-light), var(--brand-glass-start-dark));
+    --brand-glass-end: light-dark(var(--brand-glass-end-light), var(--brand-glass-end-dark));
+    --brand-glass-border: light-dark(var(--brand-glass-border-light), var(--brand-glass-border-dark));
+    --brand-inset-top: light-dark(var(--brand-inset-top-light), var(--brand-inset-top-dark));
+    --brand-inset-bottom: light-dark(var(--brand-inset-bottom-light), var(--brand-inset-bottom-dark));
+    --brand-inset-glow: light-dark(var(--brand-inset-glow-light), var(--brand-inset-glow-dark));
+    --brand-outer-shadow: light-dark(var(--brand-outer-shadow-light), var(--brand-outer-shadow-dark));
+    --brand-sheen: light-dark(var(--brand-sheen-light), var(--brand-sheen-dark));
+    --tagline-c1: light-dark(var(--tagline-c1-light), var(--tagline-c1-dark));
+    --tagline-c2: light-dark(var(--tagline-c2-light), var(--tagline-c2-dark));
+    --tagline-c3: light-dark(var(--tagline-c3-light), var(--tagline-c3-dark));
+    --tagline-c4: light-dark(var(--tagline-c4-light), var(--tagline-c4-dark));
+    --nav-pill-bg: light-dark(var(--nav-pill-bg-light), var(--nav-pill-bg-dark));
+    --nav-pill-border: light-dark(var(--nav-pill-border-light), var(--nav-pill-border-dark));
+    --nav-pill-inset: light-dark(var(--nav-pill-inset-light), var(--nav-pill-inset-dark));
+    --nav-pill-shadow: light-dark(var(--nav-pill-shadow-light), var(--nav-pill-shadow-dark));
     --nav-popover-bg: light-dark(var(--nav-popover-bg-light), var(--nav-popover-bg-dark));
     --nav-popover-border: light-dark(var(--nav-popover-border-light), var(--nav-popover-border-dark));
     --nav-popover-shadow-color: light-dark(
@@ -139,21 +262,26 @@
     --nav-hover-bg: light-dark(var(--nav-hover-bg-light), var(--nav-hover-bg-dark));
     --nav-hover-border: light-dark(var(--nav-hover-border-light), var(--nav-hover-border-dark));
     --nav-hover-text: light-dark(var(--nav-hover-text-light), var(--nav-hover-text-dark));
-    --nav-active-bg: light-dark(var(--nav-active-bg-light), var(--nav-active-bg-dark));
+    --nav-active-start: light-dark(var(--nav-active-start-light), var(--nav-active-start-dark));
+    --nav-active-end: light-dark(var(--nav-active-end-light), var(--nav-active-end-dark));
     --nav-active-border: light-dark(var(--nav-active-border-light), var(--nav-active-border-dark));
     --nav-active-text: light-dark(var(--nav-active-text-light), var(--nav-active-text-dark));
   }
 
-  --nav-shadow: 0 6px 24px -12px var(--nav-shadow-color);
-  --nav-popover-shadow: 0 22px 48px -16px var(--nav-popover-shadow-color);
+  --nav-shadow: 0 10px 30px -14px var(--nav-shadow-color);
+  --nav-popover-shadow: 0 24px 52px -16px var(--nav-popover-shadow-color);
 }
+
+/* ==========================================================================
+ * OUTER STICKY NAVBAR + AMBIENT MIXING GRADIENT BACKDROP
+ * ========================================================================== */
 
 .edunexus-navbar {
   position: sticky;
   inset-block-start: 0;
   z-index: 50;
   inline-size: 100%;
-  border-block-end: 1px solid var(--nav-border);
+  background-color: var(--nav-base-bg);
   box-shadow: var(--nav-shadow);
 }
 
@@ -165,12 +293,182 @@
   animation: none !important;
 }
 
+/* Clipped decorative gradient-mixing canvas behind both tiers (never clips popovers) */
+.edunexus-navbar-ambient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.edunexus-ambient-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(36px);
+  opacity: 0.9;
+}
+
+.edunexus-ambient-blob-a {
+  inset-block-start: -85%;
+  inset-inline-start: -8%;
+  inline-size: 46%;
+  block-size: 260%;
+  background: radial-gradient(circle at center, var(--nav-blob-a) 0%, transparent 72%);
+}
+
+.edunexus-ambient-blob-b {
+  inset-block-start: -70%;
+  inset-inline-start: 30%;
+  inline-size: 44%;
+  block-size: 250%;
+  background: radial-gradient(circle at center, var(--nav-blob-b) 0%, transparent 72%);
+}
+
+.edunexus-ambient-blob-c {
+  inset-block-start: -80%;
+  inset-inline-end: -8%;
+  inline-size: 42%;
+  block-size: 260%;
+  background: radial-gradient(circle at center, var(--nav-blob-c) 0%, transparent 72%);
+}
+
+/* Bottom luminous gradient hairline edge */
+.edunexus-navbar-edge {
+  position: relative;
+  z-index: 2;
+  inline-size: 100%;
+  block-size: 2px;
+  overflow: hidden;
+  pointer-events: none;
+  background-color: var(--nav-border);
+}
+
+.edunexus-navbar-edge-track {
+  display: block;
+  inline-size: 200%;
+  block-size: 100%;
+  background-image: linear-gradient(
+    90deg,
+    #06b6d4 0%,
+    #3b82f6 25%,
+    #8b5cf6 50%,
+    #ec4899 75%,
+    #06b6d4 100%
+  );
+  opacity: 0.78;
+}
+
+/* Compositor-only mixing animations (opt-in strictly under prefers-reduced-motion: no-preference) */
+@keyframes edunexus-blob-mix-a {
+  0% {
+    transform: translate3d(-4%, -6%, 0) scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate3d(26%, 10%, 0) scale(1.16);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(10%, -8%, 0) scale(1.04);
+    opacity: 0.9;
+  }
+}
+
+@keyframes edunexus-blob-mix-b {
+  0% {
+    transform: translate3d(6%, 8%, 0) scale(1.06);
+    opacity: 0.92;
+  }
+  50% {
+    transform: translate3d(-18%, -10%, 0) scale(1.18);
+    opacity: 0.78;
+  }
+  100% {
+    transform: translate3d(16%, 6%, 0) scale(0.98);
+    opacity: 0.96;
+  }
+}
+
+@keyframes edunexus-blob-mix-c {
+  0% {
+    transform: translate3d(4%, -4%, 0) scale(1);
+    opacity: 0.82;
+  }
+  50% {
+    transform: translate3d(-24%, 10%, 0) scale(1.14);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(-8%, -6%, 0) scale(1.05);
+    opacity: 0.88;
+  }
+}
+
+@keyframes edunexus-edge-flow {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes edunexus-brand-sheen-sweep {
+  0%,
+  58% {
+    transform: translate3d(-140%, 0, 0) skewX(-20deg);
+    opacity: 0;
+  }
+  66% {
+    opacity: 0.9;
+  }
+  84% {
+    transform: translate3d(240%, 0, 0) skewX(-20deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(240%, 0, 0) skewX(-20deg);
+    opacity: 0;
+  }
+}
+
+@keyframes edunexus-tagline-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 240% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .edunexus-ambient-blob-a {
+    animation: edunexus-blob-mix-a 14s ease-in-out infinite alternate;
+  }
+
+  .edunexus-ambient-blob-b {
+    animation: edunexus-blob-mix-b 18s ease-in-out infinite alternate;
+  }
+
+  .edunexus-ambient-blob-c {
+    animation: edunexus-blob-mix-c 16s ease-in-out infinite alternate;
+  }
+
+  .edunexus-navbar-edge-track {
+    animation: edunexus-edge-flow 12s linear infinite;
+  }
+}
+
 /* ==========================================================================
- * 1. TOP PART (Brand Home Button on Left | Auth + Theme Toggle on Right)
+ * 1. TOP PART (Reduced Side Margins | Brand Glass Pill Left | Auth + Theme Right)
  * ========================================================================== */
 
 .edunexus-navbar-top {
-  background-color: var(--nav-top-bg);
+  position: relative;
+  z-index: 2;
+  background-color: var(--nav-top-glass);
+  backdrop-filter: blur(18px) saturate(165%);
   border-block-end: 1px solid var(--nav-sub-border);
 }
 
@@ -178,22 +476,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.75rem;
   block-size: 4rem;
-  max-inline-size: 80rem;
-  margin-inline: auto;
-  padding-inline: 1rem;
+  inline-size: 100%;
+  padding-inline: 0.75rem;
 }
 
 @media (min-width: 640px) {
   .edunexus-navbar-top-inner {
-    padding-inline: 1.5rem;
+    padding-inline: 1rem;
   }
 }
 
 @media (min-width: 1024px) {
   .edunexus-navbar-top-inner {
-    padding-inline: 2rem;
+    padding-inline: 1.5rem;
   }
 }
 
@@ -215,14 +512,14 @@
 .edunexus-top-right-left {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
 }
 
 .edunexus-top-divider {
   display: block;
   inline-size: 1px;
   block-size: 1.5rem;
-  background-color: var(--nav-border);
+  background-image: linear-gradient(to bottom, transparent, var(--nav-border), transparent);
   flex-shrink: 0;
 }
 
@@ -231,38 +528,72 @@
   align-items: center;
 }
 
-/* Brand Home Page Button (powered by /EduNexus.png) */
+/* Brand Home Button: Glass Color, Layered Inner Shadow & Animated Sheen + Tagline */
 .edunexus-home-link {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.625rem;
-  padding: 0.25rem 0.625rem 0.25rem 0.25rem;
-  border-radius: 0.875rem;
-  border: 1px solid transparent;
+  padding: 0.28rem 0.85rem 0.28rem 0.3rem;
+  border-radius: 9999px;
+  border: 1px solid var(--brand-glass-border);
+  background-image: linear-gradient(135deg, var(--brand-glass-start), var(--brand-glass-end));
+  backdrop-filter: blur(16px) saturate(180%);
+  box-shadow:
+    inset 0 1.5px 1px var(--brand-inset-top),
+    inset 0 -4px 10px var(--brand-inset-bottom),
+    inset 0 0 14px var(--brand-inset-glow),
+    0 6px 18px -8px var(--brand-outer-shadow);
   text-decoration: none;
   white-space: nowrap;
   transition:
-    background-color 180ms ease,
-    border-color 180ms ease;
+    border-color 180ms ease,
+    box-shadow 200ms ease;
+}
+
+/* Clipped inner glass sheen overlay (never clips the parent focus-visible outline) */
+.edunexus-home-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.edunexus-home-sheen::before {
+  content: "";
+  position: absolute;
+  inset-block: -20%;
+  inset-inline-start: 0;
+  inline-size: 38%;
+  background-image: linear-gradient(90deg, transparent, var(--brand-sheen), transparent);
+  opacity: 0;
 }
 
 .edunexus-home-link:hover {
-  background-color: var(--nav-hover-bg);
-  border-color: var(--nav-active-border);
+  border-color: var(--nav-hover-border);
+  box-shadow:
+    inset 0 1.5px 1.5px var(--brand-inset-top),
+    inset 0 -5px 12px var(--brand-inset-bottom),
+    inset 0 0 18px var(--brand-inset-glow),
+    0 10px 24px -8px var(--brand-outer-shadow);
 }
 
 .edunexus-home-logo-frame {
   position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  inline-size: 2.5rem;
-  block-size: 2.5rem;
+  inline-size: 2.35rem;
+  block-size: 2.35rem;
   flex: none;
   overflow: hidden;
-  border-radius: 0.7rem;
-  border: 1px solid rgba(56, 189, 248, 0.45);
-  box-shadow: 0 4px 12px -4px rgba(14, 165, 233, 0.45);
+  border-radius: 9999px;
+  border: 1px solid rgba(56, 189, 248, 0.55);
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.45),
+    0 4px 12px -4px rgba(14, 165, 233, 0.55);
 }
 
 .edunexus-home-logo-img {
@@ -272,13 +603,78 @@
   object-fit: cover;
 }
 
+.edunexus-brand-copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.edunexus-brand-title {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--nav-text-strong);
+}
+
+.edunexus-brand-accent {
+  background-image: linear-gradient(95deg, #06b6d4 0%, #3b82f6 52%, #8b5cf6 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Vibrant, Accessible Animated Color Tagline Text */
+.edunexus-home-tagline {
+  margin-block-start: 0.22rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  background-image: linear-gradient(
+    90deg,
+    var(--tagline-c1) 0%,
+    var(--tagline-c2) 25%,
+    var(--tagline-c3) 50%,
+    var(--tagline-c4) 75%,
+    var(--tagline-c1) 100%
+  );
+  background-size: 240% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
 @media (max-width: 479px) {
   .edunexus-home-tagline {
     display: none;
   }
+
+  .edunexus-home-link {
+    padding-inline-end: 0.65rem;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  .edunexus-home-link {
+    transition:
+      transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 180ms ease,
+      box-shadow 200ms ease;
+  }
+
+  .edunexus-home-link:hover {
+    transform: translate3d(0, -1px, 0);
+  }
+
+  .edunexus-home-sheen::before {
+    animation: edunexus-brand-sheen-sweep 7.5s ease-in-out infinite;
+  }
+
+  .edunexus-home-tagline {
+    animation: edunexus-tagline-flow 6.5s linear infinite;
+  }
+
   .edunexus-home-logo-frame {
     transition:
       transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -287,13 +683,15 @@
   }
 
   .edunexus-home-link:hover .edunexus-home-logo-frame {
-    transform: translate3d(0, -1px, 0) scale(1.06);
-    border-color: rgba(34, 211, 238, 0.85);
-    box-shadow: 0 8px 20px -6px rgba(139, 92, 246, 0.6);
+    transform: scale(1.07) rotate(-3deg);
+    border-color: rgba(34, 211, 238, 0.9);
+    box-shadow:
+      inset 0 1px 2px rgba(255, 255, 255, 0.55),
+      0 8px 20px -6px rgba(139, 92, 246, 0.65);
   }
 
   .edunexus-home-link:active .edunexus-home-logo-frame {
-    transform: scale(0.97);
+    transform: scale(0.96);
   }
 }
 
@@ -303,7 +701,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.45rem 0.9rem;
+  padding: 0.44rem 0.95rem;
   border-radius: 9999px;
   font-size: 0.8125rem;
   font-weight: 700;
@@ -314,24 +712,32 @@
 }
 
 .edunexus-auth-register {
-  border: 1px solid rgba(125, 211, 252, 0.5);
+  border: 1px solid rgba(125, 211, 252, 0.58);
   background-image: linear-gradient(135deg, #06b6d4 0%, #3b82f6 52%, #7c3aed 100%);
   color: #ffffff;
-  box-shadow: 0 6px 18px -6px rgba(14, 165, 233, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.34),
+    0 6px 18px -6px rgba(14, 165, 233, 0.58);
   transition:
     filter 160ms ease,
     box-shadow 180ms ease;
 }
 
 .edunexus-auth-register:hover {
-  filter: brightness(1.07);
-  box-shadow: 0 8px 22px -6px rgba(124, 58, 237, 0.6);
+  filter: brightness(1.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.44),
+    0 9px 22px -6px rgba(124, 58, 237, 0.68);
 }
 
 .edunexus-auth-login {
-  border: 1px solid var(--nav-surface-border);
-  background-color: var(--nav-surface);
+  border: 1px solid var(--nav-pill-border);
+  background-color: var(--nav-pill-bg);
   color: var(--nav-text-strong);
+  backdrop-filter: blur(10px);
+  box-shadow:
+    inset 0 1px 0 var(--nav-pill-inset),
+    0 2px 6px var(--nav-pill-shadow);
   transition:
     background-color 160ms ease,
     border-color 160ms ease,
@@ -347,7 +753,7 @@
 @media (max-width: 479px) {
   .edunexus-auth-register,
   .edunexus-auth-login {
-    padding: 0.4rem 0.65rem;
+    padding: 0.38rem 0.65rem;
     font-size: 0.75rem;
   }
 }
@@ -357,13 +763,17 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  inline-size: 2.35rem;
-  block-size: 2.35rem;
+  inline-size: 2.3rem;
+  block-size: 2.3rem;
   padding: 0;
   border-radius: 9999px;
-  border: 1px solid var(--nav-surface-border);
-  background-color: var(--nav-surface);
+  border: 1px solid var(--nav-pill-border);
+  background-color: var(--nav-pill-bg);
   color: var(--nav-text-strong);
+  backdrop-filter: blur(10px);
+  box-shadow:
+    inset 0 1px 0 var(--nav-pill-inset),
+    0 2px 6px var(--nav-pill-shadow);
   cursor: pointer;
   transition:
     background-color 160ms ease,
@@ -411,12 +821,15 @@
 }
 
 /* ==========================================================================
- * 2. BOTTOM PART (h-12 / 3rem / 48px — Left-Aligned Navigation Menu)
+ * 2. BOTTOM PART (Slim 38px / h - 10px Bar — Left-Aligned Enhanced Pill Menu)
  * ========================================================================== */
 
 .edunexus-navbar-bottom {
-  background-color: var(--nav-bottom-bg);
-  block-size: 3rem;
+  position: relative;
+  z-index: 2;
+  background-color: var(--nav-bottom-glass);
+  min-block-size: 2.375rem;
+  block-size: 2.375rem;
 }
 
 .edunexus-navbar-bottom-inner {
@@ -424,20 +837,19 @@
   align-items: center;
   justify-content: flex-start;
   block-size: 100%;
-  max-inline-size: 80rem;
-  margin-inline: auto;
-  padding-inline: 1rem;
+  inline-size: 100%;
+  padding-inline: 0.75rem;
 }
 
 @media (min-width: 640px) {
   .edunexus-navbar-bottom-inner {
-    padding-inline: 1.5rem;
+    padding-inline: 1rem;
   }
 }
 
 @media (min-width: 1024px) {
   .edunexus-navbar-bottom-inner {
-    padding-inline: 2rem;
+    padding-inline: 1.5rem;
   }
 }
 
@@ -458,14 +870,18 @@
   anchor-name: --edunexus-menu-button;
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  padding: 0.4rem 0.85rem;
+  gap: 0.4rem;
+  padding: 0.28rem 0.85rem;
   border-radius: 9999px;
-  border: 1px solid var(--nav-surface-border);
-  background-color: var(--nav-surface);
+  border: 1px solid var(--nav-pill-border);
+  background-color: var(--nav-pill-bg);
   color: var(--nav-text-strong);
-  font-size: 0.8125rem;
+  box-shadow:
+    inset 0 1px 0 var(--nav-pill-inset),
+    0 2px 6px var(--nav-pill-shadow);
+  font-size: 0.78rem;
   font-weight: 700;
+  line-height: 1.2;
   cursor: pointer;
   transition:
     background-color 160ms ease,
@@ -484,22 +900,23 @@
   position: fixed;
   inset: auto;
   /* Fallback offsets for browsers without CSS Anchor Positioning */
-  inset-block-start: 7.25rem;
+  inset-block-start: 6.5rem;
   inset-block-start: anchor(--edunexus-menu-button bottom);
-  inset-inline-start: 1rem;
+  inset-inline-start: 0.75rem;
   inset-inline-start: anchor(--edunexus-menu-button left);
   inline-size: min(84dvw, 22rem);
-  max-inline-size: calc(100dvw - 2rem);
+  max-inline-size: calc(100dvw - 1.5rem);
   block-size: fit-content;
-  max-block-size: calc(100dvh - 8rem);
+  max-block-size: calc(100dvh - 7.25rem);
   margin: 0;
-  margin-block-start: 0.5rem;
+  margin-block-start: 0.45rem;
   padding: 0.625rem;
   list-style: none;
   overflow: auto;
   border-radius: 1.25rem;
   border: 1px solid var(--nav-popover-border);
   background-color: var(--nav-popover-bg);
+  backdrop-filter: blur(18px) saturate(170%);
   color: var(--nav-text-strong);
   box-shadow: var(--nav-popover-shadow);
 }
@@ -507,7 +924,7 @@
 .edunexus-site-menu[popover]:is(:popover-open, .\:popover-open) {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.3rem;
 }
 
 /* Entry / Exit Animation for Top-Layer Popovers (separate transition-behavior: allow-discrete) */
@@ -552,51 +969,64 @@
   }
 }
 
-/* Nav Links & Dropdown Trigger */
+/* Enhanced Pill-Shaped Menu Buttons */
 .edunexus-nav-link,
 .edunexus-dropdown-trigger {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.4rem;
   inline-size: 100%;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.65rem;
-  border: 1px solid transparent;
-  background: transparent;
+  padding: 0.42rem 0.9rem;
+  border-radius: 9999px;
+  border: 1px solid var(--nav-pill-border);
+  background-color: var(--nav-pill-bg);
   color: var(--nav-text);
-  font-size: 0.875rem;
+  box-shadow:
+    inset 0 1px 0 var(--nav-pill-inset),
+    0 1px 3px var(--nav-pill-shadow);
+  font-size: 0.8125rem;
   font-weight: 600;
+  line-height: 1.15;
   text-decoration: none;
   cursor: pointer;
   transition:
     background-color 160ms ease,
     color 160ms ease,
-    border-color 160ms ease;
+    border-color 160ms ease,
+    box-shadow 180ms ease;
 }
 
 .edunexus-nav-link:hover,
 .edunexus-dropdown-trigger:hover {
   background-color: var(--nav-hover-bg);
+  border-color: var(--nav-hover-border);
   color: var(--nav-hover-text);
+  box-shadow:
+    inset 0 1px 0 var(--nav-pill-inset),
+    0 4px 12px -4px rgba(14, 165, 233, 0.38);
 }
 
-/* Active Current Page Styling (WCAG 1.4.1 non-color affordance: pill border + bottom indicator bar) */
+/* Active Current Page Pill Styling (WCAG 1.4.1 non-color affordance: dot + strong gradient pill border) */
 .edunexus-nav-link[aria-current="page"] {
-  background-color: var(--nav-active-bg);
+  background-image: linear-gradient(135deg, var(--nav-active-start), var(--nav-active-end));
   border-color: var(--nav-active-border);
   color: var(--nav-active-text);
   font-weight: 700;
+  box-shadow:
+    inset 0 1px 0 var(--nav-pill-inset),
+    0 4px 14px -5px rgba(14, 165, 233, 0.52);
 }
 
 .edunexus-nav-link[aria-current="page"]::after {
   content: "";
-  position: absolute;
-  inset-inline: 0.7rem;
-  inset-block-end: 0.12rem;
-  block-size: 2.5px;
+  inline-size: 0.375rem;
+  block-size: 0.375rem;
+  margin-inline-start: 0.1rem;
   border-radius: 9999px;
-  background-image: linear-gradient(90deg, #06b6d4, #6366f1);
+  background-image: linear-gradient(135deg, #06b6d4, #8b5cf6);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
+  flex: none;
 }
 
 /* Icon Layout & Compositor-Only Hover Micro-Animations */
@@ -609,6 +1039,28 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  .edunexus-nav-link,
+  .edunexus-dropdown-trigger,
+  .edunexus-auth-register,
+  .edunexus-auth-login,
+  .edunexus-theme-toggle {
+    transition:
+      transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 160ms ease,
+      color 160ms ease,
+      border-color 160ms ease,
+      box-shadow 180ms ease,
+      filter 160ms ease;
+  }
+
+  .edunexus-navbar.is-wide .edunexus-nav-link:hover,
+  .edunexus-navbar.is-wide .edunexus-dropdown-trigger:hover,
+  .edunexus-auth-register:hover,
+  .edunexus-auth-login:hover,
+  .edunexus-theme-toggle:hover {
+    transform: translate3d(0, -1px, 0);
+  }
+
   .edunexus-nav-icon,
   .edunexus-auth-icon,
   .edunexus-theme-icon {
@@ -627,7 +1079,7 @@
   }
 
   .edunexus-theme-toggle:hover .edunexus-theme-icon {
-    transform: rotate(-14deg) scale(1.1);
+    transform: rotate(-16deg) scale(1.1);
   }
 
   .edunexus-theme-toggle:active .edunexus-theme-icon {
@@ -646,11 +1098,11 @@
 /* Nested Submenu List — Narrow Inline Disclosure by Default */
 .edunexus-dropdown-list {
   list-style: none;
-  margin: 0.2rem 0 0.25rem;
+  margin: 0.25rem 0 0.25rem;
   padding: 0.25rem 0 0.25rem 0.75rem;
-  border-inline-start: 2px solid rgba(14, 165, 233, 0.28);
+  border-inline-start: 2px solid rgba(14, 165, 233, 0.32);
   display: grid;
-  gap: 0.2rem;
+  gap: 0.25rem;
 }
 
 .edunexus-dropdown-list[hidden] {
@@ -686,8 +1138,8 @@
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  padding: 0.55rem 0.75rem;
-  border-radius: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.85rem;
   text-decoration: none;
   color: var(--nav-sub-text);
   transition:
@@ -700,7 +1152,20 @@
   color: var(--nav-hover-text);
 }
 
-/* Wide Layout: Inline Navigation Row inside h-12 Bottom Bar */
+.edunexus-sub-icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2rem;
+  block-size: 2rem;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background-image: linear-gradient(135deg, var(--nav-active-start), var(--nav-active-end));
+  border: 1px solid var(--nav-border);
+  color: var(--nav-hover-text);
+}
+
+/* Wide Layout: Inline Enhanced Pill Navigation Row inside Slim 38px Bottom Bar */
 .edunexus-navbar.is-wide .edunexus-menu-button {
   display: none;
 }
@@ -710,7 +1175,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.4rem;
   inline-size: auto;
   max-inline-size: none;
   block-size: auto;
@@ -721,6 +1186,7 @@
   border: 0;
   border-radius: 0;
   background: transparent;
+  backdrop-filter: none;
   box-shadow: none;
   opacity: 1;
   translate: none;
@@ -733,7 +1199,7 @@
 .edunexus-navbar.is-wide .edunexus-nav-link,
 .edunexus-navbar.is-wide .edunexus-dropdown-trigger {
   inline-size: auto;
-  padding: 0.38rem 0.75rem;
+  padding: 0.28rem 0.82rem;
 }
 
 /* Wide Floating Submenu Popover with CSS Anchor Positioning & Hover Bridge */
@@ -744,15 +1210,18 @@
   inset: auto;
   height: auto;
   inline-size: max-content;
-  min-inline-size: 16rem;
+  min-inline-size: 16.5rem;
   margin: 0;
-  margin-block-start: 0.5rem;
+  margin-block-start: 0.45rem;
   padding: 0.5rem;
-  border-radius: 1rem;
+  border-radius: 1.1rem;
   border: 1px solid var(--nav-popover-border);
   border-inline-start-width: 1px;
   background-color: var(--nav-popover-bg);
-  box-shadow: var(--nav-popover-shadow);
+  backdrop-filter: blur(18px) saturate(170%);
+  box-shadow:
+    inset 0 1px 0 var(--nav-pill-inset),
+    var(--nav-popover-shadow);
   overflow: visible;
 }
 
@@ -761,7 +1230,7 @@
   position: absolute;
   inset-inline: 0;
   inset-block-end: 100%;
-  block-size: 0.5rem;
+  block-size: 0.45rem;
 }
 
 .edunexus-navbar.is-wide .edunexus-dropdown-list:not(:is(:popover-open, .\:popover-open)) {
@@ -794,6 +1263,21 @@
 }
 
 @media (forced-colors: active) {
+  .edunexus-navbar-ambient,
+  .edunexus-home-sheen {
+    display: none;
+  }
+
+  .edunexus-brand-accent {
+    background-image: none;
+    color: LinkText;
+  }
+
+  .edunexus-home-tagline {
+    background-image: none;
+    color: CanvasText;
+  }
+
   .edunexus-nav-link[aria-current="page"] {
     border: 2px solid Highlight;
   }
@@ -802,10 +1286,14 @@
     background: Highlight;
   }
 
+  .edunexus-home-link,
+  .edunexus-nav-link,
+  .edunexus-dropdown-trigger,
   .edunexus-site-menu,
   .edunexus-dropdown-list,
   .edunexus-theme-toggle,
-  .edunexus-auth-login {
+  .edunexus-auth-login,
+  .edunexus-auth-register {
     border: 1px solid CanvasText;
   }
 }

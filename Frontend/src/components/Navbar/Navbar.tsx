@@ -380,10 +380,17 @@ export const Navbar = memo(function Navbar({
 
   return (
     <div ref={barRef} className={`edunexus-navbar ${className}`.trim()}>
-      {/* Top Part: space-between Left (Brand Home Button) and Right (Auth + Theme Toggle) */}
+      {/* Compositor-animated dual-theme ambient gradient mixing backdrop */}
+      <div className="edunexus-navbar-ambient" aria-hidden="true">
+        <span className="edunexus-ambient-blob edunexus-ambient-blob-a" />
+        <span className="edunexus-ambient-blob edunexus-ambient-blob-b" />
+        <span className="edunexus-ambient-blob edunexus-ambient-blob-c" />
+      </div>
+
+      {/* Top Part: space-between Left (Glass Brand Home Button) and Right (Auth + Theme Toggle) */}
       <div className="edunexus-navbar-top" data-nav-part="top">
         <div className="edunexus-navbar-top-inner">
-          {/* Top-Left Part: Brand Home Button */}
+          {/* Top-Left Part: Brand Home Button with Glass Tint, Inner Shadow & Animated Tagline */}
           <div className="edunexus-top-left" data-nav-part="top-left">
             <a
               href="#home"
@@ -392,27 +399,23 @@ export const Navbar = memo(function Navbar({
               aria-label="EduNexus — Go to Home page"
               className="edunexus-home-link"
             >
+              <span className="edunexus-home-sheen" aria-hidden="true" />
               <span className="edunexus-home-logo-frame">
                 <img
                   src="/EduNexus.png"
                   alt=""
-                  width={40}
-                  height={40}
+                  width={38}
+                  height={38}
                   decoding="async"
                   fetchPriority="high"
                   className="edunexus-home-logo-img"
                 />
               </span>
-              <span className="flex flex-col leading-none">
-                <span className="text-base font-extrabold tracking-tight text-slate-900 dark:text-white">
-                  Edu
-                  <span className="bg-linear-to-r from-cyan-500 via-sky-500 to-violet-500 bg-clip-text text-transparent dark:from-cyan-300 dark:via-sky-300 dark:to-fuchsia-400">
-                    Nexus
-                  </span>
+              <span className="edunexus-brand-copy">
+                <span className="edunexus-brand-title">
+                  Edu<span className="edunexus-brand-accent">Nexus</span>
                 </span>
-                <span className="edunexus-home-tagline mt-1 text-[10px] font-semibold tracking-wide text-slate-500 dark:text-slate-400">
-                  Learn • Practice • Create • Excel
-                </span>
+                <span className="edunexus-home-tagline">Learn • Practice • Create • Excel</span>
               </span>
             </a>
           </div>
@@ -462,7 +465,7 @@ export const Navbar = memo(function Navbar({
         </div>
       </div>
 
-      {/* Bottom Part: h-12 (48px / 3rem) for left-aligned Navigation Menu */}
+      {/* Bottom Part: Slim (38px / h - 10px) Bar for Left-Aligned Pill Navigation Menu */}
       <div className="edunexus-navbar-bottom" data-nav-part="bottom">
         <div ref={bottomInnerRef} className="edunexus-navbar-bottom-inner">
           <nav className="edunexus-site-nav" aria-label="Primary navigation">
@@ -516,7 +519,7 @@ export const Navbar = memo(function Navbar({
                         onClick={handleNavLinkClick}
                         className="edunexus-sub-link"
                       >
-                        <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-cyan-500/12 text-cyan-600 dark:bg-cyan-400/15 dark:text-cyan-300">
+                        <span className="edunexus-sub-icon-badge">
                           <NavIcon name={item.icon} />
                         </span>
                         <span className="flex flex-col leading-tight">
@@ -572,6 +575,11 @@ export const Navbar = memo(function Navbar({
             </ul>
           </nav>
         </div>
+      </div>
+
+      {/* Subtle luminous gradient edge accent along the bottom of the Navbar */}
+      <div className="edunexus-navbar-edge" aria-hidden="true">
+        <span className="edunexus-navbar-edge-track" />
       </div>
     </div>
   )
