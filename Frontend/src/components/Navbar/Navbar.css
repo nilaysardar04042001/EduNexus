@@ -93,45 +93,68 @@
   --toggle-glow-light: rgba(99, 102, 241, 0.35);
   --toggle-glow-dark: rgba(251, 191, 36, 0.38);
 
-  /* Pill Dock Rail, Button Surface, Hover & Active Tokens */
-  --nav-bottom-top-light: rgba(255, 255, 255, 0.72);
-  --nav-bottom-top-dark: rgba(10, 22, 54, 0.78);
-  --nav-bottom-end-light: rgba(241, 246, 255, 0.64);
-  --nav-bottom-end-dark: rgba(5, 13, 34, 0.74);
+  /* Pill Dock Rail, Paint-Mixing Palette (Sky, Green, Yellow, Orange, Red) & Sculpted Button Tokens */
+  --paint-sky-light: rgba(14, 165, 233, 0.72);
+  --paint-sky-dark: rgba(14, 165, 233, 0.62);
+  --paint-green-light: rgba(34, 197, 94, 0.68);
+  --paint-green-dark: rgba(22, 163, 74, 0.58);
+  --paint-yellow-light: rgba(250, 204, 21, 0.76);
+  --paint-yellow-dark: rgba(234, 179, 8, 0.52);
+  --paint-orange-light: rgba(249, 115, 22, 0.72);
+  --paint-orange-dark: rgba(234, 88, 12, 0.6);
+  --paint-red-light: rgba(239, 68, 68, 0.68);
+  --paint-red-dark: rgba(220, 38, 38, 0.58);
 
-  --nav-dock-bg-light: rgba(255, 255, 255, 0.54);
-  --nav-dock-bg-dark: rgba(4, 10, 28, 0.56);
-  --nav-dock-border-light: rgba(56, 189, 248, 0.34);
-  --nav-dock-border-dark: rgba(56, 189, 248, 0.28);
-  --nav-dock-inset-top-light: rgba(15, 23, 42, 0.08);
-  --nav-dock-inset-top-dark: rgba(0, 0, 0, 0.55);
-  --nav-dock-inset-bottom-light: rgba(255, 255, 255, 0.9);
-  --nav-dock-inset-bottom-dark: rgba(148, 163, 184, 0.14);
+  --nav-bottom-veil-light: rgba(255, 255, 255, 0.24);
+  --nav-bottom-veil-dark: rgba(4, 10, 26, 0.56);
 
-  --nav-pill-bg-light: rgba(255, 255, 255, 0.78);
-  --nav-pill-bg-dark: rgba(15, 26, 56, 0.72);
-  --nav-pill-hover-start-light: rgba(255, 255, 255, 0.96);
-  --nav-pill-hover-start-dark: rgba(20, 38, 82, 0.92);
-  --nav-pill-hover-end-light: rgba(224, 242, 254, 0.9);
-  --nav-pill-hover-end-dark: rgba(44, 28, 86, 0.88);
-  --nav-pill-border-light: rgba(148, 163, 184, 0.34);
-  --nav-pill-border-dark: rgba(148, 163, 184, 0.24);
-  --nav-pill-inset-light: rgba(255, 255, 255, 0.94);
-  --nav-pill-inset-dark: rgba(226, 232, 240, 0.18);
-  --nav-pill-shadow-light: rgba(15, 23, 42, 0.08);
-  --nav-pill-shadow-dark: rgba(0, 0, 0, 0.45);
+  --nav-dock-bg-light: rgba(255, 255, 255, 0.84);
+  --nav-dock-bg-dark: rgba(6, 13, 34, 0.84);
+  --nav-dock-inset-top-light: rgba(15, 23, 42, 0.1);
+  --nav-dock-inset-top-dark: rgba(0, 0, 0, 0.62);
+  --nav-dock-inset-bottom-light: rgba(255, 255, 255, 0.96);
+  --nav-dock-inset-bottom-dark: rgba(148, 163, 184, 0.18);
 
-  /* Subtle Per-Section Icon Accent Tints */
+  --nav-pill-bg-light: rgba(255, 255, 255, 0.9);
+  --nav-pill-bg-dark: rgba(13, 24, 54, 0.88);
+  --nav-pill-end-light: rgba(241, 245, 249, 0.86);
+  --nav-pill-end-dark: rgba(8, 17, 40, 0.86);
+  --nav-pill-hover-start-light: rgba(255, 255, 255, 0.98);
+  --nav-pill-hover-start-dark: rgba(22, 40, 86, 0.96);
+  --nav-pill-hover-end-light: rgba(240, 249, 255, 0.95);
+  --nav-pill-hover-end-dark: rgba(36, 26, 74, 0.94);
+  --nav-pill-border-light: rgba(148, 163, 184, 0.36);
+  --nav-pill-border-dark: rgba(148, 163, 184, 0.26);
+  --nav-pill-inset-light: rgba(255, 255, 255, 0.96);
+  --nav-pill-inset-dark: rgba(226, 232, 240, 0.22);
+  --nav-pill-shadow-light: rgba(15, 23, 42, 0.12);
+  --nav-pill-shadow-dark: rgba(0, 0, 0, 0.55);
+
+  /* 5-Color Paint-Harmonized Section Icon Medallions (Sky, Green, Yellow, Orange, Red) */
   --nav-ico-home-light: #0284c7;
   --nav-ico-home-dark: #38bdf8;
-  --nav-ico-courses-light: #7c3aed;
-  --nav-ico-courses-dark: #c084fc;
-  --nav-ico-practice-light: #059669;
-  --nav-ico-practice-dark: #34d399;
-  --nav-ico-projects-light: #d97706;
-  --nav-ico-projects-dark: #fbbf24;
-  --nav-ico-about-light: #db2777;
-  --nav-ico-about-dark: #f472b6;
+  --nav-ico-home-bg-light: rgba(14, 165, 233, 0.16);
+  --nav-ico-home-bg-dark: rgba(56, 189, 248, 0.2);
+
+  --nav-ico-courses-light: #15803d;
+  --nav-ico-courses-dark: #4ade80;
+  --nav-ico-courses-bg-light: rgba(34, 197, 94, 0.16);
+  --nav-ico-courses-bg-dark: rgba(74, 222, 128, 0.2);
+
+  --nav-ico-practice-light: #a16207;
+  --nav-ico-practice-dark: #facc15;
+  --nav-ico-practice-bg-light: rgba(234, 179, 8, 0.2);
+  --nav-ico-practice-bg-dark: rgba(250, 204, 21, 0.2);
+
+  --nav-ico-projects-light: #c2410c;
+  --nav-ico-projects-dark: #fb923c;
+  --nav-ico-projects-bg-light: rgba(249, 115, 22, 0.18);
+  --nav-ico-projects-bg-dark: rgba(251, 146, 60, 0.2);
+
+  --nav-ico-about-light: #b91c1c;
+  --nav-ico-about-dark: #fb7185;
+  --nav-ico-about-bg-light: rgba(239, 68, 68, 0.16);
+  --nav-ico-about-bg-dark: rgba(251, 113, 133, 0.2);
 
   --nav-popover-bg-light: rgba(255, 255, 255, 0.96);
   --nav-popover-bg-dark: rgba(7, 18, 46, 0.96);
@@ -140,10 +163,10 @@
   --nav-popover-shadow-color-light: rgba(2, 6, 23, 0.26);
   --nav-popover-shadow-color-dark: rgba(0, 0, 0, 0.78);
 
-  --nav-text-light: #1e293b;
-  --nav-text-dark: #e2e8f0;
-  --nav-text-strong-light: #0f172a;
-  --nav-text-strong-dark: #f8fafc;
+  --nav-text-light: #0f172a;
+  --nav-text-dark: #f1f5f9;
+  --nav-text-strong-light: #020617;
+  --nav-text-strong-dark: #ffffff;
   --nav-sub-text-light: #1e293b;
   --nav-sub-text-dark: #e2e8f0;
 
@@ -156,23 +179,26 @@
 
   --nav-active-start-light: #0284c7;
   --nav-active-start-dark: #06b6d4;
-  --nav-active-mid-light: #4f46e5;
+  --nav-active-mid-light: #2563eb;
   --nav-active-mid-dark: #3b82f6;
   --nav-active-end-light: #7c3aed;
   --nav-active-end-dark: #8b5cf6;
-  --nav-active-border-light: rgba(186, 230, 253, 0.75);
-  --nav-active-border-dark: rgba(165, 243, 252, 0.68);
-  --nav-active-glow-light: rgba(79, 70, 229, 0.45);
-  --nav-active-glow-dark: rgba(56, 189, 248, 0.5);
+  --nav-active-border-light: rgba(255, 255, 255, 0.85);
+  --nav-active-border-dark: rgba(186, 230, 253, 0.78);
+  --nav-active-glow-light: rgba(37, 99, 235, 0.52);
+  --nav-active-glow-dark: rgba(56, 189, 248, 0.58);
 
   /* Default (light) values for browsers without light-dark() */
   --nav-base-bg: var(--nav-base-bg-light);
   --nav-top-glass: var(--nav-top-glass-light);
   --nav-bottom-glass: var(--nav-bottom-glass-light);
-  --nav-bottom-top: var(--nav-bottom-top-light);
-  --nav-bottom-end: var(--nav-bottom-end-light);
+  --paint-sky: var(--paint-sky-light);
+  --paint-green: var(--paint-green-light);
+  --paint-yellow: var(--paint-yellow-light);
+  --paint-orange: var(--paint-orange-light);
+  --paint-red: var(--paint-red-light);
+  --nav-bottom-veil: var(--nav-bottom-veil-light);
   --nav-dock-bg: var(--nav-dock-bg-light);
-  --nav-dock-border: var(--nav-dock-border-light);
   --nav-dock-inset-top: var(--nav-dock-inset-top-light);
   --nav-dock-inset-bottom: var(--nav-dock-inset-bottom-light);
   --nav-blob-a: var(--nav-blob-a-light);
@@ -207,16 +233,22 @@
   --toggle-icon: var(--toggle-icon-light);
   --toggle-glow: var(--toggle-glow-light);
   --nav-pill-bg: var(--nav-pill-bg-light);
+  --nav-pill-end: var(--nav-pill-end-light);
   --nav-pill-hover-start: var(--nav-pill-hover-start-light);
   --nav-pill-hover-end: var(--nav-pill-hover-end-light);
   --nav-pill-border: var(--nav-pill-border-light);
   --nav-pill-inset: var(--nav-pill-inset-light);
   --nav-pill-shadow: var(--nav-pill-shadow-light);
   --nav-ico-home: var(--nav-ico-home-light);
+  --nav-ico-home-bg: var(--nav-ico-home-bg-light);
   --nav-ico-courses: var(--nav-ico-courses-light);
+  --nav-ico-courses-bg: var(--nav-ico-courses-bg-light);
   --nav-ico-practice: var(--nav-ico-practice-light);
+  --nav-ico-practice-bg: var(--nav-ico-practice-bg-light);
   --nav-ico-projects: var(--nav-ico-projects-light);
+  --nav-ico-projects-bg: var(--nav-ico-projects-bg-light);
   --nav-ico-about: var(--nav-ico-about-light);
+  --nav-ico-about-bg: var(--nav-ico-about-bg-light);
   --nav-popover-bg: var(--nav-popover-bg-light);
   --nav-popover-border: var(--nav-popover-border-light);
   --nav-popover-shadow-color: var(--nav-popover-shadow-color-light);
@@ -239,10 +271,13 @@
         --nav-base-bg: var(--nav-base-bg-dark);
         --nav-top-glass: var(--nav-top-glass-dark);
         --nav-bottom-glass: var(--nav-bottom-glass-dark);
-        --nav-bottom-top: var(--nav-bottom-top-dark);
-        --nav-bottom-end: var(--nav-bottom-end-dark);
+        --paint-sky: var(--paint-sky-dark);
+        --paint-green: var(--paint-green-dark);
+        --paint-yellow: var(--paint-yellow-dark);
+        --paint-orange: var(--paint-orange-dark);
+        --paint-red: var(--paint-red-dark);
+        --nav-bottom-veil: var(--nav-bottom-veil-dark);
         --nav-dock-bg: var(--nav-dock-bg-dark);
-        --nav-dock-border: var(--nav-dock-border-dark);
         --nav-dock-inset-top: var(--nav-dock-inset-top-dark);
         --nav-dock-inset-bottom: var(--nav-dock-inset-bottom-dark);
         --nav-blob-a: var(--nav-blob-a-dark);
@@ -277,16 +312,22 @@
         --toggle-icon: var(--toggle-icon-dark);
         --toggle-glow: var(--toggle-glow-dark);
         --nav-pill-bg: var(--nav-pill-bg-dark);
+        --nav-pill-end: var(--nav-pill-end-dark);
         --nav-pill-hover-start: var(--nav-pill-hover-start-dark);
         --nav-pill-hover-end: var(--nav-pill-hover-end-dark);
         --nav-pill-border: var(--nav-pill-border-dark);
         --nav-pill-inset: var(--nav-pill-inset-dark);
         --nav-pill-shadow: var(--nav-pill-shadow-dark);
         --nav-ico-home: var(--nav-ico-home-dark);
+        --nav-ico-home-bg: var(--nav-ico-home-bg-dark);
         --nav-ico-courses: var(--nav-ico-courses-dark);
+        --nav-ico-courses-bg: var(--nav-ico-courses-bg-dark);
         --nav-ico-practice: var(--nav-ico-practice-dark);
+        --nav-ico-practice-bg: var(--nav-ico-practice-bg-dark);
         --nav-ico-projects: var(--nav-ico-projects-dark);
+        --nav-ico-projects-bg: var(--nav-ico-projects-bg-dark);
         --nav-ico-about: var(--nav-ico-about-dark);
+        --nav-ico-about-bg: var(--nav-ico-about-bg-dark);
         --nav-popover-bg: var(--nav-popover-bg-dark);
         --nav-popover-border: var(--nav-popover-border-dark);
         --nav-popover-shadow-color: var(--nav-popover-shadow-color-dark);
@@ -308,10 +349,13 @@
       --nav-base-bg: var(--nav-base-bg-dark);
       --nav-top-glass: var(--nav-top-glass-dark);
       --nav-bottom-glass: var(--nav-bottom-glass-dark);
-      --nav-bottom-top: var(--nav-bottom-top-dark);
-      --nav-bottom-end: var(--nav-bottom-end-dark);
+      --paint-sky: var(--paint-sky-dark);
+      --paint-green: var(--paint-green-dark);
+      --paint-yellow: var(--paint-yellow-dark);
+      --paint-orange: var(--paint-orange-dark);
+      --paint-red: var(--paint-red-dark);
+      --nav-bottom-veil: var(--nav-bottom-veil-dark);
       --nav-dock-bg: var(--nav-dock-bg-dark);
-      --nav-dock-border: var(--nav-dock-border-dark);
       --nav-dock-inset-top: var(--nav-dock-inset-top-dark);
       --nav-dock-inset-bottom: var(--nav-dock-inset-bottom-dark);
       --nav-blob-a: var(--nav-blob-a-dark);
@@ -346,16 +390,22 @@
       --toggle-icon: var(--toggle-icon-dark);
       --toggle-glow: var(--toggle-glow-dark);
       --nav-pill-bg: var(--nav-pill-bg-dark);
+      --nav-pill-end: var(--nav-pill-end-dark);
       --nav-pill-hover-start: var(--nav-pill-hover-start-dark);
       --nav-pill-hover-end: var(--nav-pill-hover-end-dark);
       --nav-pill-border: var(--nav-pill-border-dark);
       --nav-pill-inset: var(--nav-pill-inset-dark);
       --nav-pill-shadow: var(--nav-pill-shadow-dark);
       --nav-ico-home: var(--nav-ico-home-dark);
+      --nav-ico-home-bg: var(--nav-ico-home-bg-dark);
       --nav-ico-courses: var(--nav-ico-courses-dark);
+      --nav-ico-courses-bg: var(--nav-ico-courses-bg-dark);
       --nav-ico-practice: var(--nav-ico-practice-dark);
+      --nav-ico-practice-bg: var(--nav-ico-practice-bg-dark);
       --nav-ico-projects: var(--nav-ico-projects-dark);
+      --nav-ico-projects-bg: var(--nav-ico-projects-bg-dark);
       --nav-ico-about: var(--nav-ico-about-dark);
+      --nav-ico-about-bg: var(--nav-ico-about-bg-dark);
       --nav-popover-bg: var(--nav-popover-bg-dark);
       --nav-popover-border: var(--nav-popover-border-dark);
       --nav-popover-shadow-color: var(--nav-popover-shadow-color-dark);
@@ -378,10 +428,13 @@
     --nav-base-bg: light-dark(var(--nav-base-bg-light), var(--nav-base-bg-dark));
     --nav-top-glass: light-dark(var(--nav-top-glass-light), var(--nav-top-glass-dark));
     --nav-bottom-glass: light-dark(var(--nav-bottom-glass-light), var(--nav-bottom-glass-dark));
-    --nav-bottom-top: light-dark(var(--nav-bottom-top-light), var(--nav-bottom-top-dark));
-    --nav-bottom-end: light-dark(var(--nav-bottom-end-light), var(--nav-bottom-end-dark));
+    --paint-sky: light-dark(var(--paint-sky-light), var(--paint-sky-dark));
+    --paint-green: light-dark(var(--paint-green-light), var(--paint-green-dark));
+    --paint-yellow: light-dark(var(--paint-yellow-light), var(--paint-yellow-dark));
+    --paint-orange: light-dark(var(--paint-orange-light), var(--paint-orange-dark));
+    --paint-red: light-dark(var(--paint-red-light), var(--paint-red-dark));
+    --nav-bottom-veil: light-dark(var(--nav-bottom-veil-light), var(--nav-bottom-veil-dark));
     --nav-dock-bg: light-dark(var(--nav-dock-bg-light), var(--nav-dock-bg-dark));
-    --nav-dock-border: light-dark(var(--nav-dock-border-light), var(--nav-dock-border-dark));
     --nav-dock-inset-top: light-dark(var(--nav-dock-inset-top-light), var(--nav-dock-inset-top-dark));
     --nav-dock-inset-bottom: light-dark(
       var(--nav-dock-inset-bottom-light),
@@ -419,6 +472,7 @@
     --toggle-icon: light-dark(var(--toggle-icon-light), var(--toggle-icon-dark));
     --toggle-glow: light-dark(var(--toggle-glow-light), var(--toggle-glow-dark));
     --nav-pill-bg: light-dark(var(--nav-pill-bg-light), var(--nav-pill-bg-dark));
+    --nav-pill-end: light-dark(var(--nav-pill-end-light), var(--nav-pill-end-dark));
     --nav-pill-hover-start: light-dark(
       var(--nav-pill-hover-start-light),
       var(--nav-pill-hover-start-dark)
@@ -431,10 +485,21 @@
     --nav-pill-inset: light-dark(var(--nav-pill-inset-light), var(--nav-pill-inset-dark));
     --nav-pill-shadow: light-dark(var(--nav-pill-shadow-light), var(--nav-pill-shadow-dark));
     --nav-ico-home: light-dark(var(--nav-ico-home-light), var(--nav-ico-home-dark));
+    --nav-ico-home-bg: light-dark(var(--nav-ico-home-bg-light), var(--nav-ico-home-bg-dark));
     --nav-ico-courses: light-dark(var(--nav-ico-courses-light), var(--nav-ico-courses-dark));
+    --nav-ico-courses-bg: light-dark(var(--nav-ico-courses-bg-light), var(--nav-ico-courses-bg-dark));
     --nav-ico-practice: light-dark(var(--nav-ico-practice-light), var(--nav-ico-practice-dark));
+    --nav-ico-practice-bg: light-dark(
+      var(--nav-ico-practice-bg-light),
+      var(--nav-ico-practice-bg-dark)
+    );
     --nav-ico-projects: light-dark(var(--nav-ico-projects-light), var(--nav-ico-projects-dark));
+    --nav-ico-projects-bg: light-dark(
+      var(--nav-ico-projects-bg-light),
+      var(--nav-ico-projects-bg-dark)
+    );
     --nav-ico-about: light-dark(var(--nav-ico-about-light), var(--nav-ico-about-dark));
+    --nav-ico-about-bg: light-dark(var(--nav-ico-about-bg-light), var(--nav-ico-about-bg-dark));
     --nav-popover-bg: light-dark(var(--nav-popover-bg-light), var(--nav-popover-bg-dark));
     --nav-popover-border: light-dark(var(--nav-popover-border-light), var(--nav-popover-border-dark));
     --nav-popover-shadow-color: light-dark(
@@ -605,17 +670,14 @@
   block-size: 100%;
   background-image: linear-gradient(
     90deg,
-    #06b6d4 0%,
-    #10b981 12.5%,
-    #f59e0b 25%,
-    #f43f5e 37.5%,
-    #8b5cf6 50%,
-    #4f46e5 62.5%,
-    #14b8a6 75%,
-    #ec4899 87.5%,
-    #06b6d4 100%
+    #38bdf8 0%,
+    #22c55e 20%,
+    #facc15 40%,
+    #f97316 60%,
+    #ef4444 80%,
+    #38bdf8 100%
   );
-  opacity: 0.85;
+  opacity: 0.92;
 }
 
 /* Compositor-only mixing animations (opt-in strictly under prefers-reduced-motion: no-preference) */
@@ -1308,7 +1370,7 @@
 }
 
 /* ==========================================================================
- * 2. BOTTOM PART (Compact 32px / h-8 Bar — Architectural Glass Pill Dock)
+ * 2. BOTTOM PART (Paint-Mixing Sky/Green/Yellow/Orange/Red Button Bar)
  * ========================================================================== */
 
 @keyframes edunexus-active-dot-pulse {
@@ -1318,21 +1380,271 @@
     opacity: 0.92;
   }
   50% {
-    transform: scale(1.3);
+    transform: scale(1.32);
     opacity: 1;
+  }
+}
+
+@keyframes edunexus-paint-base-flow {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes edunexus-paint-vortex-spin {
+  0% {
+    transform: translate3d(-12%, -50%, 0) rotate(0deg) scale(1.1);
+  }
+  50% {
+    transform: translate3d(12%, -46%, 0) rotate(180deg) scale(1.22);
+  }
+  100% {
+    transform: translate3d(-12%, -50%, 0) rotate(360deg) scale(1.1);
+  }
+}
+
+@keyframes edunexus-paint-mix-sky {
+  0% {
+    transform: translate3d(-10%, -18%, 0) rotate(0deg) scale(1, 0.95);
+    opacity: 0.94;
+  }
+  33% {
+    transform: translate3d(28%, 14%, 0) rotate(42deg) scale(1.28, 1.05);
+    opacity: 0.82;
+  }
+  66% {
+    transform: translate3d(52%, -16%, 0) rotate(-24deg) scale(1.12, 1.15);
+    opacity: 0.96;
+  }
+  100% {
+    transform: translate3d(6%, 8%, 0) rotate(16deg) scale(1.04, 0.98);
+    opacity: 0.88;
+  }
+}
+
+@keyframes edunexus-paint-mix-green {
+  0% {
+    transform: translate3d(12%, 16%, 0) rotate(12deg) scale(1.05, 1);
+    opacity: 0.88;
+  }
+  40% {
+    transform: translate3d(-24%, -18%, 0) rotate(-38deg) scale(1.24, 1.12);
+    opacity: 0.96;
+  }
+  75% {
+    transform: translate3d(34%, 10%, 0) rotate(28deg) scale(1.15, 0.94);
+    opacity: 0.78;
+  }
+  100% {
+    transform: translate3d(-6%, -8%, 0) rotate(-14deg) scale(1.02, 1.08);
+    opacity: 0.92;
+  }
+}
+
+@keyframes edunexus-paint-mix-yellow {
+  0% {
+    transform: translate3d(-16%, -12%, 0) rotate(-18deg) scale(1.08, 0.96);
+    opacity: 0.92;
+  }
+  45% {
+    transform: translate3d(30%, 16%, 0) rotate(36deg) scale(1.26, 1.14);
+    opacity: 0.82;
+  }
+  80% {
+    transform: translate3d(-28%, -10%, 0) rotate(-42deg) scale(1.16, 1.04);
+    opacity: 0.98;
+  }
+  100% {
+    transform: translate3d(10%, 8%, 0) rotate(14deg) scale(1, 1.02);
+    opacity: 0.88;
+  }
+}
+
+@keyframes edunexus-paint-mix-orange {
+  0% {
+    transform: translate3d(14%, -14%, 0) rotate(22deg) scale(1, 1.06);
+    opacity: 0.9;
+  }
+  40% {
+    transform: translate3d(-32%, 14%, 0) rotate(-30deg) scale(1.25, 0.98);
+    opacity: 0.96;
+  }
+  75% {
+    transform: translate3d(20%, -12%, 0) rotate(44deg) scale(1.14, 1.12);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate3d(-12%, 10%, 0) rotate(-16deg) scale(1.04, 1);
+    opacity: 0.92;
+  }
+}
+
+@keyframes edunexus-paint-mix-red {
+  0% {
+    transform: translate3d(8%, 12%, 0) rotate(-12deg) scale(1.06, 0.96);
+    opacity: 0.92;
+  }
+  38% {
+    transform: translate3d(-44%, -14%, 0) rotate(34deg) scale(1.26, 1.12);
+    opacity: 0.84;
+  }
+  72% {
+    transform: translate3d(-18%, 16%, 0) rotate(-28deg) scale(1.16, 1.04);
+    opacity: 0.96;
+  }
+  100% {
+    transform: translate3d(4%, -10%, 0) rotate(18deg) scale(1.02, 1.06);
+    opacity: 0.88;
   }
 }
 
 .edunexus-navbar-bottom {
   position: relative;
   z-index: 2;
-  background-image: linear-gradient(180deg, var(--nav-bottom-top), var(--nav-bottom-end));
+  background-color: var(--nav-base-bg);
   box-shadow: inset 0 1px 0 var(--nav-pill-inset);
-  min-block-size: 2rem;
-  block-size: 2rem;
+  min-block-size: 2.125rem;
+  block-size: 2.125rem;
+}
+
+/* Clipped Liquid Paint-Mixing Canvas (Sky, Green, Yellow, Orange, Red — never clips popovers) */
+.edunexus-bottom-paint {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Soft glass veil on top of the paint canvas to keep Light/Dark themes refined */
+.edunexus-bottom-paint::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--nav-bottom-veil);
+}
+
+.edunexus-paint-base {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  inline-size: 200%;
+  background-image: linear-gradient(
+    90deg,
+    var(--paint-sky) 0%,
+    var(--paint-green) 20%,
+    var(--paint-yellow) 40%,
+    var(--paint-orange) 60%,
+    var(--paint-red) 80%,
+    var(--paint-sky) 100%
+  );
+  opacity: 0.72;
+}
+
+.edunexus-paint-vortex {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 10%;
+  inline-size: 80%;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  background: conic-gradient(
+    from 0deg,
+    var(--paint-sky),
+    var(--paint-green),
+    var(--paint-yellow),
+    var(--paint-orange),
+    var(--paint-red),
+    var(--paint-sky)
+  );
+  filter: blur(26px);
+  opacity: 0.52;
+  transform: translate3d(0, -50%, 0);
+}
+
+.edunexus-paint-swirl {
+  position: absolute;
+  border-radius: 44% 56% 62% 38% / 54% 42% 58% 46%;
+  filter: blur(18px);
+  opacity: 0.92;
+}
+
+.edunexus-paint-sky {
+  inset-block-start: -110%;
+  inset-inline-start: -4%;
+  inline-size: 32%;
+  block-size: 320%;
+  background: radial-gradient(ellipse at center, var(--paint-sky) 0%, transparent 72%);
+}
+
+.edunexus-paint-green {
+  inset-block-start: -100%;
+  inset-inline-start: 18%;
+  inline-size: 30%;
+  block-size: 310%;
+  background: radial-gradient(ellipse at center, var(--paint-green) 0%, transparent 72%);
+}
+
+.edunexus-paint-yellow {
+  inset-block-start: -115%;
+  inset-inline-start: 38%;
+  inline-size: 30%;
+  block-size: 320%;
+  background: radial-gradient(ellipse at center, var(--paint-yellow) 0%, transparent 72%);
+}
+
+.edunexus-paint-orange {
+  inset-block-start: -105%;
+  inset-inline-start: 58%;
+  inline-size: 30%;
+  block-size: 310%;
+  background: radial-gradient(ellipse at center, var(--paint-orange) 0%, transparent 72%);
+}
+
+.edunexus-paint-red {
+  inset-block-start: -110%;
+  inset-inline-end: -4%;
+  inline-size: 32%;
+  block-size: 320%;
+  background: radial-gradient(ellipse at center, var(--paint-red) 0%, transparent 72%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .edunexus-paint-base {
+    animation: edunexus-paint-base-flow 16s linear infinite;
+  }
+
+  .edunexus-paint-vortex {
+    animation: edunexus-paint-vortex-spin 22s linear infinite;
+  }
+
+  .edunexus-paint-sky {
+    animation: edunexus-paint-mix-sky 11s ease-in-out infinite alternate;
+  }
+
+  .edunexus-paint-green {
+    animation: edunexus-paint-mix-green 13s ease-in-out infinite alternate;
+  }
+
+  .edunexus-paint-yellow {
+    animation: edunexus-paint-mix-yellow 12s ease-in-out infinite alternate;
+  }
+
+  .edunexus-paint-orange {
+    animation: edunexus-paint-mix-orange 14s ease-in-out infinite alternate;
+  }
+
+  .edunexus-paint-red {
+    animation: edunexus-paint-mix-red 10.5s ease-in-out infinite alternate;
+  }
 }
 
 .edunexus-navbar-bottom-inner {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -1366,25 +1678,25 @@
   justify-content: flex-start;
 }
 
-/* Narrow Menu Trigger: Iridescent Gradient-Border Glass Pill */
+/* Narrow Menu Trigger: Sculpted 5-Color Paint-Bordered Glass Pill */
 .edunexus-menu-button {
   anchor-name: --edunexus-menu-button;
   display: inline-flex;
   align-items: center;
   gap: 0.38rem;
-  block-size: 1.5rem;
-  padding: 0 0.78rem;
+  block-size: 1.55rem;
+  padding: 0 0.82rem;
   border-radius: 9999px;
-  border: 1px solid transparent;
+  border: 1.25px solid transparent;
   background-image:
-    linear-gradient(135deg, var(--login-bg-start), var(--login-bg-end)),
-    linear-gradient(135deg, #06b6d4 0%, #6366f1 55%, #ec4899 100%);
+    linear-gradient(180deg, var(--nav-pill-bg), var(--nav-pill-end)),
+    linear-gradient(120deg, #38bdf8 0%, #22c55e 28%, #facc15 52%, #f97316 76%, #ef4444 100%);
   background-origin: border-box;
   background-clip: padding-box, border-box;
   color: var(--nav-text-strong);
   box-shadow:
     inset 0 1px 0 var(--nav-pill-inset),
-    0 2px 8px -3px var(--brand-outer-shadow);
+    0 3px 10px -3px var(--nav-pill-shadow);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.01em;
@@ -1407,7 +1719,7 @@
   filter: brightness(1.04);
   box-shadow:
     inset 0 1px 0 var(--nav-pill-inset),
-    0 4px 12px -4px rgba(14, 165, 233, 0.45);
+    0 5px 14px -4px rgba(14, 165, 233, 0.5);
 }
 
 /* Narrow Layout Default: Native Top-Layer Popover Menu anchored to Left Menu Button */
@@ -1415,14 +1727,14 @@
   position: fixed;
   inset: auto;
   /* Fallback offsets for browsers without CSS Anchor Positioning */
-  inset-block-start: 6.125rem;
+  inset-block-start: 6.25rem;
   inset-block-start: anchor(--edunexus-menu-button bottom);
   inset-inline-start: 0.75rem;
   inset-inline-start: anchor(--edunexus-menu-button left);
   inline-size: min(84dvw, 22rem);
   max-inline-size: calc(100dvw - 1.5rem);
   block-size: fit-content;
-  max-block-size: calc(100dvh - 6.75rem);
+  max-block-size: calc(100dvh - 6.85rem);
   margin: 0;
   margin-block-start: 0.4rem;
   padding: 0.625rem;
@@ -1484,26 +1796,26 @@
   }
 }
 
-/* Enhanced Tactile Pill-Shaped Menu Buttons */
+/* Enhanced Sculpted Pill Buttons with Circular Color-Coded Icon Medallions */
 .edunexus-nav-link,
 .edunexus-dropdown-trigger {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.42rem;
+  gap: 0.45rem;
   inline-size: 100%;
-  padding: 0.44rem 0.9rem;
+  padding: 0.38rem 0.85rem 0.38rem 0.42rem;
   border-radius: 9999px;
-  border: 1px solid transparent;
-  background-color: var(--nav-pill-bg);
+  border: 1px solid var(--nav-pill-border);
+  background-image: linear-gradient(180deg, var(--nav-pill-bg), var(--nav-pill-end));
   background-origin: border-box;
   background-clip: padding-box, border-box;
   color: var(--nav-text);
   box-shadow:
     inset 0 1px 0 var(--nav-pill-inset),
-    0 1px 2px var(--nav-pill-shadow);
+    0 1px 3px var(--nav-pill-shadow);
   font-size: 0.8125rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.01em;
   line-height: 1.15;
   text-decoration: none;
@@ -1515,28 +1827,48 @@
     box-shadow 180ms ease;
 }
 
-/* Per-section refined icon accent colors */
-.edunexus-nav-link[data-section="home"] .edunexus-nav-icon {
+/* Tinted Circular Icon Medallion inside each Nav Pill */
+.edunexus-pill-icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 1.45rem;
+  block-size: 1.45rem;
+  border-radius: 9999px;
+  flex: none;
+  box-shadow: inset 0 1px 0 var(--nav-pill-inset);
+  transition:
+    transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 180ms ease;
+}
+
+/* 5-Color Paint-Harmonized Medallion Accents (Sky, Green, Yellow, Orange, Red) */
+.edunexus-nav-link[data-section="home"] .edunexus-pill-icon-badge {
+  background-color: var(--nav-ico-home-bg);
   color: var(--nav-ico-home);
 }
 
-.edunexus-dropdown-trigger[data-section="courses"] .edunexus-nav-icon {
+.edunexus-dropdown-trigger[data-section="courses"] .edunexus-pill-icon-badge {
+  background-color: var(--nav-ico-courses-bg);
   color: var(--nav-ico-courses);
 }
 
-.edunexus-nav-link[data-section="practice"] .edunexus-nav-icon {
+.edunexus-nav-link[data-section="practice"] .edunexus-pill-icon-badge {
+  background-color: var(--nav-ico-practice-bg);
   color: var(--nav-ico-practice);
 }
 
-.edunexus-nav-link[data-section="projects"] .edunexus-nav-icon {
+.edunexus-nav-link[data-section="projects"] .edunexus-pill-icon-badge {
+  background-color: var(--nav-ico-projects-bg);
   color: var(--nav-ico-projects);
 }
 
-.edunexus-nav-link[data-section="about"] .edunexus-nav-icon {
+.edunexus-nav-link[data-section="about"] .edunexus-pill-icon-badge {
+  background-color: var(--nav-ico-about-bg);
   color: var(--nav-ico-about);
 }
 
-/* Iridescent Gradient-Border Hover & Expanded Dropdown Trigger State */
+/* 5-Color Paint Gradient-Border Hover & Expanded Dropdown Trigger State */
 .edunexus-nav-link:hover,
 .edunexus-dropdown-trigger:hover,
 .edunexus-dropdown-trigger[aria-expanded="true"] {
@@ -1544,14 +1876,14 @@
   background-color: transparent;
   background-image:
     linear-gradient(135deg, var(--nav-pill-hover-start), var(--nav-pill-hover-end)),
-    linear-gradient(135deg, #06b6d4 0%, #6366f1 55%, #ec4899 100%);
+    linear-gradient(120deg, #38bdf8 0%, #22c55e 28%, #facc15 52%, #f97316 76%, #ef4444 100%);
   color: var(--nav-text-strong);
   box-shadow:
     inset 0 1px 0 var(--nav-pill-inset),
-    0 4px 14px -5px rgba(14, 165, 233, 0.45);
+    0 5px 14px -4px rgba(14, 165, 233, 0.48);
 }
 
-/* Active Current Page Jewel Capsule (WCAG >= 5.5:1 contrast + live dot non-color cue) */
+/* Active Current Page Jewel Capsule (High-Contrast over Vibrant Paint + Live Dot Cue) */
 .edunexus-nav-link[aria-current="page"],
 .edunexus-nav-link[aria-current="page"]:hover {
   border-color: var(--nav-active-border);
@@ -1559,20 +1891,22 @@
   background-image: linear-gradient(
     135deg,
     var(--nav-active-start) 0%,
-    var(--nav-active-mid) 54%,
+    var(--nav-active-mid) 52%,
     var(--nav-active-end) 100%
   );
   background-clip: border-box;
   color: #ffffff;
   font-weight: 700;
   box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.45),
-    inset 0 -2px 5px rgba(15, 23, 42, 0.25),
-    0 4px 14px -4px var(--nav-active-glow);
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.5),
+    inset 0 -2px 5px rgba(15, 23, 42, 0.3),
+    0 5px 16px -4px var(--nav-active-glow);
 }
 
-.edunexus-nav-link[aria-current="page"] .edunexus-nav-icon {
+.edunexus-nav-link[aria-current="page"] .edunexus-pill-icon-badge {
+  background-color: rgba(255, 255, 255, 0.24);
   color: #ffffff;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.45);
 }
 
 .edunexus-nav-link[aria-current="page"]::after {
@@ -1621,7 +1955,7 @@
   .edunexus-auth-register:hover,
   .edunexus-auth-login:hover,
   .edunexus-theme-toggle:hover {
-    transform: translate3d(0, -1px, 0);
+    transform: translate3d(0, -1.5px, 0);
   }
 
   .edunexus-navbar.is-wide .edunexus-nav-link:active,
@@ -1639,8 +1973,11 @@
     transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .edunexus-nav-link:hover .edunexus-nav-icon,
-  .edunexus-dropdown-trigger:hover .edunexus-nav-icon,
+  .edunexus-nav-link:hover .edunexus-pill-icon-badge,
+  .edunexus-dropdown-trigger:hover .edunexus-pill-icon-badge {
+    transform: scale(1.1) rotate(-6deg);
+  }
+
   .edunexus-sub-link:hover .edunexus-nav-icon {
     transform: translate3d(0, -1.2px, 0) scale(1.12);
   }
@@ -1737,7 +2074,7 @@
   color: var(--login-icon-color);
 }
 
-/* Wide Layout: Recessed Architectural Glass Dock Rail inside Compact 32px Bar */
+/* Wide Layout: Sculpted Frosted Pill Dock hovering over 5-Color Paint-Mixing Canvas */
 .edunexus-navbar.is-wide .edunexus-menu-button {
   display: none;
 }
@@ -1747,21 +2084,26 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 0.2rem;
+  gap: 0.24rem;
   inline-size: auto;
   max-inline-size: none;
-  block-size: 1.7rem;
+  block-size: 1.78rem;
   max-block-size: none;
   overflow: visible;
   margin: 0;
-  padding: 0.12rem;
+  padding: 0.14rem;
   border-radius: 9999px;
-  border: 1px solid var(--nav-dock-border);
-  background-color: var(--nav-dock-bg);
+  border: 1.25px solid transparent;
+  background-image:
+    linear-gradient(180deg, var(--nav-dock-bg), var(--nav-dock-bg)),
+    linear-gradient(90deg, #38bdf8 0%, #22c55e 25%, #facc15 50%, #f97316 75%, #ef4444 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
   backdrop-filter: none;
   box-shadow:
     inset 0 1.5px 4px var(--nav-dock-inset-top),
-    inset 0 -1px 0 var(--nav-dock-inset-bottom);
+    inset 0 -1px 0 var(--nav-dock-inset-bottom),
+    0 4px 14px -5px var(--nav-pill-shadow);
   opacity: 1;
   translate: none;
 }
@@ -1773,26 +2115,35 @@
 .edunexus-navbar.is-wide .edunexus-nav-link,
 .edunexus-navbar.is-wide .edunexus-dropdown-trigger {
   inline-size: auto;
-  block-size: 1.38rem;
-  padding: 0 0.72rem;
+  block-size: 1.44rem;
+  padding: 0 0.72rem 0 0.22rem;
   gap: 0.34rem;
   font-size: 0.74rem;
   line-height: 1;
-  background-color: transparent;
-  border-color: transparent;
-  box-shadow: none;
+  border: 1px solid var(--nav-pill-border);
+  background-image: linear-gradient(180deg, var(--nav-pill-bg), var(--nav-pill-end));
+  box-shadow:
+    inset 0 1px 0 var(--nav-pill-inset),
+    inset 0 -1.5px 2px var(--nav-pill-shadow),
+    0 1px 3px var(--nav-pill-shadow);
+}
+
+.edunexus-navbar.is-wide .edunexus-pill-icon-badge {
+  inline-size: 1.12rem;
+  block-size: 1.12rem;
 }
 
 .edunexus-navbar.is-wide .edunexus-nav-link:hover,
 .edunexus-navbar.is-wide .edunexus-dropdown-trigger:hover,
 .edunexus-navbar.is-wide .edunexus-dropdown-trigger[aria-expanded="true"] {
+  border-color: transparent;
   background-color: transparent;
   background-image:
     linear-gradient(135deg, var(--nav-pill-hover-start), var(--nav-pill-hover-end)),
-    linear-gradient(135deg, #06b6d4 0%, #6366f1 55%, #ec4899 100%);
+    linear-gradient(120deg, #38bdf8 0%, #22c55e 28%, #facc15 52%, #f97316 76%, #ef4444 100%);
   box-shadow:
     inset 0 1px 0 var(--nav-pill-inset),
-    0 3px 10px -4px rgba(14, 165, 233, 0.45);
+    0 4px 12px -4px rgba(14, 165, 233, 0.5);
 }
 
 .edunexus-navbar.is-wide .edunexus-nav-link[aria-current="page"],
@@ -1801,26 +2152,26 @@
   background-image: linear-gradient(
     135deg,
     var(--nav-active-start) 0%,
-    var(--nav-active-mid) 54%,
+    var(--nav-active-mid) 52%,
     var(--nav-active-end) 100%
   );
   background-clip: border-box;
   color: #ffffff;
   box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.45),
-    inset 0 -2px 4px rgba(15, 23, 42, 0.22),
-    0 4px 12px -4px var(--nav-active-glow);
+    inset 0 1.5px 1px rgba(255, 255, 255, 0.52),
+    inset 0 -2px 4px rgba(15, 23, 42, 0.28),
+    0 4px 14px -4px var(--nav-active-glow);
 }
 
 .edunexus-navbar.is-wide .edunexus-nav-link .edunexus-nav-icon,
 .edunexus-navbar.is-wide .edunexus-dropdown-trigger .edunexus-nav-icon {
-  inline-size: 0.82rem;
-  block-size: 0.82rem;
+  inline-size: 0.72rem;
+  block-size: 0.72rem;
 }
 
 .edunexus-navbar.is-wide .edunexus-dropdown-trigger .edunexus-chevron {
-  inline-size: 0.75rem;
-  block-size: 0.75rem;
+  inline-size: 0.74rem;
+  block-size: 0.74rem;
 }
 
 /* Wide Floating Submenu Popover with CSS Anchor Positioning & Hover Bridge */
@@ -1885,6 +2236,7 @@
 
 @media (forced-colors: active) {
   .edunexus-navbar-ambient,
+  .edunexus-bottom-paint,
   .edunexus-home-sheen,
   .edunexus-btn-sheen,
   .edunexus-theme-glow {

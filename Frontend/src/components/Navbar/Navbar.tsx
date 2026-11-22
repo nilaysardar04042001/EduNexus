@@ -477,8 +477,18 @@ export const Navbar = memo(function Navbar({
         </div>
       </div>
 
-      {/* Bottom Part: Slim (38px / h - 10px) Bar for Left-Aligned Pill Navigation Menu */}
+      {/* Bottom Part: Enhanced Paint-Mixing (Sky, Green, Yellow, Orange, Red) Button Bar */}
       <div className="edunexus-navbar-bottom" data-nav-part="bottom">
+        <div className="edunexus-bottom-paint" aria-hidden="true">
+          <span className="edunexus-paint-base" />
+          <span className="edunexus-paint-vortex" />
+          <span className="edunexus-paint-swirl edunexus-paint-sky" />
+          <span className="edunexus-paint-swirl edunexus-paint-green" />
+          <span className="edunexus-paint-swirl edunexus-paint-yellow" />
+          <span className="edunexus-paint-swirl edunexus-paint-orange" />
+          <span className="edunexus-paint-swirl edunexus-paint-red" />
+        </div>
+
         <div ref={bottomInnerRef} className="edunexus-navbar-bottom-inner">
           <nav className="edunexus-site-nav" aria-label="Primary navigation">
             <button
@@ -501,7 +511,9 @@ export const Navbar = memo(function Navbar({
                   aria-current={activeSection === 'home' ? 'page' : undefined}
                   className="edunexus-nav-link"
                 >
-                  <NavIcon name="home" />
+                  <span className="edunexus-pill-icon-badge" aria-hidden="true">
+                    <NavIcon name="home" />
+                  </span>
                   <span>Home</span>
                 </a>
               </li>
@@ -517,7 +529,9 @@ export const Navbar = memo(function Navbar({
                   popoverTarget={coursesMenuId}
                   onClick={handleDropdownTriggerClick}
                 >
-                  <NavIcon name="courses" />
+                  <span className="edunexus-pill-icon-badge" aria-hidden="true">
+                    <NavIcon name="courses" />
+                  </span>
                   <span>Courses</span>
                   <ChevronDownIcon />
                 </button>
@@ -555,7 +569,9 @@ export const Navbar = memo(function Navbar({
                   aria-current={activeSection === 'practice' ? 'page' : undefined}
                   className="edunexus-nav-link"
                 >
-                  <NavIcon name="practice" />
+                  <span className="edunexus-pill-icon-badge" aria-hidden="true">
+                    <NavIcon name="practice" />
+                  </span>
                   <span>Practice</span>
                 </a>
               </li>
@@ -568,7 +584,9 @@ export const Navbar = memo(function Navbar({
                   aria-current={activeSection === 'projects' ? 'page' : undefined}
                   className="edunexus-nav-link"
                 >
-                  <NavIcon name="projects" />
+                  <span className="edunexus-pill-icon-badge" aria-hidden="true">
+                    <NavIcon name="projects" />
+                  </span>
                   <span>Projects</span>
                 </a>
               </li>
@@ -581,7 +599,9 @@ export const Navbar = memo(function Navbar({
                   aria-current={activeSection === 'about' ? 'page' : undefined}
                   className="edunexus-nav-link"
                 >
-                  <NavIcon name="about" />
+                  <span className="edunexus-pill-icon-badge" aria-hidden="true">
+                    <NavIcon name="about" />
+                  </span>
                   <span>About</span>
                 </a>
               </li>
