@@ -4,29 +4,29 @@
  */
 
 :root {
-  /* Dual-theme base glass surfaces */
-  --nav-base-bg-light: #f3f7ff;
-  --nav-base-bg-dark: #03091a;
-  --nav-surface-glass-light: rgba(255, 255, 255, 0.52);
-  --nav-surface-glass-dark: rgba(6, 14, 36, 0.62);
+  /* Dual-theme base glass surfaces over Marbled Rainbow Liquid Ribbons */
+  --nav-base-bg-light: #f6f8ff;
+  --nav-base-bg-dark: #040818;
+  --nav-surface-glass-light: rgba(255, 255, 255, 0.34);
+  --nav-surface-glass-dark: rgba(4, 10, 28, 0.44);
 
-  /* Rich Multi-Color Ambient Paint-Mixing Palette (Sky, Green, Yellow, Orange, Red + Aurora) */
-  --nav-blob-a-light: rgba(14, 165, 233, 0.44);
-  --nav-blob-a-dark: rgba(56, 189, 248, 0.4);
-  --nav-blob-b-light: rgba(139, 92, 246, 0.34);
-  --nav-blob-b-dark: rgba(139, 92, 246, 0.44);
-  --nav-blob-c-light: rgba(239, 68, 68, 0.32);
-  --nav-blob-c-dark: rgba(244, 63, 94, 0.34);
-  --nav-blob-d-light: rgba(34, 197, 94, 0.38);
-  --nav-blob-d-dark: rgba(34, 197, 94, 0.34);
-  --nav-blob-e-light: rgba(250, 204, 21, 0.44);
-  --nav-blob-e-dark: rgba(234, 179, 8, 0.3);
-  --nav-blob-f-light: rgba(79, 70, 229, 0.28);
-  --nav-blob-f-dark: rgba(99, 102, 241, 0.4);
-  --nav-blob-g-light: rgba(249, 115, 22, 0.38);
-  --nav-blob-g-dark: rgba(249, 115, 22, 0.36);
-  --nav-blob-h-light: rgba(20, 184, 166, 0.34);
-  --nav-blob-h-dark: rgba(45, 212, 191, 0.36);
+  /* Rainbow Marbled-Liquid Pigment Tokens (Red, Orange, Yellow, Green, Cyan, Blue, Violet, Magenta) */
+  --marble-red-light: rgba(239, 68, 68, 0.68);
+  --marble-red-dark: rgba(239, 68, 68, 0.62);
+  --marble-orange-light: rgba(249, 115, 22, 0.7);
+  --marble-orange-dark: rgba(249, 115, 22, 0.6);
+  --marble-yellow-light: rgba(250, 204, 21, 0.72);
+  --marble-yellow-dark: rgba(234, 179, 8, 0.52);
+  --marble-green-light: rgba(34, 197, 94, 0.68);
+  --marble-green-dark: rgba(34, 197, 94, 0.56);
+  --marble-cyan-light: rgba(6, 182, 212, 0.7);
+  --marble-cyan-dark: rgba(6, 182, 212, 0.62);
+  --marble-blue-light: rgba(59, 130, 246, 0.68);
+  --marble-blue-dark: rgba(59, 130, 246, 0.62);
+  --marble-violet-light: rgba(139, 92, 246, 0.68);
+  --marble-violet-dark: rgba(139, 92, 246, 0.66);
+  --marble-magenta-light: rgba(236, 72, 153, 0.66);
+  --marble-magenta-dark: rgba(236, 72, 153, 0.6);
 
   /* Borders & Elevation */
   --nav-border-light: rgba(14, 165, 233, 0.3);
@@ -156,14 +156,14 @@
   /* Default (light) values for browsers without light-dark() */
   --nav-base-bg: var(--nav-base-bg-light);
   --nav-surface-glass: var(--nav-surface-glass-light);
-  --nav-blob-a: var(--nav-blob-a-light);
-  --nav-blob-b: var(--nav-blob-b-light);
-  --nav-blob-c: var(--nav-blob-c-light);
-  --nav-blob-d: var(--nav-blob-d-light);
-  --nav-blob-e: var(--nav-blob-e-light);
-  --nav-blob-f: var(--nav-blob-f-light);
-  --nav-blob-g: var(--nav-blob-g-light);
-  --nav-blob-h: var(--nav-blob-h-light);
+  --marble-red: var(--marble-red-light);
+  --marble-orange: var(--marble-orange-light);
+  --marble-yellow: var(--marble-yellow-light);
+  --marble-green: var(--marble-green-light);
+  --marble-cyan: var(--marble-cyan-light);
+  --marble-blue: var(--marble-blue-light);
+  --marble-violet: var(--marble-violet-light);
+  --marble-magenta: var(--marble-magenta-light);
   --nav-border: var(--nav-border-light);
   --nav-shadow-color: var(--nav-shadow-color-light);
   --brand-glass-start: var(--brand-glass-start-light);
@@ -213,14 +213,14 @@
       &:not(:has(> head > meta[name="color-scheme"][content="light"])) {
         --nav-base-bg: var(--nav-base-bg-dark);
         --nav-surface-glass: var(--nav-surface-glass-dark);
-        --nav-blob-a: var(--nav-blob-a-dark);
-        --nav-blob-b: var(--nav-blob-b-dark);
-        --nav-blob-c: var(--nav-blob-c-dark);
-        --nav-blob-d: var(--nav-blob-d-dark);
-        --nav-blob-e: var(--nav-blob-e-dark);
-        --nav-blob-f: var(--nav-blob-f-dark);
-        --nav-blob-g: var(--nav-blob-g-dark);
-        --nav-blob-h: var(--nav-blob-h-dark);
+        --marble-red: var(--marble-red-dark);
+        --marble-orange: var(--marble-orange-dark);
+        --marble-yellow: var(--marble-yellow-dark);
+        --marble-green: var(--marble-green-dark);
+        --marble-cyan: var(--marble-cyan-dark);
+        --marble-blue: var(--marble-blue-dark);
+        --marble-violet: var(--marble-violet-dark);
+        --marble-magenta: var(--marble-magenta-dark);
         --nav-border: var(--nav-border-dark);
         --nav-shadow-color: var(--nav-shadow-color-dark);
         --brand-glass-start: var(--brand-glass-start-dark);
@@ -269,14 +269,14 @@
     &:has(> head > meta[name="color-scheme"][content="dark"]) {
       --nav-base-bg: var(--nav-base-bg-dark);
       --nav-surface-glass: var(--nav-surface-glass-dark);
-      --nav-blob-a: var(--nav-blob-a-dark);
-      --nav-blob-b: var(--nav-blob-b-dark);
-      --nav-blob-c: var(--nav-blob-c-dark);
-      --nav-blob-d: var(--nav-blob-d-dark);
-      --nav-blob-e: var(--nav-blob-e-dark);
-      --nav-blob-f: var(--nav-blob-f-dark);
-      --nav-blob-g: var(--nav-blob-g-dark);
-      --nav-blob-h: var(--nav-blob-h-dark);
+      --marble-red: var(--marble-red-dark);
+      --marble-orange: var(--marble-orange-dark);
+      --marble-yellow: var(--marble-yellow-dark);
+      --marble-green: var(--marble-green-dark);
+      --marble-cyan: var(--marble-cyan-dark);
+      --marble-blue: var(--marble-blue-dark);
+      --marble-violet: var(--marble-violet-dark);
+      --marble-magenta: var(--marble-magenta-dark);
       --nav-border: var(--nav-border-dark);
       --nav-shadow-color: var(--nav-shadow-color-dark);
       --brand-glass-start: var(--brand-glass-start-dark);
@@ -326,14 +326,14 @@
   @supports (color: light-dark(white, black)) {
     --nav-base-bg: light-dark(var(--nav-base-bg-light), var(--nav-base-bg-dark));
     --nav-surface-glass: light-dark(var(--nav-surface-glass-light), var(--nav-surface-glass-dark));
-    --nav-blob-a: light-dark(var(--nav-blob-a-light), var(--nav-blob-a-dark));
-    --nav-blob-b: light-dark(var(--nav-blob-b-light), var(--nav-blob-b-dark));
-    --nav-blob-c: light-dark(var(--nav-blob-c-light), var(--nav-blob-c-dark));
-    --nav-blob-d: light-dark(var(--nav-blob-d-light), var(--nav-blob-d-dark));
-    --nav-blob-e: light-dark(var(--nav-blob-e-light), var(--nav-blob-e-dark));
-    --nav-blob-f: light-dark(var(--nav-blob-f-light), var(--nav-blob-f-dark));
-    --nav-blob-g: light-dark(var(--nav-blob-g-light), var(--nav-blob-g-dark));
-    --nav-blob-h: light-dark(var(--nav-blob-h-light), var(--nav-blob-h-dark));
+    --marble-red: light-dark(var(--marble-red-light), var(--marble-red-dark));
+    --marble-orange: light-dark(var(--marble-orange-light), var(--marble-orange-dark));
+    --marble-yellow: light-dark(var(--marble-yellow-light), var(--marble-yellow-dark));
+    --marble-green: light-dark(var(--marble-green-light), var(--marble-green-dark));
+    --marble-cyan: light-dark(var(--marble-cyan-light), var(--marble-cyan-dark));
+    --marble-blue: light-dark(var(--marble-blue-light), var(--marble-blue-dark));
+    --marble-violet: light-dark(var(--marble-violet-light), var(--marble-violet-dark));
+    --marble-magenta: light-dark(var(--marble-magenta-light), var(--marble-magenta-dark));
     --nav-border: light-dark(var(--nav-border-light), var(--nav-border-dark));
     --nav-shadow-color: light-dark(var(--nav-shadow-color-light), var(--nav-shadow-color-dark));
     --brand-glass-start: light-dark(var(--brand-glass-start-light), var(--brand-glass-start-dark));
@@ -415,7 +415,7 @@
   animation: none !important;
 }
 
-/* Clipped decorative gradient-mixing canvas behind the single bar (never clips popovers) */
+/* Clipped decorative Rainbow Marbled-Liquid Pigment Ribbons canvas (never clips popovers) */
 .edunexus-navbar-ambient {
   position: absolute;
   inset: 0;
@@ -424,120 +424,103 @@
   pointer-events: none;
 }
 
-.edunexus-ambient-wash {
+/* Continuous seamless rainbow under-stream (exact 90deg horizontal 2x period = zero loop seam) */
+.edunexus-marble-base {
   position: absolute;
   inset-block: 0;
   inset-inline-start: 0;
   inline-size: 200%;
   background-image: linear-gradient(
     90deg,
-    var(--nav-blob-a) 0%,
-    var(--nav-blob-d) 12.5%,
-    var(--nav-blob-e) 25%,
-    var(--nav-blob-g) 37.5%,
-    var(--nav-blob-c) 50%,
-    var(--nav-blob-b) 62.5%,
-    var(--nav-blob-f) 75%,
-    var(--nav-blob-h) 87.5%,
-    var(--nav-blob-a) 100%
+    var(--marble-red) 0%,
+    var(--marble-orange) 6.25%,
+    var(--marble-yellow) 12.5%,
+    var(--marble-green) 18.75%,
+    var(--marble-cyan) 25%,
+    var(--marble-blue) 31.25%,
+    var(--marble-violet) 37.5%,
+    var(--marble-magenta) 43.75%,
+    var(--marble-red) 50%,
+    var(--marble-orange) 56.25%,
+    var(--marble-yellow) 62.5%,
+    var(--marble-green) 68.75%,
+    var(--marble-cyan) 75%,
+    var(--marble-blue) 81.25%,
+    var(--marble-violet) 87.5%,
+    var(--marble-magenta) 93.75%,
+    var(--marble-red) 100%
   );
-  opacity: 0.48;
+  opacity: 0.54;
 }
 
-.edunexus-ambient-vortex {
+/* Soft marbled liquid pigment swirls beneath the ribbons */
+.edunexus-marble-swirl {
   position: absolute;
   inset-block-start: 50%;
-  inset-inline-start: 12%;
-  inline-size: 76%;
+  inline-size: 72%;
   aspect-ratio: 1;
   border-radius: 9999px;
-  background: conic-gradient(
-    from 0deg,
-    var(--nav-blob-a),
-    var(--nav-blob-d),
-    var(--nav-blob-e),
-    var(--nav-blob-g),
-    var(--nav-blob-c),
-    var(--nav-blob-b),
-    var(--nav-blob-a)
-  );
-  filter: blur(32px);
-  opacity: 0.42;
+  filter: blur(26px);
+  opacity: 0.46;
   transform: translate3d(0, -50%, 0);
 }
 
-.edunexus-ambient-blob {
+.edunexus-marble-swirl-a {
+  inset-inline-start: -4%;
+  background: conic-gradient(
+    from 0deg,
+    var(--marble-red),
+    var(--marble-orange),
+    var(--marble-yellow),
+    var(--marble-green),
+    var(--marble-cyan),
+    var(--marble-blue),
+    var(--marble-violet),
+    var(--marble-magenta),
+    var(--marble-red)
+  );
+}
+
+.edunexus-marble-swirl-b {
+  inset-inline-end: -4%;
+  background: conic-gradient(
+    from 180deg,
+    var(--marble-cyan),
+    var(--marble-violet),
+    var(--marble-magenta),
+    var(--marble-red),
+    var(--marble-orange),
+    var(--marble-yellow),
+    var(--marble-green),
+    var(--marble-cyan)
+  );
+}
+
+/* Seamless 200%-wide SVG marbled liquid rainbow ribbon streams */
+.edunexus-marble-svg {
   position: absolute;
-  border-radius: 44% 56% 62% 38% / 54% 42% 58% 46%;
-  filter: blur(28px);
+  inset-block: -12%;
+  inset-inline-start: 0;
+  inline-size: 200%;
+  block-size: 124%;
+  filter: blur(3.5px) saturate(135%);
+}
+
+.edunexus-marble-stream-a {
   opacity: 0.88;
 }
 
-.edunexus-ambient-blob-a {
-  inset-block-start: -90%;
-  inset-inline-start: -6%;
-  inline-size: 36%;
-  block-size: 280%;
-  background: radial-gradient(circle at center, var(--nav-blob-a) 0%, transparent 72%);
+.edunexus-marble-stream-b {
+  filter: blur(2px) saturate(140%);
+  opacity: 0.78;
 }
 
-.edunexus-ambient-blob-b {
-  inset-block-start: -75%;
-  inset-inline-start: 28%;
-  inline-size: 36%;
-  block-size: 270%;
-  background: radial-gradient(circle at center, var(--nav-blob-b) 0%, transparent 72%);
+.edunexus-marble-stream-c {
+  filter: blur(0.6px);
+  opacity: 0.78;
 }
 
-.edunexus-ambient-blob-c {
-  inset-block-start: -85%;
-  inset-inline-end: -6%;
-  inline-size: 34%;
-  block-size: 275%;
-  background: radial-gradient(circle at center, var(--nav-blob-c) 0%, transparent 72%);
-}
-
-.edunexus-ambient-blob-d {
-  inset-block-start: -65%;
-  inset-inline-start: 12%;
-  inline-size: 32%;
-  block-size: 260%;
-  background: radial-gradient(circle at center, var(--nav-blob-d) 0%, transparent 72%);
-}
-
-.edunexus-ambient-blob-e {
-  inset-block-start: -95%;
-  inset-inline-start: 44%;
-  inline-size: 32%;
-  block-size: 270%;
-  background: radial-gradient(circle at center, var(--nav-blob-e) 0%, transparent 72%);
-}
-
-.edunexus-ambient-blob-f {
-  inset-block-start: -70%;
-  inset-inline-start: 62%;
-  inline-size: 34%;
-  block-size: 265%;
-  background: radial-gradient(circle at center, var(--nav-blob-f) 0%, transparent 72%);
-}
-
-.edunexus-ambient-blob-g {
-  inset-block-start: -80%;
-  inset-inline-start: 20%;
-  inline-size: 30%;
-  block-size: 255%;
-  background: radial-gradient(circle at center, var(--nav-blob-g) 0%, transparent 72%);
-}
-
-.edunexus-ambient-blob-h {
-  inset-block-start: -65%;
-  inset-inline-end: 14%;
-  inline-size: 32%;
-  block-size: 260%;
-  background: radial-gradient(circle at center, var(--nav-blob-h) 0%, transparent 72%);
-}
-
-/* Bottom luminous 5-color paint hairline edge */
+/* Bottom luminous full-rainbow flowing hairline edge */
 .edunexus-navbar-edge {
   position: relative;
   z-index: 2;
@@ -554,18 +537,29 @@
   block-size: 100%;
   background-image: linear-gradient(
     90deg,
-    #38bdf8 0%,
-    #22c55e 20%,
-    #facc15 40%,
-    #f97316 60%,
-    #ef4444 80%,
-    #38bdf8 100%
+    #ef4444 0%,
+    #f97316 7%,
+    #facc15 14%,
+    #22c55e 21%,
+    #06b6d4 28%,
+    #3b82f6 35%,
+    #8b5cf6 42%,
+    #ec4899 46%,
+    #ef4444 50%,
+    #f97316 57%,
+    #facc15 64%,
+    #22c55e 71%,
+    #06b6d4 78%,
+    #3b82f6 85%,
+    #8b5cf6 92%,
+    #ec4899 96%,
+    #ef4444 100%
   );
-  opacity: 0.92;
+  opacity: 0.95;
 }
 
-/* Compositor-only mixing animations (opt-in strictly under prefers-reduced-motion: no-preference) */
-@keyframes edunexus-wash-flow {
+/* Compositor-only continuous marbled liquid ribbon animations */
+@keyframes edunexus-marble-flow-left {
   0% {
     transform: translate3d(0, 0, 0);
   }
@@ -574,144 +568,60 @@
   }
 }
 
-@keyframes edunexus-vortex-spin {
+@keyframes edunexus-marble-flow-right {
   0% {
-    transform: translate3d(-10%, -50%, 0) rotate(0deg) scale(1.08);
-  }
-  50% {
-    transform: translate3d(10%, -46%, 0) rotate(180deg) scale(1.18);
+    transform: translate3d(-50%, 0, 0);
   }
   100% {
-    transform: translate3d(-10%, -50%, 0) rotate(360deg) scale(1.08);
-  }
-}
-
-@keyframes edunexus-blob-mix-a {
-  0% {
-    transform: translate3d(-6%, -6%, 0) rotate(0deg) scale(1);
-    opacity: 0.92;
-  }
-  50% {
-    transform: translate3d(34%, 12%, 0) rotate(32deg) scale(1.18);
-    opacity: 0.58;
-  }
-  100% {
-    transform: translate3d(12%, -8%, 0) rotate(-14deg) scale(1.06);
-    opacity: 0.94;
-  }
-}
-
-@keyframes edunexus-blob-mix-b {
-  0% {
-    transform: translate3d(8%, 8%, 0) rotate(10deg) scale(1.05);
-    opacity: 0.88;
-  }
-  50% {
-    transform: translate3d(-24%, -12%, 0) rotate(-28deg) scale(1.2);
-    opacity: 0.48;
-  }
-  100% {
-    transform: translate3d(20%, 6%, 0) rotate(18deg) scale(0.98);
-    opacity: 0.95;
-  }
-}
-
-@keyframes edunexus-blob-mix-c {
-  0% {
-    transform: translate3d(6%, -4%, 0) rotate(-10deg) scale(1);
-    opacity: 0.84;
-  }
-  50% {
-    transform: translate3d(-30%, 10%, 0) rotate(26deg) scale(1.16);
-    opacity: 0.95;
-  }
-  100% {
-    transform: translate3d(-10%, -8%, 0) rotate(-18deg) scale(1.04);
-    opacity: 0.52;
-  }
-}
-
-@keyframes edunexus-blob-mix-d {
-  0% {
-    transform: translate3d(0, 10%, 0) scale(0.94);
-    opacity: 0.3;
-  }
-  45% {
-    transform: translate3d(42%, -10%, 0) scale(1.18);
-    opacity: 0.96;
-  }
-  100% {
-    transform: translate3d(18%, 8%, 0) scale(1.02);
-    opacity: 0.4;
-  }
-}
-
-@keyframes edunexus-blob-mix-e {
-  0% {
-    transform: translate3d(-10%, -10%, 0) scale(0.92);
-    opacity: 0.28;
-  }
-  50% {
-    transform: translate3d(-34%, 12%, 0) scale(1.16);
-    opacity: 0.94;
-  }
-  100% {
-    transform: translate3d(24%, -6%, 0) scale(1.04);
-    opacity: 0.36;
-  }
-}
-
-@keyframes edunexus-blob-mix-f {
-  0% {
-    transform: translate3d(10%, 6%, 0) scale(1.02);
-    opacity: 0.45;
-  }
-  50% {
-    transform: translate3d(-36%, -8%, 0) scale(1.2);
-    opacity: 0.92;
-  }
-  100% {
-    transform: translate3d(-12%, 10%, 0) scale(0.96);
-    opacity: 0.52;
-  }
-}
-
-@keyframes edunexus-blob-mix-g {
-  0% {
-    transform: translate3d(-8%, 8%, 0) scale(0.95);
-    opacity: 0.3;
-  }
-  55% {
-    transform: translate3d(44%, -6%, 0) scale(1.14);
-    opacity: 0.94;
-  }
-  100% {
-    transform: translate3d(14%, 6%, 0) scale(1);
-    opacity: 0.36;
-  }
-}
-
-@keyframes edunexus-blob-mix-h {
-  0% {
-    transform: translate3d(8%, -8%, 0) scale(1);
-    opacity: 0.35;
-  }
-  50% {
-    transform: translate3d(-32%, 10%, 0) scale(1.18);
-    opacity: 0.94;
-  }
-  100% {
-    transform: translate3d(-6%, -6%, 0) scale(0.96);
-    opacity: 0.42;
-  }
-}
-
-@keyframes edunexus-edge-flow {
-  0% {
     transform: translate3d(0, 0, 0);
   }
+}
+
+@keyframes edunexus-marble-ribbon-drift-a {
+  0% {
+    transform: translate3d(-50%, -3%, 0) scaleY(1.04);
+  }
+  50% {
+    transform: translate3d(-25%, 4%, 0) scaleY(0.95);
+  }
   100% {
-    transform: translate3d(-50%, 0, 0);
+    transform: translate3d(0, -3%, 0) scaleY(1.04);
+  }
+}
+
+@keyframes edunexus-marble-ribbon-drift-b {
+  0% {
+    transform: translate3d(0, 4%, 0) scaleY(0.96);
+  }
+  50% {
+    transform: translate3d(-25%, -4%, 0) scaleY(1.06);
+  }
+  100% {
+    transform: translate3d(-50%, 4%, 0) scaleY(0.96);
+  }
+}
+
+@keyframes edunexus-marble-swirl-spin-a {
+  0% {
+    transform: translate3d(-6%, -50%, 0) rotate(0deg) scale(1.08);
+  }
+  50% {
+    transform: translate3d(14%, -46%, 0) rotate(180deg) scale(1.22);
+  }
+  100% {
+    transform: translate3d(-6%, -50%, 0) rotate(360deg) scale(1.08);
+  }
+}
+
+@keyframes edunexus-marble-swirl-spin-b {
+  0% {
+    transform: translate3d(6%, -50%, 0) rotate(360deg) scale(1.12);
+  }
+  50% {
+    transform: translate3d(-14%, -54%, 0) rotate(180deg) scale(1.24);
+  }
+  100% {
+    transform: translate3d(6%, -50%, 0) rotate(0deg) scale(1.12);
   }
 }
 
@@ -744,48 +654,32 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .edunexus-ambient-wash {
-    animation: edunexus-wash-flow 20s linear infinite;
+  .edunexus-marble-base {
+    animation: edunexus-marble-flow-left 18s linear infinite;
   }
 
-  .edunexus-ambient-vortex {
-    animation: edunexus-vortex-spin 24s linear infinite;
+  .edunexus-marble-swirl-a {
+    animation: edunexus-marble-swirl-spin-a 22s linear infinite;
   }
 
-  .edunexus-ambient-blob-a {
-    animation: edunexus-blob-mix-a 13s ease-in-out infinite alternate;
+  .edunexus-marble-swirl-b {
+    animation: edunexus-marble-swirl-spin-b 26s linear infinite;
   }
 
-  .edunexus-ambient-blob-b {
-    animation: edunexus-blob-mix-b 17s ease-in-out infinite alternate;
+  .edunexus-marble-stream-a {
+    animation: edunexus-marble-ribbon-drift-a 14s linear infinite;
   }
 
-  .edunexus-ambient-blob-c {
-    animation: edunexus-blob-mix-c 15s ease-in-out infinite alternate;
+  .edunexus-marble-stream-b {
+    animation: edunexus-marble-ribbon-drift-b 19s linear infinite;
   }
 
-  .edunexus-ambient-blob-d {
-    animation: edunexus-blob-mix-d 14s ease-in-out infinite alternate;
-  }
-
-  .edunexus-ambient-blob-e {
-    animation: edunexus-blob-mix-e 18s ease-in-out infinite alternate;
-  }
-
-  .edunexus-ambient-blob-f {
-    animation: edunexus-blob-mix-f 16s ease-in-out infinite alternate;
-  }
-
-  .edunexus-ambient-blob-g {
-    animation: edunexus-blob-mix-g 19s ease-in-out infinite alternate;
-  }
-
-  .edunexus-ambient-blob-h {
-    animation: edunexus-blob-mix-h 12s ease-in-out infinite alternate;
+  .edunexus-marble-stream-c {
+    animation: edunexus-marble-flow-right 11s linear infinite;
   }
 
   .edunexus-navbar-edge-track {
-    animation: edunexus-edge-flow 12s linear infinite;
+    animation: edunexus-marble-flow-left 10s linear infinite;
   }
 }
 
