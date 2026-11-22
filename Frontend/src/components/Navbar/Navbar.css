@@ -4,6 +4,13 @@
  */
 
 :root {
+  /* Shared Navbar layout height tokens */
+  --edunexus-navbar-inner-height: 3.25rem;
+  --edunexus-navbar-edge-height: 2px;
+  --edunexus-navbar-height: calc(
+    var(--edunexus-navbar-inner-height) + var(--edunexus-navbar-edge-height)
+  );
+
   /* Dual-theme base glass surfaces over Marbled Rainbow Liquid Ribbons */
   --nav-base-bg-light: #f6f8ff;
   --nav-base-bg-dark: #040818;
@@ -459,7 +466,7 @@
   position: relative;
   z-index: 2;
   inline-size: 100%;
-  block-size: 2px;
+  block-size: var(--edunexus-navbar-edge-height);
   overflow: hidden;
   contain: strict;
   pointer-events: none;
@@ -568,7 +575,7 @@
   align-items: center;
   justify-content: flex-start;
   gap: 0.65rem;
-  block-size: 3.25rem;
+  block-size: var(--edunexus-navbar-inner-height);
   inline-size: 100%;
   padding-inline: 0.75rem;
 }

@@ -23,9 +23,9 @@ export const Header = memo(function Header({
 }: HeaderProps) {
   return (
     <header
-      className={`relative w-full border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 ${className}`.trim()}
+      className={`relative flex min-h-[calc(100dvh-var(--edunexus-navbar-height,3.375rem))] w-full flex-col border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900 ${className}`.trim()}
     >
-      <div className="grid min-h-68 w-full grid-cols-[auto_1fr_auto] items-center gap-4 px-3 py-10 sm:min-h-88 sm:px-4 sm:py-12 lg:min-h-116 lg:gap-6 lg:px-6 lg:py-16">
+      <div className="grid w-full flex-1 grid-cols-[auto_1fr_auto] items-center gap-4 px-3 py-8 sm:px-4 sm:py-10 lg:gap-6 lg:px-6 lg:py-12">
         {children === undefined ? (
           <>
             <div className="flex min-w-0 items-center justify-start gap-2" data-header-slot="left">
